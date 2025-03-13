@@ -1,14 +1,13 @@
 import streamlit as st
 import yfinance as yf
 
-st.write("""
-# Hello World!
-ola *mami* que ***guapa*** """)
 
-tickerSymbol = "COUR"
+st.set_page_config(page_title="Stocks", page_icon="📈", layout="wide")
 
-tickerData = yf.Ticker(tickerSymbol)
-tickerDf=tickerData.history(start='2020-5-10', end='2025-1-31')	
+# tickerSymbol = "COUR"
 
-st.line_chart(tickerDf.Close)
-st.line_chart(tickerDf.Volume)
+# tickerData = yf.Ticker(tickerSymbol)
+# tickerDf=tickerData.history(start='2020-5-10', end='2025-1-31')	
+
+# st.line_chart(tickerDf.Close)
+# st.line_chart(tickerDf.Volume)
