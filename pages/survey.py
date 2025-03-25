@@ -192,47 +192,74 @@ elif st.session_state.page == 4:
 
     with col1:
         if st.button(label="Next"):
-            st.session_state.platforms = platforms
-            st.session_state.course_types = course_types
-            st.session_state.frequency = frequency
-            st.session_state.satisfaction = satisfaction
-            st.session_state.learning_method = learning_method
-            st.session_state.certification = certification
-            next_page()
+            if not st.session_state.selected_platforms:
+                st.warning("Please select at least one platform.")
+            elif not st.session_state.selected_courses:
+                st.warning("Please select at least one type of course.")
+            elif usage == "School purposes" or usage == "Both":
+                if not st.session_state.selected_reasons:
+                    st.warning("Please select at least one reason for using e-learning platforms.")
+                elif not grade_before or not max_grade_before or not grade_after or not max_grade_after:
+                    st.warning("Please enter your GPA before and after using e-learning platforms.")
+            else:
+                st.session_state.frequency = frequency
+                st.session_state.satisfaction = satisfaction
+                st.session_state.learning_method = learning_method
+                st.session_state.certification = certification
+                next_page()
 
     with col2:
         if st.button(label="Back"):
             prev_page()
 
 elif st.session_state.page == 5:
-    st.write("### Part 3: Choose your favourite type of e-learning")
+    st.write("### Part 3: It's your turn to create your own online platform!")
 
-    # Example of retrieving answers from previous questions
-    preferred_platform = st.session_state.get("ranked_platforms", ["Udemy"])
-    course_types = st.session_state.get("selected_courses", ["Technical (Programming, Data Science)"])
+    scenarios = {
+    "Technical (Programming, Data Science)": """Imagine you are learning Python programming. You start with basic syntax, 
+    then move on to data structures and algorithms. After completing the course, you can apply your skills by creating software 
+    applications or analyzing big data.""",
+    
+    "Business & Management": """You are studying management theories and real-world business scenarios. 
+    You participate in group projects and learn how to manage teams, understand financial reports, and make strategic decisions 
+    for a company. This type of course prepares you for leadership roles in organizations.""",
+    
+    "Personal Development": """You are learning skills for personal growth, such as time management, emotional intelligence, 
+    and effective communication. After completing this course, you can improve your personal and professional relationships, 
+    manage stress, and achieve your personal goals.""",
+    
+    "Arts & Humanities": """You are exploring history, philosophy, literature, and other creative subjects. 
+    You engage in discussions, read classic books, and participate in creative writing or art projects. These courses foster creativity 
+    and critical thinking while giving you a deeper understanding of human culture.""",
+    
+    "Health & Medicine": """You're studying anatomy, healthcare management, or public health. 
+    You could be learning how to care for patients, manage healthcare organizations, or conduct health research. 
+    These courses prepare you to contribute to healthcare and improve the quality of life for individuals and communities.""",
+    
+    "Other": """You’re exploring a completely new field of knowledge! This could range from courses on sustainability, entrepreneurship, 
+    languages, to anything that sparks your interest. You get to be a pioneer in a niche area, learning something unique and specialized."""
+}
+    if st.session_state.selected_courses:
+        first_course = st.session_state.selected_courses[0]
 
-    # Create a search query based on previous answers
-    search_query = f"{course_types[0]} e-learning example on {preferred_platform[0]}"
-    st.write(f"Searching for videos related to: **{search_query}**")
+        if first_course in scenarios:
+            st.write(scenarios[first_course])
 
-    # Use the web tool to search for video links
-    search_url = f"https://www.youtube.com/results?search_query={quote(search_query)}"
-    st.write(f"[View more on YouTube]({search_url})")
+            user_response = st.text_area(f"What do you think about videos about {first_course}? Please share your thoughts and tell us "
+                                     "what you'd include in these videos:")
 
-    # Display sample videos (you can enhance this by embedding actual video URLs)
-    st.video("https://www.youtube.com/embed/dQw4w9WgXcQ")  # Placeholder video
+
+
 
     col1, col2 = st.columns(2)
-
     with col1:
         if st.button(label="Back"):
             prev_page()
-
     with col2:
         if st.button(label="Submit"):
             st.write("### ✅ Thank you for your responses!")
+            
 
-           
 
 
     # with col3:
