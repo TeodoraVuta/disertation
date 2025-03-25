@@ -1,5 +1,8 @@
 import streamlit as st
 from country_list import countries_for_language
+import time
+from urllib.parse import quote
+import requests
 
 st.set_page_config(page_title="survey")
 
@@ -20,12 +23,60 @@ def next_page():
 def prev_page():
     st.session_state.page -= 1
 
-st.title("Share your experience with e-learning platforms!")
+st.title("Share your experience with e-learning platforms! 📚" )
 
 if st.session_state.page == 1:
+    st.write("## 🌐 Please choose the language of the survey:")
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    col1, col2 = st.columns([2, 2])  # Adjust the column sizes for centering
+
+    with col1:  
+        button_ro = st.button("Romana", use_container_width=True)
+
+    with col2:  
+        button_en = st.button("English", use_container_width=True)
+
+    if button_ro:
+        st.session_state.language = "ro"
+        #next_page()
+    elif button_en:
+        st.session_state.language = "en"
+        next_page()
+    
+
+elif st.session_state.page == 2:
+    
+    st.write("""
+    This survey will help us understand how people use e-learning platforms and why.  
+    There are **3 different parts** to this survey:
+    1. **Personal Information**
+    2. **Your E-learning Experience + Before & After E-learning**
+    3. **What type of e-learning you prefer** 
+
+    It will not take more than 5-7 minutes to complete the survey.
+    """)
+
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:  # Center column for the button
+        st.markdown("###")  # Adds some vertical space
+        button_start = st.button("🚀 Let's get started!", use_container_width=True)
+
+    if button_start:
+        next_page()
+
+elif st.session_state.page == 3:
     with st.form(key="form_page1"):
-        st.write("### Step 1: Personal Information")
+        st.write("### Part 1: Personal Information")
+        
         age = st.slider("How old are you?", 0, 100)
+
+        gender = st.radio("What is your gender?", 
+                         ["Male", "Female", "Non-binary/Third gender", "Prefer not to say"])
+
 
         country_list = [country[1] for country in countries_for_language('en')]
         country = st.selectbox("Where are you from?", country_list)
@@ -41,8 +92,11 @@ if st.session_state.page == 1:
             st.session_state.education = education
             next_page()
 
-elif st.session_state.page == 2:
-    st.write("### Step 2: Your E-learning Experience")
+
+
+elif st.session_state.page == 4:
+
+    st.write("### Part 2: Your E-learning Experience")
 
     platforms = ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "Other"]
     st.session_state.selected_platforms = st.multiselect(
@@ -150,8 +204,24 @@ elif st.session_state.page == 2:
         if st.button(label="Back"):
             prev_page()
 
-elif st.session_state.page == 3:
-    st.write("### Step 3: Before & After E-learning")
+elif st.session_state.page == 5:
+    st.write("### Part 3: Choose your favourite type of e-learning")
+
+    # Example of retrieving answers from previous questions
+    preferred_platform = st.session_state.get("ranked_platforms", ["Udemy"])
+    course_types = st.session_state.get("selected_courses", ["Technical (Programming, Data Science)"])
+
+    # Create a search query based on previous answers
+    search_query = f"{course_types[0]} e-learning example on {preferred_platform[0]}"
+    st.write(f"Searching for videos related to: **{search_query}**")
+
+    # Use the web tool to search for video links
+    search_url = f"https://www.youtube.com/results?search_query={quote(search_query)}"
+    st.write(f"[View more on YouTube]({search_url})")
+
+    # Display sample videos (you can enhance this by embedding actual video URLs)
+    st.video("https://www.youtube.com/embed/dQw4w9WgXcQ")  # Placeholder video
+
     col1, col2 = st.columns(2)
 
     with col1:
@@ -161,17 +231,8 @@ elif st.session_state.page == 3:
     with col2:
         if st.button(label="Submit"):
             st.write("### ✅ Thank you for your responses!")
+
            
-
-
-
-
-
-
-
-
-
-
 
 
     # with col3:
