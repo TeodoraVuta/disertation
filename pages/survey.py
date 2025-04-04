@@ -6,22 +6,43 @@ st.set_page_config(page_title="survey")
 
 if "page" not in st.session_state:
     st.session_state.page = 1
-if "other_platform" not in st.session_state:
-    st.session_state.other_platform = ""
-if "other_course" not in st.session_state:
-    st.session_state.other_course = ""
-if "selected_platforms" not in st.session_state:
-    st.session_state.selected_platforms = []
-if "selected_courses" not in st.session_state:
-    st.session_state.selected_courses = []
-if "selected_usage" not in st.session_state:
-    st.session_state.selected_usage = []
-if "job" not in st.session_state:
-    st.session_state.job = ""
-if "selected_reasons" not in st.session_state:
-    st.session_state.selected_reasons = []
-if "learning_preference" not in st.session_state:
-    st.session_state.learning_preference = 0
+
+keys_to_initialize = [
+    ("other_platform", ""),
+    ("other_course", ""),
+    ("selected_platforms", []),
+    ("selected_courses", []),
+    ("selected_usage", []),
+    ("job", ""),
+    ("mandatory", ""),
+    ("selected_reasons", []),
+    ("learning_preference", 0),
+    ("promotion", ""),
+    ("grade_before", ""),
+    ("max_grade_before", ""),
+    ("grade_after", ""),
+    ("max_grade_after", ""),
+    ("learning_method", ""),
+    ("certification", ""),
+    ("multitasking", ""),
+    ("notes", []),
+    ("bestCourse", ""),
+    ("dropOut", ""),
+    ("dropOutReason", ""),
+    ("completationRate", 0),
+    ("vr", ""),
+    ("liveInteraction", ""),
+    ("immersive", ""),
+    ("replacement", ""),
+    ("aiAssistant", ""),
+    ("aiProfessor", "")
+]
+
+for key, default_value in keys_to_initialize:
+    if key not in st.session_state:
+        st.session_state[key] = default_value
+
+
 
 def next_page():
     st.session_state.page += 1
@@ -100,30 +121,31 @@ elif st.session_state.page == 4:
 
     platforms = ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "My university's platform",
                  "Youtube", "TikTok", "Other"]
-    st.session_state.selected_platforms = st.multiselect(
-        "Select the e-learning platforms you use:", platforms, default=st.session_state.selected_platforms
+    platforms = st.multiselect(
+        "Select the e-learning platforms (one or more) you use:", platforms, default=st.session_state.selected_platforms
     )
 
     if "Other" in st.session_state.selected_platforms:
-        st.session_state.other_platform = st.text_input("Please specify the other platform(s) you use:",
+        other_platform = st.text_input("Please specify the other platform(s) you use:",
                                                          value=st.session_state.other_platform)
+        platforms.append(other_platform)
     else:
-        st.session_state.other_platform = ""
-    
+        other_platform = ""
+
     course_types = ["Technical (Programming, Data Science)", "Business & Management",
                     "Personal Development", "Arts & Humanities", "Health & Medicine", "Other"]
-    st.session_state.selected_courses = st.multiselect(
-        "What types of courses do you usually take?", course_types, default=st.session_state.selected_courses
+    selected_courses = st.multiselect(
+        "What types of courses do you usually take? (select one or more)", course_types, default=st.session_state.selected_courses
     )
 
     if "Other" in st.session_state.selected_courses:
-        st.session_state.other_course = st.text_input("Please specify the type of course:",
+        other_course = st.text_input("Please specify the type of course:",
                                                        value=st.session_state.other_course)
+        selected_courses.append(other_course)
     else:
-        st.session_state.other_course = ""
+        other_course = ""
 
-
-    frequency = st.selectbox("How often do you use e-learning platforms?",
+    frequency = st.radio("How often do you use e-learning platforms?",
                               ["Daily", "A few times a week", "Once a week", "A few times a month", "Rarely"])
 
     st.write("Why do you visit e-learning platforms?")
@@ -134,13 +156,14 @@ elif st.session_state.page == 4:
         if st.checkbox(option, value=(option in st.session_state.selected_usage)):
             selected_usage.append(option)        
 
-
-    st.session_state.selected_usage = selected_usage
-
     if "Job Purposes" in st.session_state.selected_usage:
-        st.session_state.job = st.text_input("What is your job?", value=st.session_state.job)
+        job = st.text_input("What is your job?", value=st.session_state.job)
         mandatory = st.radio("Is it mandatory to take online courses for your job?", ["Yes", "No"])
         promotion = st.radio("Do you think that taking online courses will help/helped you get a promotion?", ["Yes", "No"])
+    else:
+        job = ""
+        mandatory = ""
+        promotion = ""
 
     if "School purposes" in st.session_state.selected_usage:
         reasons = ["I only use my university's platform", "I want to learn extra", "I need extra information for my exams/papers",
@@ -198,6 +221,14 @@ elif st.session_state.page == 4:
                     st.success(f"Recorded: {grade_after} out of {max_grade_after}")
             except ValueError:
                 st.error("Please enter valid numeric values.")
+    else:
+        reasons = []
+        beforeClasses = None
+        exams = None
+        grade_before = None
+        max_grade_before = None
+        grade_after = None
+        max_grade_after = None
             
     learning_method = st.radio("Which learning method do you prefer?",
                                 ["Pre-recorded video courses", "Live online classes",
@@ -214,8 +245,8 @@ elif st.session_state.page == 4:
         "Do you multitask while taking an online course?",
         ["Never", "Sometimes",  "Often", "Always"])
     
-    notes = st.radio(
-        "How do you usually take notes when studying online?",
+    notes = st.multiselect(
+        "How do you usually take notes when studying online? (select one or more)",
         ["I don’t take notes", "Handwritten", "Digital (OneNote, Notion, etc.)", "Summaries", "Mind maps"])
     
     bestCourse = st.text_input("What was the best course you took? "
@@ -253,13 +284,44 @@ elif st.session_state.page == 4:
 
     with col1:
         if st.button(label="Next"):
+        # Update session state with current selections
+            st.session_state.selected_platforms = platforms  # from the multiselect input
+            st.session_state.selected_courses = selected_courses  # from the multiselect input
+            st.session_state.selected_usage = selected_usage  # from the checkbox inputs
+
+            # Handle other field updates
+            st.session_state.job = job
+            st.session_state.mandatory = mandatory
+            st.session_state.promotion = promotion
+            st.session_state.selected_reasons = reasons
+            st.session_state.grade_before = grade_before
+            st.session_state.max_grade_before = max_grade_before
+            st.session_state.grade_after = grade_after
+            st.session_state.max_grade_after = max_grade_after
+            st.session_state.learning_method = learning_method
+            st.session_state.certification = certification
+            st.session_state.multitasking = multitasking
+            st.session_state.notes = notes
+            st.session_state.bestCourse = bestCourse
+            st.session_state.dropOut = dropOut
+            st.session_state.dropOutReason = dropOutReason
+            st.session_state.completationRate = completationRate
+            st.session_state.preference = preference
+            st.session_state.vr = vr
+            st.session_state.liveInteraction = liveInteraction
+            st.session_state.immersive = immersive
+            st.session_state.replacement = replacement
+            st.session_state.aiAssistant = aiAssistant
+            st.session_state.aiProfessor = aiProfessor
+
+            # Now check the validation conditions
             if not st.session_state.selected_platforms:
                 st.warning("Please select at least one platform.")
-            if "Other" in st.session_state.selected_platforms and not st.session_state.other_platform.strip():
+            elif "Other" in st.session_state.selected_platforms and not st.session_state.other_platform.strip():
                 st.warning("Please specify the other platform(s) you use.")
             elif not st.session_state.selected_courses:
                 st.warning("Please select at least one type of course.")
-            if "Other" in st.session_state.selected_courses and not st.session_state.other_course.strip():
+            elif "Other" in st.session_state.selected_courses and not st.session_state.other_course.strip():
                 st.warning("Please specify the courses you take.")
             elif "School purposes" in st.session_state.selected_usage:
                 if not st.session_state.selected_reasons:
@@ -267,9 +329,6 @@ elif st.session_state.page == 4:
                 elif not grade_before or not max_grade_before or not grade_after or not max_grade_after:
                     st.warning("Please enter your GPA before and after using e-learning platforms.")
             else:
-                st.session_state.frequency = frequency
-                st.session_state.learning_method = learning_method
-                st.session_state.certification = certification
                 next_page()
 
     with col2:
@@ -317,21 +376,54 @@ elif st.session_state.page == 5:
         if st.button(label="Back"):
             prev_page()
     with col2:
+        
+
         if st.button(label="Submit"):
-            st.write("### ✅ Thank you for your responses!")
+            # Custom HTML and CSS for pop-up effect, smaller size, and disappearing after 6 seconds
+            st.markdown("""
+            <style>
+                .popup {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: #28a745;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    display: inline-block;
+                    width: 60%;
+                    text-align: center;
+                    animation: popup 1s ease-in-out;
+                }
 
+                @keyframes popup {
+                    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                }
 
+                .bar {
+                    height: 5px;
+                    background-color: #34b3a0;
+                    border-radius: 5px;
+                    animation: progressBar 5s linear forwards;
+                }
 
-
-
-
-
- 
-
-
-
-
-
-
-
-    
+                @keyframes progressBar {
+                    0% { width: 0; }
+                    100% { width: 100%; }
+                }
+            </style>
+            <div class="popup">
+                🎉 Thank you for your responses! Your input is valuable! 😊
+                <div class="bar"></div>
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.querySelector('.popup').style.display = 'none';
+                }, 6000);
+            </script>
+            """, unsafe_allow_html=True)
+            st.balloons()
