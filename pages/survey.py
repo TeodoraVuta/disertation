@@ -45,7 +45,7 @@ keys_to_initialize = [
     ("notes", []),
     ("bestCourse", ""),
     ("dropOut", ""),
-    ("dropOutReason", ""),
+    ("dropOutReason", None),
     ("completationRate", 50),
     ("preference", ""),
     ("vr", ""),
@@ -119,68 +119,78 @@ translations = {
         "warning_mandatory": "Please indicate whether the courses are mandatory for your job.",
         "warning_promotion": "Please indicate whether you are taking courses for a promotion.",
         "warning_notes": "Please select at least one note-taking method.",
-        "warning_best_course": "Please provide the name of the best course you've taken."
+        "warning_best_course": "Please provide the name of the best course you've taken.",
+        "warning_dropOut": "Please specify the reason for dropping out."
     },
     "ro": {
-        "age": "Câți ani ai?",
-        "gender": "Care este genul tău?",
+        "age": "Ce varsta ai?",
+        "gender": "Care este sexul tău?",
         "gender_list": ["Masculin", "Feminin", "Non-binary", "Prefer să nu spun"],
         "next_button": "Următorul",
-        "country": "Din ce țară ești?",
-        "education": "Care este cel mai înalt nivel de educație pe care l-ai obținut?",
+        "country": "In ce tara locuiesti?",
+        "education": "Care este ultimul nivel de educație pe care l-ai obținut?",
         "intro": """
-        Acest chestionar ne va ajuta să înțelegem cum folosesc oamenii platformele de învățare online și de ce.  
+        Acest chestionar ne va ajuta să înțelegem cum se folosesc platformele de învățare online și de ce.
+        Toate raspunsurile sunt anonime și vor fi folosite doar în scopuri de cercetare.  
         Există **3 părți** în acest chestionar:
         1. **Informații personale**
-        2. **Experiența de învățare înainte și după utilizarea platformelor de învățare online**
-        3. **Crearea unui curs de învățare online propriu**
+        2. **Experiența de învățare înainte și după utilizarea platformelor e-learning**
+        3. **Devin-o propirul creator de cursuri online**
 
         Nu va dura mai mult de 5-7 minute pentru a completa chestionarul.
         """,
         "start_button": "🚀 Să începem!",
-        "platforms": "Selectați platformele de învățare online pe care le utilizați:",
-        "course_types": "Selectați tipurile de cursuri pe care le urmăriți:",
-        "frequency": "Cât de des vizitați platformele de învățare online?",
-        "why_visit": "De ce vizitați platformele de învățare online?",
-        "job": "Care este titlul dumneavoastră profesional?",
-        "mandatory_courses": "Aceste cursuri sunt obligatorii pentru locul dumneavoastră de muncă?",
-        "promotion_courses": "Urmăriți cursuri pentru a obține o promovare?",
-        "school_reasons": "De ce utilizați e-learning pentru scopuri școlare?",
-        "check_lectures": "Verificați materialele cursurilor înainte de lecții?",
-        "check_exams": "Cât de des consultați materialele pentru examene?",
-        "grade_before": "Care a fost media dumneavoastră înainte de a folosi e-learning?",
-        "max_grade_before": "Care este nota maximă pe care ați putea să o obțineți?",
-        "grade_after": "Care este media dumneavoastră după utilizarea e-learning?",
-        "max_grade_after": "Care este nota maximă pe care ați putea să o obțineți?",
-        "learning_method": "Ce metodă de învățare preferați?",
-        "certification": "Cât de importantă este obținerea unei certificări?",
-        "learning_preference": "Preferiți cursuri structurate sau videoclipuri scurte?",
-        "multitasking": "Cât de des multitasking în timpul învățării?",
-        "notes": "Ce tip de notițe luați în timpul învățării?",
-        "best_course": "Care este cel mai bun curs pe care l-ați urmat?",
-        "dropOut": "Ați renunțat vreodată la un curs online?",
-        "dropOutReason": "Care a fost motivul renunțării?",
-        "completion_rate": "Care este rata dumneavoastră tipică de finalizare a cursurilor?",
+        "part1" : "Partea 1: Informații personale",
+        "part2" : "Partea 2: Experiența ta de învățare. \n\n" 
+        " ✨ Vom considera e-learning orice platforma online care ofera informatii educative. " ,       
+        "platforms": "Selecteaza platformele de e-learning pe care le utilizați:",
+        "course_types": "Selectați ce fel de cursuri urmaresti:",
+        "frequency": "Cât de des utilizati platformele de e-learning?",
+        "why_visit": "Cu ce scop urmariti cursuri online?",
+        "job": "Ce ocupatie ai?",
+        "mandatory_courses": "Cursuri online sunt obligatorii pentru locul de muncă?",
+        "promotion_courses": "Credeti ca multumita cursurilor online ati obtiut/veti obtine o promovare?",
+        "school_reasons": "De ce urmaresti cursuri online pentru scoala?",
+        "check_lectures": "Verificați materialele postate de profesori înainte de a fi predate?",
+        "check_exams": "Cât de des consulti cursurile/lectiile postate de profesorii tai online?",
+        "grade_before": "Care a fost media notelor tale înainte de a folosi e-learning-ului?",
+        "max_grade_before": "Care este media maximă a notelor pe care ai putea să o obții?",
+        "grade_after": "Care este media notelor tale după utilizarea e-learning-ului?",
+        "max_grade_after": "Care este media maximă a notelor pe care ai putea să o obții?",
+        "learning_method": "Ce fel de cursuri online preferi?",
+        "certification": "Cât de importantă este obținerea unui certificat dupa finalizarea unui curs online?",
+        "payed_courses": "Majoritatea cursurilor pe care le urmati sunt platite?",
+        "payment": "Cât de mult ești dispus să plătești pentru un curs online? (in RON)",
+        "multitasking": "Cat de des faci si alte activitati (multitasking) in timp ce urmaresti un curs online?",
+        "notes": "Ce tip de notițe iei în timpul cursurilor online?",
+        "best_course": "Care este cel mai folositor curs pe care l-ai urmat? (poate fi numele, o scurta descriere sau link-ul)",
+        "dropOut": "Ați renunțat vreodată la un curs online dupa ce l-ati inceput?",
+        "dropOutReason": "Care a fost motivul?",
+        "completion_rate": "Care este rata medie de finalizare a cursurilor?",
         "preference_onl": "Preferi învățarea online sau față în față?",
-        "vr": "Ați fi interesat să folosiți realitatea virtuală pentru învățare?",
-        "live_interaction": "Ați dori să aveți interacțiuni live cu instructorii?",
-        "immersive": "Ați fi interesat de experiențe de învățare imersive?",
-        "replacement": "Credeți că AI va înlocui profesorii tradiționali?",
-        "ai_assistant": "Ați folosi un asistent AI pentru învățare?",
-        "ai_professor": "Ați accepta un profesor AI?",
+        "vr": "Ați fi interesat să folosiți realitatea virtuală pentru învățare? /n/n"
+        "exemplu: cursuri de gatit in care sa poti interactiona cu bucataria virtuala",
+        "live_interaction": "Ați dori să aveți interacțiuni live cu profesorii?",
+        "immersive": "Ați fi interesat de experiențe de învățare imersive? /n/n"
+        "exemplu: cursuri de istorie in care sa poti interactiona cu personajele istorice",
+        "replacement": "Credeți că inteligenta artificala va înlocui profesorii tradiționali?",
+        "ai_assistant": "Ați folosi un asistent de inteligenta articiala pentru învățare? /n/n "
+        "exemplu: un chatbot care să răspundă la întrebările tale despre cursuri",
+        "ai_professor": "Ați accepta sa ai ca profesor o inteligenta artificiala?",
         "back_button": "Înapoi",
-        "warning_platforms": "Vă rugăm să selectați cel puțin o platformă.",
-        "warning_other_platform": "Dacă ați selectat 'Altele', vă rugăm să specificați platforma.",
-        "warning_courses": "Vă rugăm să selectați cel puțin un tip de curs.",
-        "warning_other_course": "Dacă ați selectat 'Altele', vă rugăm să specificați tipul de curs.",
-        "warning_usage": "Vă rugăm să selectați cel puțin o opțiune de utilizare.",
-        "warning_reasons": "Vă rugăm să selectați cel puțin un motiv pentru utilizarea e-learning pentru scopuri școlare.",
-        "warning_gpa": "Vă rugăm să completați atât media înainte, cât și după utilizarea e-learning.",
-        "warning_job": "Vă rugăm să specificați titlul dumneavoastră de job.",
-        "warning_mandatory": "Vă rugăm să indicați dacă cursurile sunt obligatorii pentru locul dumneavoastră de muncă.",
-        "warning_promotion": "Vă rugăm să indicați dacă urmați cursuri pentru o promovare.",
-        "warning_notes": "Vă rugăm să selectați cel puțin o metodă de notițe.",
-        "warning_best_course": "Vă rugăm să furnizați numele celui mai bun curs pe care l-ați urmat."
+        "warning_platforms": "Te rog sa selectezi cel puțin o platformă.",
+        "warning_other_platform": "Ai selectat ca folosesti alte platforme decat cele mentionate, te rog sa le specifici.",
+        "warning_courses": "Te rog sa selectezi cel puțin un tip de curs.",
+        "warning_other_course": "Ai selectat ca urmaresti alte tipuri de cursuri decat cele mentionate, te rog sa le specifici.",
+        "warning_usage": "Te rog sa selectezi cel puțin o opțiune de utilizare.",
+        "warning_reasons": "Te rog sa selectezi cel puțin un motiv pentru utilizarea e-learning pentru scopuri școlare.",
+        "warning_gpa": "Te rog sa completezi atât media notelor înainte, cât și după utilizarea e-learning.",
+        "warning_job": "Te rog sa precizezi care este locul tau de munca.",
+        "warning_mandatory": "Te rog să precizezi dacă cursurile sunt obligatorii pentru locul dumneavoastră de muncă.",
+        "warning_promotion": "Te rog să precizezi cum consideri ca te vor ajuta/te-au ajutat cursurile online pentru o promovare.",
+        "warning_notes": "Te rog să precizezi cel puțin o metodă prin care iei notițe.",
+        "warning_best_course": "Te rog să precizezi numele, o scurta descriere sau link-ul celui mai folositor curs pe care l-ai urmat.",
+        "warning_dropOut": "Te rog să precizezi de ce ai renuntat la cursuri online in trecut."
     }
 }
 
@@ -247,7 +257,7 @@ elif st.session_state.page == 2:
 
 elif st.session_state.page == 3:
     with st.form(key="form_page1"):
-        st.write("### Part 1: Personal Information")
+        st.write(current_translations['part1'])
 
         age = st.slider(current_translations['age'], 0, 100)
         st.session_state.age = age
@@ -269,219 +279,230 @@ elif st.session_state.page == 3:
             next_page()
 
 elif st.session_state.page == 4:
-    st.write("### Part 2: Your E-learning Experience")
+    with st.form(key="form_page2"):
+        st.write(current_translations['part2'])
 
-    platforms = ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "My university's platform",
-                 "Youtube", "TikTok", "Other"]
-    
-    selected_platforms = st.multiselect(
-        current_translations['platforms'], platforms)
-    
-    if "Other" in selected_platforms:
-        other_platform = st.text_input("Please specify the other platform(s) you use:",
-                                       value=st.session_state.other_platform)
-        if other_platform:  
-            selected_platforms = [p for p in selected_platforms if p != "Other"]
-            selected_platforms.append(other_platform)
-    else:
-        other_platform = ""
-    
-    st.write("Selected:", selected_platforms)
+        platforms = ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "My university's platform",
+                     "Youtube", "TikTok", "Other"]
 
-    course_types = ["Technical (Programming, Data Science)", "Business & Management",
-                    "Personal Development", "Arts & Humanities", "Health & Medicine", "Other"]
-    selected_courses = st.multiselect(
-        current_translations['course_types'], course_types)
-    
-    if "Other" in selected_courses:
-        other_course = st.text_input("Please specify the type of course:",
-                                       value=st.session_state.other_course)
-        if other_course:  
-            selected_courses = [p for p in selected_courses if p != "Other"]
-            selected_courses.append(other_course)
-    else:
-        other_course = ""
+        selected_platforms = st.multiselect(
+            current_translations['platforms'], platforms)
 
-    requency = st.radio(current_translations['frequency'],
-                              ["Daily", "A few times a week", "Once a week", "A few times a month", "Rarely"])
+        if "Other" in selected_platforms:
+            other_platform = st.text_input("Please specify the other platform(s) you use:",
+                                           value=st.session_state.other_platform)
+            if other_platform:  
+                selected_platforms = [p for p in selected_platforms if p != "Other"]
+                selected_platforms.append(other_platform)
+        else:
+            other_platform = ""
 
-    st.write(current_translations['why_visit'])
-    usage_options = ["Job Purposes", "Personal interest", "School purposes"]
-    selected_usage = []
-    for option in usage_options:
-        if st.checkbox(option, value=(option in st.session_state.selected_usage)):
-            selected_usage.append(option)  
+        st.write("Selected:", selected_platforms)
 
-    if "Job Purposes" in selected_usage:
-        job = st.text_input(current_translations['job'], value=st.session_state.job)
-        mandatory = st.radio("Is it mandatory to take online courses for your job?", ["Yes", "No"])
-        promotion = st.radio("Do you think that taking online courses will help/helped you get a promotion?", ["Yes", "No"])
-    else:
-        job = ""
-        mandatory = ""
-        promotion = ""
+        course_types = ["Technical (Programming, Data Science)", "Business & Management",
+                        "Personal Development", "Arts & Humanities", "Health & Medicine", "Other"]
+        selected_courses = st.multiselect(
+            current_translations['course_types'], course_types)
 
-    if "School purposes" in selected_usage:
-        reasons = ["I only use my university's platform", "I want to learn extra", "I need extra information for my exams/papers",
-                   "I don't understand from class", "Professors from online explain better",
-                   "I don't go to classes"]
-        st.session_state.selected_reasons = st.multiselect(
-            current_translations['school_reasons'], reasons, default=st.session_state.selected_reasons
-        )
-        beforeClasses = st.radio(current_translations['check_lectures'], ["Yes", "No"])
-        exams = st.radio(current_translations['check_exams'], ["All year long", "Exam session only"])
+        if "Other" in selected_courses:
+            other_course = st.text_input("Please specify the type of course:",
+                                           value=st.session_state.other_course)
+            if other_course:  
+                selected_courses = [p for p in selected_courses if p != "Other"]
+                selected_courses.append(other_course)
+        else:
+            other_course = ""
 
-        st.write(current_translations['grade_before'])
+        requency = st.radio(current_translations['frequency'],
+                                  ["Daily", "A few times a week", "Once a week", "A few times a month", "Rarely"])
+
+        st.write(current_translations['why_visit'])
+        usage_options = ["Job Purposes", "Personal interest", "School purposes"]
+        selected_usage = []
+        for option in usage_options:
+            if st.checkbox(option, value=(option in st.session_state.selected_usage)):
+                selected_usage.append(option)  
+
+        if "Job Purposes" in selected_usage:
+            job = st.text_input(current_translations['job'], value=st.session_state.job)
+            mandatory = st.radio(current_translations["mandatory_courses"], ["Yes", "No"])
+            promotion = st.radio(current_translations["promotion_courses"] , ["Yes", "No"])
+        else:
+            job = ""
+            mandatory = ""
+            promotion = ""
+
+        if "School purposes" in selected_usage:
+            reasons = ["I only use my university's platform", "I want to learn extra", "I need extra information for my exams/papers",
+                       "I don't understand from class", "Professors from online explain better",
+                       "I don't go to classes"]
+            st.session_state.selected_reasons = st.multiselect(
+                current_translations['school_reasons'], reasons, default=st.session_state.selected_reasons
+            )
+            beforeClasses = st.radio(current_translations['check_lectures'], ["Yes", "No"])
+            exams = st.radio(current_translations['check_exams'], ["All year long", "Exam session only"])
+
+            st.write(current_translations['grade_before'])
+            col1, col2 = st.columns(2)
+            with col1:
+                grade_before = st.text_input("Your grade:", key="grade_before")
+            with col2:
+                max_grade_before = st.text_input("Out of:", key="max_grade_before")
+            if grade_before and max_grade_before:
+                try:
+                    grade_before = float(grade_before)
+                    max_grade_before = float(max_grade_before)
+                    if grade_before > max_grade_before:
+                        st.error("The grade cannot be higher than the maximum possible grade.")
+                    elif grade_before < 0 or max_grade_before <= 0:
+                        st.error("Grades must be positive numbers.")
+                    else:
+                        st.success(f"Recorded: {grade_before} out of {max_grade_before}")
+                except ValueError:
+                    st.error("Please enter valid numeric values.")
+            st.write(current_translations['grade_after'])
+            col1, col2 = st.columns(2)
+            with col1:
+                grade_after = st.text_input("Your grade:", key="grade_after")
+            with col2:
+                max_grade_after = st.text_input("Out of:", key="max_grade_after")
+            if grade_after and max_grade_after:
+                try:
+                    grade_after = float(grade_after)
+                    max_grade_after = float(max_grade_after)
+                    if grade_after > max_grade_after:
+                        st.error("The grade cannot be higher than the maximum possible grade.")
+                    elif grade_after < 0 or max_grade_after <= 0:
+                        st.error("Grades must be positive numbers.")
+                    else:
+                        st.success(f"Recorded: {grade_after} out of {max_grade_after}")
+                except ValueError:
+                    st.error("Please enter valid numeric values.")
+        else:
+            reasons = []
+            beforeClasses = None
+            exams = None
+            grade_before = None
+            max_grade_before = None
+            grade_after = None
+            max_grade_after = None
+
+        learning_method = st.radio(current_translations['learning_method'],
+                                    ["Pre-recorded video courses", "Live online classes",
+                                     "Text-based courses", "Interactive exercises & projects"])
+
+        certification = st.radio(current_translations['certification'],
+                                  ["Very important", "Somewhat important", "Not important"])
+
+        payed_courses = st.radio(
+            current_translations['payed_courses'],
+            ["Yes", "No"])
+        if payed_courses == "Yes":
+            payment = st.slider(current_translations['payment'], 0, 10000, 100)
+        else:
+            payment = 0
+
+        multitasking = st.radio(
+            current_translations['multitasking'],
+            ["Never", "Sometimes",  "Often", "Always"])
+
+        notes = st.multiselect(
+            current_translations['notes'],
+            ["I don’t take notes", "Handwritten", "Digital (OneNote, Notion, etc.)", "Summaries", "Mind maps"])
+
+        bestCourse = st.text_input(current_translations['best_course'] , value="")
+
+        dropOut = st.radio(current_translations['dropOut'], ["Yes", "No"])
+        if dropOut == "Yes":
+            dropOutReason = st.radio(
+            current_translations['dropOutReason'],
+            ["Too hard", "Too boring", "No time", "Not useful", "Other"])
+
+        completationRate = st.slider(current_translations['completion_rate'],
+        0, 100, 50)
+
+        preference = st.radio(current_translations['preference_onl'], 
+                              ["Online", "Face-to-face"])
+
+        st.write("### Would you try?")
+        vr = st.radio(current_translations['vr'], 
+                      ["Yes", "No"])
+        liveInteraction = st.radio(current_translations['live_interaction'],
+                      ["Yes", "No"])
+        immersive = st.radio(current_translations['immersive'],
+                      ["Yes", "No"])
+        replacement = st.radio(current_translations['replacement'],
+                      ["Yes", "No", "Hybride model will dominate", "Not sure"])
+        aiAssistant = st.radio(current_translations['ai_assistant'],
+                      ["Yes", "No"])
+        aiProfessor = st.radio(current_translations['ai_professor'],
+                      ["Yes", "No"])
         col1, col2 = st.columns(2)
+
         with col1:
-            grade_before = st.text_input("Your grade:", key="grade_before")
-        with col2:
-            max_grade_before = st.text_input("Out of:", key="max_grade_before")
-        if grade_before and max_grade_before:
-            try:
-                grade_before = float(grade_before)
-                max_grade_before = float(max_grade_before)
-                if grade_before > max_grade_before:
-                    st.error("The grade cannot be higher than the maximum possible grade.")
-                elif grade_before < 0 or max_grade_before <= 0:
-                    st.error("Grades must be positive numbers.")
+            if st.button(label=current_translations['next_button']):
+                st.session_state.selected_platforms = selected_platforms  
+                st.session_state.selected_courses = selected_courses  
+                st.session_state.selected_usage = selected_usage  
+                st.session_state.job = job
+                st.session_state.mandatory = mandatory
+                st.session_state.promotion = promotion
+                st.session_state.selected_reasons = reasons
+                st.session_state.grade_before = grade_before
+                st.session_state.max_grade_before = max_grade_before
+                st.session_state.grade_after = grade_after
+                st.session_state.max_grade_after = max_grade_after
+                st.session_state.learning_method = learning_method
+                st.session_state.certification = certification
+                st.session_state.multitasking = multitasking
+                st.session_state.notes = notes
+                st.session_state.bestCourse = bestCourse
+                st.session_state.dropOut = dropOut
+                if dropOut == "Yes":
+                    st.session_state.dropOutReason = dropOutReason
                 else:
-                    st.success(f"Recorded: {grade_before} out of {max_grade_before}")
-            except ValueError:
-                st.error("Please enter valid numeric values.")
-        st.write(current_translations['grade_after'])
-        col1, col2 = st.columns(2)
-        with col1:
-            grade_after = st.text_input("Your grade:", key="grade_after")
-        with col2:
-            max_grade_after = st.text_input("Out of:", key="max_grade_after")
-        if grade_after and max_grade_after:
-            try:
-                grade_after = float(grade_after)
-                max_grade_after = float(max_grade_after)
-                if grade_after > max_grade_after:
-                    st.error("The grade cannot be higher than the maximum possible grade.")
-                elif grade_after < 0 or max_grade_after <= 0:
-                    st.error("Grades must be positive numbers.")
+                    st.session_state.dropOutReason = None
+                st.session_state.completationRate = completationRate
+                st.session_state.preference = preference
+                st.session_state.vr = vr
+                st.session_state.liveInteraction = liveInteraction
+                st.session_state.immersive = immersive
+                st.session_state.replacement = replacement
+                st.session_state.aiAssistant = aiAssistant
+                st.session_state.aiProfessor = aiProfessor
+
+                if not st.session_state.selected_platforms:
+                    st.warning(current_translations['warning_platforms'])
+                elif "Other" in st.session_state.selected_platforms and not st.session_state.other_platform.strip():
+                    st.warning(current_translations['warning_other_platform'])
+                elif not st.session_state.selected_courses:
+                    st.warning(current_translations['warning_courses'])
+                elif "Other" in st.session_state.selected_courses and not st.session_state.other_course.strip():
+                    st.warning(current_translations['warning_other_course'])
+                elif not st.session_state.selected_usage:
+                    st.warning(current_translations['warning_usage'])
+                elif "School purposes" in st.session_state.selected_usage:
+                    if not st.session_state.selected_reasons:
+                        st.warning(current_translations['warning_reasons'])
+                    elif not grade_before or not max_grade_before or not grade_after or not max_grade_after:
+                        st.warning(current_translations['warning_gpa'])
+                elif "Job Purposes" in st.session_state.selected_usage:
+                    if not st.session_state.job.strip():
+                        st.warning(current_translations['warning_job'])
+                    elif not st.session_state.mandatory.strip():
+                        st.warning(current_translations['warning_mandatory'])
+                    elif not st.session_state.promotion.strip():
+                        st.warning(current_translations['warning_promotion'])
+                elif not st.session_state.notes:
+                    st.warning(current_translations['warning_notes'])
+                elif not st.session_state.bestCourse.strip():
+                    st.warning(current_translations['warning_best_course'])
+                elif "Yes" in st.session_state.dropOut:
+                    if st.session_state.dropOutReason is None:
+                        st.warning(current_translations['warning_dropOut'])
+
                 else:
-                    st.success(f"Recorded: {grade_after} out of {max_grade_after}")
-            except ValueError:
-                st.error("Please enter valid numeric values.")
-    else:
-        reasons = []
-        beforeClasses = None
-        exams = None
-        grade_before = None
-        max_grade_before = None
-        grade_after = None
-        max_grade_after = None
-    
-    learning_method = st.radio(current_translations['learning_method'],
-                                ["Pre-recorded video courses", "Live online classes",
-                                 "Text-based courses", "Interactive exercises & projects"])
-
-    certification = st.radio(current_translations['certification'],
-                              ["Very important", "Somewhat important", "Not important"])
-    
-    learning_preference = st.radio(
-        current_translations['learning_preference'],
-        ["Structured courses", "Short videos", "Both"])
-    
-    multitasking = st.radio(
-        current_translations['multitasking'],
-        ["Never", "Sometimes",  "Often", "Always"])
-    
-    notes = st.multiselect(
-        current_translations['notes'],
-        ["I don’t take notes", "Handwritten", "Digital (OneNote, Notion, etc.)", "Summaries", "Mind maps"])
-    
-    bestCourse = st.text_input(current_translations['best_course'] , value="")
-
-    dropOut = st.radio(current_translations['dropOut'], ["Yes", "No"])
-    if dropOut == "Yes":
-        dropOutReason = st.radio(
-        current_translations['dropOutReason'],
-        ["Too hard", "Too boring", "No time", "Not useful", "Other"])
-    
-    completationRate = st.slider(current_translations['completion_rate'],
-    0, 100, 50)
-
-    preference = st.radio(current_translations['preference_onl'], 
-                          ["Online", "Face-to-face"])
-    
-    st.write("### Would you try?")
-    vr = st.radio(current_translations['vr'], 
-                  ["Yes", "No"])
-    liveInteraction = st.radio(current_translations['live_interaction'],
-                  ["Yes", "No"])
-    immersive = st.radio(current_translations['immersive'],
-                  ["Yes", "No"])
-    replacement = st.radio(current_translations['replacement'],
-                  ["Yes", "No", "Hybride model will dominate", "Not sure"])
-    aiAssistant = st.radio(current_translations['ai_assistant'],
-                  ["Yes", "No"])
-    aiProfessor = st.radio(current_translations['ai_professor'],
-                  ["Yes", "No"])
-    col1, col2 = st.columns(2)
-
-    with col1:
-        if st.button(label=current_translations['next_button']):
-            st.session_state.selected_platforms = selected_platforms  
-            st.session_state.selected_courses = selected_courses  
-            st.session_state.selected_usage = selected_usage  
-            st.session_state.job = job
-            st.session_state.mandatory = mandatory
-            st.session_state.promotion = promotion
-            st.session_state.selected_reasons = reasons
-            st.session_state.grade_before = grade_before
-            st.session_state.max_grade_before = max_grade_before
-            st.session_state.grade_after = grade_after
-            st.session_state.max_grade_after = max_grade_after
-            st.session_state.learning_method = learning_method
-            st.session_state.certification = certification
-            st.session_state.multitasking = multitasking
-            st.session_state.notes = notes
-            st.session_state.bestCourse = bestCourse
-            st.session_state.dropOut = dropOut
-            st.session_state.dropOutReason = dropOutReason
-            st.session_state.completationRate = completationRate
-            st.session_state.preference = preference
-            st.session_state.vr = vr
-            st.session_state.liveInteraction = liveInteraction
-            st.session_state.immersive = immersive
-            st.session_state.replacement = replacement
-            st.session_state.aiAssistant = aiAssistant
-            st.session_state.aiProfessor = aiProfessor
-
-            if not st.session_state.selected_platforms:
-                st.warning(current_translations['warning_platforms'])
-            elif "Other" in st.session_state.selected_platforms and not st.session_state.other_platform.strip():
-                st.warning(current_translations['warning_other_platform'])
-            elif not st.session_state.selected_courses:
-                st.warning(current_translations['warning_courses'])
-            elif "Other" in st.session_state.selected_courses and not st.session_state.other_course.strip():
-                st.warning(current_translations['warning_other_course'])
-            elif not st.session_state.selected_usage:
-                st.warning(current_translations['warning_usage'])
-            elif "School purposes" in st.session_state.selected_usage:
-                if not st.session_state.selected_reasons:
-                    st.warning(current_translations['warning_reasons'])
-                elif not grade_before or not max_grade_before or not grade_after or not max_grade_after:
-                    st.warning(current_translations['warning_gpa'])
-            elif "Job Purposes" in st.session_state.selected_usage:
-                if not st.session_state.job.strip():
-                    st.warning(current_translations['warning_job'])
-                elif not st.session_state.mandatory.strip():
-                    st.warning(current_translations['warning_mandatory'])
-                elif not st.session_state.promotion.strip():
-                    st.warning(current_translations['warning_promotion'])
-            elif not st.session_state.notes:
-                st.warning(current_translations['warning_notes'])
-            elif not st.session_state.bestCourse.strip():
-                st.warning(current_translations['warning_best_course'])
-            
-            else:
-                next_page()
+                    next_page()
 
     with col2:
         if st.button(label=current_translations['back_button']):
