@@ -143,15 +143,15 @@ translations = {
         "part1" : "Partea 1: Informații personale",
         "part2" : "Partea 2: Experiența ta de învățare. \n\n" 
         " ✨ Vom considera e-learning orice platforma online care ofera informatii educative. " ,       
-        "platforms": "Selecteaza platformele de e-learning pe care le utilizați:",
-        "course_types": "Selectați ce fel de cursuri urmaresti:",
-        "frequency": "Cât de des utilizati platformele de e-learning?",
-        "why_visit": "Cu ce scop urmariti cursuri online?",
+        "platforms": "Selecteaza platformele de e-learning pe care le folosesti (alege-le pe toate):",
+        "course_types": "Selecteaza ce fel de cursuri urmaresti:",
+        "frequency": "Cât de des utilizezi platformele de e-learning?",
+        "why_visit": "Care este motivul pentru care folosesti e-learnig-ul?",
         "job": "Ce ocupatie ai?",
         "mandatory_courses": "Cursuri online sunt obligatorii pentru locul de muncă?",
         "promotion_courses": "Credeti ca multumita cursurilor online ati obtiut/veti obtine o promovare?",
-        "school_reasons": "De ce urmaresti cursuri online pentru scoala?",
-        "check_lectures": "Verificați materialele postate de profesori înainte de a fi predate?",
+        "school_reasons": "Care este motivul pentru care urmaresti cursuri online pentru scoala?",
+        "check_lectures": "Verifici materialele postate de profesori înainte de a fi predate?",
         "check_exams": "Cât de des consulti cursurile/lectiile postate de profesorii tai online?",
         "grade_before": "Care a fost media notelor tale înainte de a folosi e-learning-ului?",
         "max_grade_before": "Care este media maximă a notelor pe care ai putea să o obții?",
@@ -159,7 +159,7 @@ translations = {
         "max_grade_after": "Care este media maximă a notelor pe care ai putea să o obții?",
         "learning_method": "Ce fel de cursuri online preferi?",
         "certification": "Cât de importantă este obținerea unui certificat dupa finalizarea unui curs online?",
-        "payed_courses": "Majoritatea cursurilor pe care le urmati sunt platite?",
+        "payed_courses": "Majoritatea cursurilor pe care le urmezi sunt platite?",
         "payment": "Cât de mult ești dispus să plătești pentru un curs online? (in RON)",
         "multitasking": "Cat de des faci si alte activitati (multitasking) in timp ce urmaresti un curs online?",
         "notes": "Ce tip de notițe iei în timpul cursurilor online?",
@@ -279,7 +279,7 @@ elif st.session_state.page == 3:
             next_page()
 
 elif st.session_state.page == 4:
-    with st.form(key="form_page2"):
+    with st.form(key="form_page1"):
         st.write(current_translations['part2'])
 
         platforms = ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "My university's platform",
@@ -291,7 +291,7 @@ elif st.session_state.page == 4:
         if "Other" in selected_platforms:
             other_platform = st.text_input("Please specify the other platform(s) you use:",
                                            value=st.session_state.other_platform)
-            if other_platform:  
+            if other_platform:
                 selected_platforms = [p for p in selected_platforms if p != "Other"]
                 selected_platforms.append(other_platform)
         else:
@@ -307,7 +307,7 @@ elif st.session_state.page == 4:
         if "Other" in selected_courses:
             other_course = st.text_input("Please specify the type of course:",
                                            value=st.session_state.other_course)
-            if other_course:  
+            if other_course:
                 selected_courses = [p for p in selected_courses if p != "Other"]
                 selected_courses.append(other_course)
         else:
@@ -319,14 +319,20 @@ elif st.session_state.page == 4:
         st.write(current_translations['why_visit'])
         usage_options = ["Job Purposes", "Personal interest", "School purposes"]
         selected_usage = []
+
+        if 'selected_usage' in st.session_state:
+            selected_usage = st.session_state.selected_usage
+
         for option in usage_options:
-            if st.checkbox(option, value=(option in st.session_state.selected_usage)):
-                selected_usage.append(option)  
+            if st.checkbox(option, value=(option in selected_usage)):
+                selected_usage.append(option)
+
+        st.session_state.selected_usage = selected_usage
 
         if "Job Purposes" in selected_usage:
-            job = st.text_input(current_translations['job'], value=st.session_state.job)
-            mandatory = st.radio(current_translations["mandatory_courses"], ["Yes", "No"])
-            promotion = st.radio(current_translations["promotion_courses"] , ["Yes", "No"])
+            job = st.text_input(current_translations['job'], value=st.session_state.job if 'job' in st.session_state else "")
+            mandatory = st.radio(current_translations["mandatory_courses"], ["Yes", "No"], index=["Yes", "No"].index(st.session_state.mandatory) if 'mandatory' in st.session_state else 0)
+            promotion = st.radio(current_translations["promotion_courses"], ["Yes", "No"], index=["Yes", "No"].index(st.session_state.promotion) if 'promotion' in st.session_state else 0)
         else:
             job = ""
             mandatory = ""
@@ -336,48 +342,48 @@ elif st.session_state.page == 4:
             reasons = ["I only use my university's platform", "I want to learn extra", "I need extra information for my exams/papers",
                        "I don't understand from class", "Professors from online explain better",
                        "I don't go to classes"]
-            st.session_state.selected_reasons = st.multiselect(
-                current_translations['school_reasons'], reasons, default=st.session_state.selected_reasons
-            )
-            beforeClasses = st.radio(current_translations['check_lectures'], ["Yes", "No"])
-            exams = st.radio(current_translations['check_exams'], ["All year long", "Exam session only"])
+        st.session_state.selected_reasons = st.multiselect(
+            current_translations['school_reasons'], reasons, default=st.session_state.selected_reasons
+        )
+        beforeClasses = st.radio(current_translations['check_lectures'], ["Yes", "No"])
+        exams = st.radio(current_translations['check_exams'], ["All year long", "Exam session only"])
 
-            st.write(current_translations['grade_before'])
-            col1, col2 = st.columns(2)
-            with col1:
-                grade_before = st.text_input("Your grade:", key="grade_before")
-            with col2:
-                max_grade_before = st.text_input("Out of:", key="max_grade_before")
-            if grade_before and max_grade_before:
-                try:
-                    grade_before = float(grade_before)
-                    max_grade_before = float(max_grade_before)
-                    if grade_before > max_grade_before:
-                        st.error("The grade cannot be higher than the maximum possible grade.")
-                    elif grade_before < 0 or max_grade_before <= 0:
-                        st.error("Grades must be positive numbers.")
-                    else:
-                        st.success(f"Recorded: {grade_before} out of {max_grade_before}")
-                except ValueError:
-                    st.error("Please enter valid numeric values.")
-            st.write(current_translations['grade_after'])
-            col1, col2 = st.columns(2)
-            with col1:
-                grade_after = st.text_input("Your grade:", key="grade_after")
-            with col2:
-                max_grade_after = st.text_input("Out of:", key="max_grade_after")
-            if grade_after and max_grade_after:
-                try:
-                    grade_after = float(grade_after)
-                    max_grade_after = float(max_grade_after)
-                    if grade_after > max_grade_after:
-                        st.error("The grade cannot be higher than the maximum possible grade.")
-                    elif grade_after < 0 or max_grade_after <= 0:
-                        st.error("Grades must be positive numbers.")
-                    else:
-                        st.success(f"Recorded: {grade_after} out of {max_grade_after}")
-                except ValueError:
-                    st.error("Please enter valid numeric values.")
+        st.write(current_translations['grade_before'])
+        col1, col2 = st.columns(2)
+        with col1:
+            grade_before = st.text_input("Your grade:", key="grade_before")
+        with col2:
+            max_grade_before = st.text_input("Out of:", key="max_grade_before")
+        if grade_before and max_grade_before:
+            try:
+                grade_before = float(grade_before)
+                max_grade_before = float(max_grade_before)
+                if grade_before > max_grade_before:
+                    st.error("The grade cannot be higher than the maximum possible grade.")
+                elif grade_before < 0 or max_grade_before <= 0:
+                    st.error("Grades must be positive numbers.")
+                else:
+                    st.success(f"Recorded: {grade_before} out of {max_grade_before}")
+            except ValueError:
+                st.error("Please enter valid numeric values.")
+        st.write(current_translations['grade_after'])
+        col1, col2 = st.columns(2)
+        with col1:
+            grade_after = st.text_input("Your grade:", key="grade_after")
+        with col2:
+            max_grade_after = st.text_input("Out of:", key="max_grade_after")
+        if grade_after and max_grade_after:
+            try:
+                grade_after = float(grade_after)
+                max_grade_after = float(max_grade_after)
+                if grade_after > max_grade_after:
+                    st.error("The grade cannot be higher than the maximum possible grade.")
+                elif grade_after < 0 or max_grade_after <= 0:
+                    st.error("Grades must be positive numbers.")
+                else:
+                    st.success(f"Recorded: {grade_after} out of {max_grade_after}")
+            except ValueError:
+                st.error("Please enter valid numeric values.")
         else:
             reasons = []
             beforeClasses = None
@@ -440,7 +446,8 @@ elif st.session_state.page == 4:
         col1, col2 = st.columns(2)
 
         with col1:
-            if st.button(label=current_translations['next_button']):
+            st.form_submit_button() 
+            if st.form_submit_button(current_translations['next_button']):
                 st.session_state.selected_platforms = selected_platforms  
                 st.session_state.selected_courses = selected_courses  
                 st.session_state.selected_usage = selected_usage  
@@ -500,7 +507,6 @@ elif st.session_state.page == 4:
                 elif "Yes" in st.session_state.dropOut:
                     if st.session_state.dropOutReason is None:
                         st.warning(current_translations['warning_dropOut'])
-
                 else:
                     next_page()
 
