@@ -110,8 +110,10 @@ translations = {
         "school_reasons": "Why do you use e-learning for school purposes?",
         "check_lectures": "Do you check the course materials before classes?",
         "check_exams": "How often do you refer to e-learning materials for exams?",
-        "your_grade": "Your grade:",
-        "out_of": "Out of:",
+        "your_grade_after": "Your grade:",
+        "your_grade_before": "Your grade:",
+        "out_of_after": "Out of:",
+        "out_of_before": "Out of:",
         "grade_before": "What was your GPA before using e-learning?",
         "max_grade_before": "What is the maximum grade you could achieve?",
         "grade_after": "What is your GPA after using e-learning?",
@@ -165,7 +167,7 @@ translations = {
         "scenario_other": "You are learning about various subjects that don't fit into the above categories. This could include niche topics, hobbies, or interdisciplinary studies. These courses allow you to explore your interests and expand your knowledge in unique ways.",
         "characters" : "maximum 1000 characters"
     },
-    "ro": {
+        "ro": {
         "age": "Ce varsta ai?",
         "gender": "Care este sexul tău?",
         "gender_list": ["Masculin", "Feminin", "Non-binary", "Prefer să nu spun"],
@@ -217,8 +219,10 @@ translations = {
         "check_lectures": "Verifici materialele postate de profesori înainte de a fi predate?",
         "check_exams": "Cât de des consulti cursurile/lectiile postate de profesorii tai online?",
         "grade_before": "Care a fost media notelor tale înainte de a folosi e-learning-ului?",
-        "your_grade": "Media notelor tale:",
-        "out_of": "Din (media maxima ce poate fi obtinuta):",
+        "your_grade_before": "Media notelor tale (inainte de utilizarea e-learning-ului):",
+        "your_grade_after": "Media notelor tale: (dupa utilizarea e-learning-ului)",
+        "out_of_before": "Din (media maxima ce poate fi obtinuta, inainte de utlizarea e-learning-ului):",
+        "out_of_after": "Din (media maxima ce poate fi obtinuta, dupa utlizarea e-learning-ului):",
         "max_grade_before": "Care este media maximă a notelor pe care ai putea să o obții?",
         "grade_after": "Care este media notelor tale după utilizarea e-learning-ului?",
         "max_grade_after": "Care este media maximă a notelor pe care ai putea să o obții?",
@@ -263,6 +267,8 @@ translations = {
         "warning_notes": "Te rog să precizezi cel puțin o metodă prin care iei notițe.",
         "warning_best_course": "Te rog să precizezi numele, o scurta descriere sau link-ul celui mai folositor curs pe care l-ai urmat.",
         "warning_dropOut": "Te rog să precizezi de ce ai renuntat la cursuri online in trecut.",
+        "about1": "Ce părere ai despre materialele de e-learning deja existente despre",
+        "about2": "? Consideri ca sunt suficiente? Ești mulțumit(ă) de informațiile online pe care le poți găsi despre acest subiect?",
         "Tehnic (Programare, Data Science)": """Ești responsabil de crearea unui curs online pentru un limbaj de programare nou, numit **Xylon**, 
             folosit în Data Science și dezvoltarea de aplicații. \n\n
             Cursul va acoperi atât concepte fundamentale, cât și tehnici avansate. 
@@ -277,7 +283,7 @@ translations = {
             💰 Care ar fi pașii esențiali pentru a-i ajuta să își construiască un plan financiar personalizat, adaptat scopurilor și situației lor economice?""",
         "Business & Management": """Ești responsabil de crearea unui curs online pentru un domeniu de Business & Management. 
             Cursul va acoperi atât concepte fundamentale, cât și tehnici avansate. 
-            💡Ce module ai include pentru a înțelege acest domeniu? \n\n
+            💡 Ce module ai include pentru a înțelege acest domeniu? \n\n
             💡 Ar trebui să începi cu fundamentele managementului, să înveți despre strategii de marketing și dezvoltare de afaceri, sau să explorezi teme avansate precum managementul financiar și leadership-ul organizațional? 
             💡 Care ar fi pașii esențiali pentru a deveni un profesionist în Business & Management?""",
         "Lingvistica & Limbi Straine" : """Ești responsabil de crearea unui curs online destinat celor care doresc să își îmbunătățească abilitățile lingvistice în limba spaniola, la un nivel mediu. \n\n
@@ -403,7 +409,7 @@ elif st.session_state.page == 4:
     selected_platforms = st.multiselect(
         current_translations['platforms'], platforms)
     if "Other" in selected_platforms or "Altele" in selected_platforms: 
-        other_platform = st.text_input(current_translations['specify'],
+        other_platform = st.text_input(current_translations['specify_platform'],
                                        value=st.session_state.other_platform)
         if other_platform.strip():
             selected_platforms = [p for p in selected_platforms if p != "Other"]
@@ -435,7 +441,6 @@ elif st.session_state.page == 4:
                               current_translations["preference_onl_list"])
 
     st.write(current_translations['why_visit'])
-    # usage_options = ["Job Purposes", "Personal interest", "School purposes"]
 
     if "selected_usage" not in st.session_state:
         st.session_state.selected_usage = []
@@ -487,13 +492,12 @@ elif st.session_state.page == 4:
 
 
     if "School purposes" in selected_usage or "Scoala" in selected_usage:
-        # Create a central column to simulate background styling
         col1, col2, col3 = st.columns([0.05, 0.9, 0.05])
 
         with col2:
             st.markdown("### 🎓 ")
 
-            st.session_state.selected_reasons = st.multiselect(
+            reasons = st.multiselect(
                 current_translations['school_reasons'],
                 current_translations["school_reasons_list"],
                 default=st.session_state.selected_reasons
@@ -509,13 +513,12 @@ elif st.session_state.page == 4:
                 current_translations["exam_list"]
             )
 
-            # Grades before
             st.write(current_translations['grade_before'])
             col_a, col_b = st.columns(2)
             with col_a:
-                grade_before = st.text_input(current_translations["your_grade"], key="grade_before")
+                grade_before = st.text_input(current_translations["your_grade_before"])
             with col_b:
-                max_grade_before = st.text_input(current_translations["out_of"], key="max_grade_before")
+                max_grade_before = st.text_input(current_translations["out_of_before"])
 
             if grade_before and max_grade_before:
                 try:
@@ -530,13 +533,12 @@ elif st.session_state.page == 4:
                 except ValueError:
                     st.error("Please enter valid numeric values.")
 
-            # Grades after
             st.write(current_translations['grade_after'])
             col_c, col_d = st.columns(2)
             with col_c:
-                grade_after = st.text_input(current_translations["your_grade"], key="grade_after")
+                grade_after = st.text_input(current_translations["your_grade_after"])
             with col_d:
-                max_grade_after = st.text_input(current_translations["out_of"], key="max_grade_after")
+                max_grade_after = st.text_input(current_translations["out_of_after"])
 
             if grade_after and max_grade_after:
                 try:
@@ -551,7 +553,6 @@ elif st.session_state.page == 4:
                 except ValueError:
                     st.error("Please enter valid numeric values.")
 
-            # Close styled section
             st.markdown("</div>", unsafe_allow_html=True)
 
     else:
@@ -678,8 +679,8 @@ elif st.session_state.page == 4:
                     elif "Yes" in st.session_state.dropOut:
                         if st.session_state.dropOutReason is None:
                             st.warning(current_translations['warning_dropOut'])
-                else:
-                    next_page()
+                    else:
+                        next_page()
         with col3:
             back_button = st.form_submit_button(current_translations['back_button'])
             if back_button:
@@ -698,6 +699,21 @@ elif st.session_state.page == 5:
         st.text_area(current_translations["characters"], key="about_course")
 
         st.write({current_translations[category_str]})
+    
+    with st.form(key="form_submition"):
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            next_button = st.form_submit_button("Submit")
+        with col2: 
+            back_button = st.form_submit_button(current_translations['back_button'])
+                
+    
+    
+    if next_button:
+        st.success("Form submitted successfully!")
+        st.balloons()
+    if back_button:
+        prev_page()
 
 
 
