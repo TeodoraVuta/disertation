@@ -3,6 +3,9 @@ from country_list import countries_for_language
 
 st.set_page_config(page_title="survey", page_icon="📋", layout="centered")
 
+stop_execution = False
+if stop_execution:
+    st.stop() 
 
 if "page" not in st.session_state or st.session_state.get("force_restart", False):
     st.session_state.page = 1
@@ -630,14 +633,14 @@ elif st.session_state.page == 4:
 )
     st.write(current_translations['why_visit'])
 
-    if "selected_usage" not in st.session_state:
-        st.session_state.selected_usage = []
+    # if "selected_usage" not in st.session_state:
+    #     st.session_state.selected_usage = []
 
     selected_usage = []
 
 
     for option in current_translations["purpose_list"]:
-        if st.checkbox(option, value=(option in st.session_state.selected_usage), key=f"usage_{option}"):
+        if st.checkbox(option, value=(option in current_translations["purpose_list"]), key=f"usage_{option}"):
             selected_usage.append(option)
 
 
@@ -951,6 +954,7 @@ elif st.session_state.page == 4:
                     st.session_state.payed_courses = payed_courses
                     st.session_state.payment = payment
                     st.session_state.dropOut = dropOut
+                    st.session_state.dropOutReason = dropOutReason
                     # if dropOut == "Yes" or dropOut == "Da":
                     #     st.session_state.dropOutReason = dropOutReason
                     # else:
@@ -974,28 +978,35 @@ elif st.session_state.page == 4:
                         st.warning(current_translations['warning_other_course'])
                     elif not st.session_state.selected_usage:
                         st.warning(current_translations['warning_usage'])
-                    elif "School purposes" in st.session_state.selected_usage or "Scoala" in st.session_state.selected_usage:
-                        if not st.session_state.selected_reasons:
-                            st.warning(current_translations['warning_reasons'])
-                        elif not grade_before or not max_grade_before or not grade_after or not max_grade_after:
-                            st.warning(current_translations['warning_gpa'])
-                    elif "Job Purposes" in st.session_state.selected_usage or "Locul de munca" in st.session_state.selected_usage:
-                        if not st.session_state.job.strip():
-                            st.warning(current_translations['warning_job'])
-                        elif not st.session_state.mandatory.strip():
-                            st.warning(current_translations['warning_mandatory'])
-                        elif not st.session_state.promotion.strip():
-                            st.warning(current_translations['warning_promotion'])
                     elif not st.session_state.notes:
                         st.warning(current_translations['warning_notes'])
                     elif not st.session_state.bestCourse.strip():
                         st.warning(current_translations['warning_best_course'])
+
+                    elif "School purposes" in st.session_state.selected_usage or "Scoala" in st.session_state.selected_usage:
+                        st.write("Ajuns aici, verificați următoarele condiții.")  
+                        if not st.session_state.selected_reasons:
+                            st.warning(current_translations['warning_reasons'])
+                        elif grade_before is None or max_grade_before is None or grade_after is None or max_grade_after is None:
+                            st.warning(current_translations['warning_gpa'])
+                            st.write("Am terminat")
+                        elif "Job Purposes" in st.session_state.selected_usage or "Locul de munca" in st.session_state.selected_usage:
+                                if not st.session_state.job.strip():
+                                    st.warning(current_translations['warning_job'])
+                                else: 
+                                    next_page()
+                    elif "Job Purposes" in st.session_state.selected_usage or "Locul de munca" in st.session_state.selected_usage:
+                        if not st.session_state.job.strip():
+                            st.warning(current_translations['warning_job'])
+                        else: 
+                            next_page()
                     # elif "No" in st.session_state.dropOut or "Nu" in st.session_state.dropOut:
                     #     if st.session_state.dropOutReason is None:
                     #         st.warning(current_translations['warning_dropOut'])
                     else:
-                    # st.write("NU VREAU SA MERG")
+                        st.write("NU VREAU SA MERG")
                         next_page()
+                        
         with col3:
             back_button = st.form_submit_button(current_translations['back_button'])
             if back_button:
