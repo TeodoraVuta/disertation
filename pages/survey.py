@@ -121,10 +121,10 @@ translations = {
         "school_reasons": "Why do you use e-learning for school purposes?",
         "check_lectures": "Do you check the course materials before classes?",
         "check_exams": "How often do you refer to e-learning materials for exams?",
-        "your_grade_after": "Your grade:",
-        "your_grade_before": "Your grade:",
-        "out_of_after": "Out of:",
-        "out_of_before": "Out of:",
+        "your_grade_after": "Your grade (after using e-leaning:",
+        "your_grade_before": "Your grade (before using e-learning):",
+        "out_of_after": "Out of (after using e-leaning):",
+        "out_of_before": "Out of (before using e-learning):",
         "grade_before": "What was your GPA before using e-learning?",
         "max_grade_before": "What is the maximum grade you could achieve?",
         "grade_after": "What is your GPA after using e-learning?",
@@ -711,12 +711,12 @@ elif st.session_state.page == 4:
             with col_a:
                 grade_before = st.text_input(
                     current_translations["your_grade_before"],
-                    value=st.session_state.get('grade_before', '')  # Default to an empty string if no value is stored
+                    value=st.session_state.get('grade_before', '') 
                 )            
             with col_b:
                 max_grade_before = st.text_input(
                     current_translations["out_of_before"], 
-                    value=st.session_state.get('max_grade_before', '')  # Default to an empty string if no value is stored
+                    value=st.session_state.get('max_grade_before', '')  
                 )
 
             if grade_before and max_grade_before:
@@ -737,12 +737,12 @@ elif st.session_state.page == 4:
             with col_c:
                 grade_after = st.text_input(
                     current_translations["your_grade_after"],
-                    value=st.session_state.get('grade_after', ''), key="grade_after"
+                    value=st.session_state.get('grade_after', '')
                 )
             with col_d:
                 max_grade_after = st.text_input(
                     current_translations["out_of_after"], 
-                    value=st.session_state.get('max_grade_after', ''), key = "max_grade_after"
+                    value=st.session_state.get('max_grade_after', '')
                 )
 
             if grade_after and max_grade_after:
@@ -995,6 +995,9 @@ elif st.session_state.page == 4:
                                     st.warning(current_translations['warning_job'])
                                 else: 
                                     next_page()
+                        else: 
+                            next_page()
+
                     elif "Job Purposes" in st.session_state.selected_usage or "Locul de munca" in st.session_state.selected_usage:
                         if not st.session_state.job.strip():
                             st.warning(current_translations['warning_job'])
