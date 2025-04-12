@@ -737,12 +737,12 @@ elif st.session_state.page == 4:
             with col_c:
                 grade_after = st.text_input(
                     current_translations["your_grade_after"],
-                    value=st.session_state.get('grade_after', '')
+                    value=st.session_state.get('grade_after', ''), key="grade_after"
                 )
             with col_d:
                 max_grade_after = st.text_input(
                     current_translations["out_of_after"], 
-                    value=st.session_state.get('max_grade_after', '')
+                    value=st.session_state.get('max_grade_after', ''), key = "max_grade_after"
                 )
 
             if grade_after and max_grade_after:
