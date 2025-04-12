@@ -54,6 +54,8 @@ keys_to_initialize = [
     ("replacement", ""),
     ("aiAssistant", ""),
     ("aiProfessor", ""),
+    ("about", ""),
+    ("specific_course", "")
 ]
 
 for key, default_value in keys_to_initialize:
@@ -159,13 +161,89 @@ translations = {
 
         "about1" : "What do you think about e-learning already existing materials about", 
         "about2" : "? Are they enough? Are you satisfiend with the online information you can find about this topic?",
-        "scenario_tehnical": "Imagine you are learning Python programming. You start with basic syntax, then move on to data structures and algorithms. After completing the course, you can apply your skills by creating software applications or analyzing big data.",
-        "Business & Management": "You are studying management theories and real-world business scenarios. You participate in group projects and learn how to manage teams, understand financial reports, and make strategic decisions for a company. This type of course prepares you for leadership roles in organizations.",
-        "scenario_personal": "You are learning skills for personal growth, such as time management, emotional intelligence, and effective communication. After completing this course, you can improve your personal and professional relationships, manage stress, and achieve your personal goals.",
-        "scenario_arts": "You are exploring history, philosophy, literature, and other creative subjects. You engage in discussions, read classic books, and participate in creative writing or art projects. These courses foster creativity and critical thinking while giving you a deeper understanding of human culture.",
-        "scenario_health": "You're studying anatomy, healthcare management, or public health. You could be learning how to care for patients, manage healthcare organizations, or conduct health research. These courses prepare you to contribute to healthcare and improve the quality of life for individuals and communities.",
-        "scenario_other": "You are learning about various subjects that don't fit into the above categories. This could include niche topics, hobbies, or interdisciplinary studies. These courses allow you to explore your interests and expand your knowledge in unique ways.",
-        "characters" : "maximum 1000 characters"
+                "Technical (Programming, Data Science)": ("You are responsible for creating an online course about a new programming language called Xylon, used in Data Science and application development.\n\n"
+            "💻 How would you structure this course to cover both the basic and advanced concepts related to programming in Xylon?\n\n"
+            "💻 What methods or interactive elements would you include to make the course engaging and easy to follow for participants?\n\n"
+            "💻 What are the essential aspects participants should master to effectively apply Xylon in real-world Data Science projects?"),
+
+        "Business & Management": ("You are responsible for creating an online course in Business & Management.\n\n"
+            "💼 How would you structure this course to provide both foundational knowledge and advanced strategies in Business & Management?\n\n"
+            "💼 What interactive methods or activities would you include to keep the course engaging and help participants retain the information?\n\n"
+            "💼 What are the key skills participants need to develop to excel in Business & Management?"),
+
+        "Finance & Economics": ("You are responsible for creating an online course in Finance & Economics, aimed at helping people understand personal finance management and acquire basic economic knowledge.\n\n"
+            "💰 How would you structure this course to cover the fundamentals of finance and economics?\n\n"
+            "💰 What engaging elements or methods would you incorporate to make the course interesting and practical for the participants?\n\n"
+            "💰 What are the essential financial and economic concepts participants should master to manage their personal finances effectively?"),
+
+        "Linguistics & Foreign Languages": ("You are responsible for creating an online course aimed at improving intermediate Spanish language skills.\n\n"
+            "🗣️ How would you structure this course to cover grammar and vocabulary effectively for intermediate learners?\n\n"
+            "🗣️ What interactive techniques or activities would you include to make the learning process engaging and practical for the participants?\n\n"
+            "🗣️ What are the key aspects of Spanish language learning that participants need to focus on to become fluent at an intermediate level?"),
+
+        "Psychology & Human Behavior": ("You are responsible for creating an online course in Psychology & Human Behavior, aimed at helping participants understand human mental processes and behaviors.\n\n"
+            "🧠 How would you structure this course to cover the fundamentals of psychology and human behavior?\n\n"
+            "🧠 What engaging methods or activities would you use to make the course interactive and easier for participants to understand?\n\n"
+            "🧠 What are the essential concepts of psychology that participants should master to apply in real-life scenarios?"),
+
+        "Emerging Technologies (AI, Blockchain, etc.)": ("You are responsible for creating an online course about Artificial Intelligence (AI), aimed at helping participants understand its concepts and applications in various fields.\n\n"
+            "🤖 How would you structure this course to progressively introduce complex concepts such as machine learning and neural networks?\n\n"
+            "🤖 What interactive elements or real-world examples would you include to make the course engaging and applicable for participants?\n\n"
+            "🤖 What are the key skills participants should acquire to apply AI techniques effectively in different industries?"),
+
+        "Environment & Sustainability": ("You are responsible for creating an online course about Environmental Sustainability, aimed at raising awareness and teaching practical solutions for sustainability.\n\n"
+            "🌱 How would you structure this course to cover both environmental science and sustainable practices?\n\n"
+            "🌱 What interactive or practical elements would you include to make the course engaging and applicable for real-world sustainability solutions?\n\n"
+            "🌱 What are the key concepts participants need to master to implement sustainable practices in their personal and professional lives?"),
+
+        "Design & Graphics": ("You are responsible for creating an online course in Design & Graphics, aimed at developing visual design skills.\n\n"
+            "🎨 How would you structure this course to teach both the basics and advanced techniques in design?\n\n"
+            "🎨 What creative methods or hands-on activities would you include to make the course engaging and practical for participants?\n\n"
+            "🎨 What are the key skills participants should develop to become proficient in graphic design?"),
+
+        "Travel & Tourism": ("You are responsible for creating an online course about Travel & Tourism, aimed at those interested in exploring the tourism industry and travel management.\n\n"
+            "🌍 How would you structure this course to provide essential knowledge about the travel and tourism industry?\n\n"
+            "🌍 What interactive elements or activities would you incorporate to make the course engaging and helpful for aspiring professionals?\n\n"
+            "🌍 What are the key aspects of the tourism industry that participants should master to succeed in this field?"),
+
+        "Entrepreneurship": ("You are responsible for creating an online course about Entrepreneurship, aimed at helping individuals start and manage their own businesses.\n\n"
+            "🚀 How would you structure this course to cover the foundational principles of entrepreneurship?\n\n"
+            "🚀 What engaging elements or methods would you include to make the course interactive and insightful for participants?\n\n"
+            "🚀 What are the key entrepreneurial skills that participants should develop to launch and grow a successful business?"),
+
+        "Personal Development": ("You are responsible for creating an online course in Personal Development, aimed at helping individuals improve their skills and mindset.\n\n"
+            "🌟 How would you structure this course to address key aspects of personal growth and self-improvement?\n\n"
+            "🌟 What techniques or activities would you incorporate to make the course engaging and practical for participants?\n\n"
+            "🌟 What are the essential skills or traits participants need to cultivate for personal and professional growth?"),
+
+        "Arts & Humanities": ("You are responsible for creating an online course about Art History, aimed at helping participants appreciate and understand the significance of artwork in museums.\n\n"
+            "🎨 How would you structure this course to cover the history of art and key movements?\n\n"
+            "🎨 What interactive or hands-on elements would you include to make the course engaging and enjoyable for participants?\n\n"
+            "🎨 What are the key artistic concepts participants should understand to interpret and appreciate art in museums?"),
+
+        "Health & Medicine": ("You are responsible for creating an online course about Health and Medicine, aimed at promoting a balanced and healthy lifestyle.\n\n"
+            "🩺 How would you structure this course to cover fundamental health concepts and wellness practices?\n\n"
+            "🩺 What engaging methods or activities would you incorporate to make the course practical and interactive for participants?\n\n"
+            "🩺 What are the key health habits or concepts that participants should master to improve their overall well-being?"),
+
+        "Sports Activities": ("You are responsible for creating an online course about Sports Activities, aimed at promoting physical fitness and sports knowledge.\n\n"
+            "🏅 How would you structure this course to teach participants essential sports skills and fitness practices?\n\n"
+            "🏅 What interactive or hands-on activities would you include to make the course engaging and enjoyable for participants?\n\n"
+            "🏅 What are the key fitness or sports skills that participants should develop to lead a healthy, active lifestyle?"),
+
+        "Childcare & Family Life": ("You are responsible for creating an online course about Childcare and Family Life, aimed at helping parents and caregivers improve their skills.\n\n"
+            "👶 How would you structure this course to cover fundamental childcare and family life skills?\n\n"
+            "👶 What engaging methods or activities would you include to make the course interactive and practical for parents?\n\n"
+            "👶 What are the key aspects of parenting and family life that participants should master to foster a healthy family environment?"),
+
+        "Others": ("You are responsible for creating an online course about various niche topics. These could range from hobbies to interdisciplinary studies.\n\n"
+            "🎀 How would you structure this course to allow participants to explore unique interests and expand their knowledge?\n\n"
+            "🎀 What engaging elements or activities would you include to make the course interesting and practical for participants?\n\n"
+            "🎀 What are the key skills or concepts that participants should focus on to gain a comprehensive understanding of the topic?"),
+
+        "characters_about" : "maximum 1000 characters",
+        "characters_best_course" : "200 - 1000 characters",
+        "send_form" : "Thank you for the answers! Soon you'll see some charts about them!"
     },
         "ro": {
         "age": "Ce varsta ai?",
@@ -269,56 +347,124 @@ translations = {
         "warning_dropOut": "Te rog să precizezi de ce ai renuntat la cursuri online in trecut.",
         "about1": "Ce părere ai despre materialele de e-learning deja existente despre",
         "about2": "? Consideri ca sunt suficiente? Ești mulțumit(ă) de informațiile online pe care le poți găsi despre acest subiect?",
-        "Tehnic (Programare, Data Science)": """Ești responsabil de crearea unui curs online pentru un limbaj de programare nou, numit **Xylon**, 
-            folosit în Data Science și dezvoltarea de aplicații. \n\n
-            Cursul va acoperi atât concepte fundamentale, cât și tehnici avansate. 
-            💻 Ce module ai considera esențiale pentru a înțelege pe deplin acest limbaj? \n\n
-            💻 Ar trebui să începi cu fundamentele sintaxei Xylon, să înveți cum să gestionezi datele folosind biblioteci precum XyData
-            sau să explorezi metode avansate de procesare a datelor cu XyML? \n\n
-            💻 Care ar fi pașii esențiali pentru a deveni un profesionist în Xylon?""",
-        "Finante & Economie": """Ești responsabil de crearea unui curs online despre Finanțe și Economie, destinat celor care vor să înțeleagă cum să își gestioneze mai bine finanțele personale și să dobândească cunoștințe fundamentale despre economie. \n\n
-            Cursul ar trebui să fie accesibil și util pentru oricine, indiferent de nivelul de cunoștințe. \n\n
-            💰 Ce module ai include pentru a ajuta participanții să înțeleagă concepte financiare importante, cum ar fi economisirea, investițiile, bugetarea și gestionarea datoriilor? \n\n
-            💰 Ar trebui să începi cu noțiuni de bază despre funcționarea piețelor financiare, impactul inflației sau managementul riscurilor financiare? \n\n
-            💰 Care ar fi pașii esențiali pentru a-i ajuta să își construiască un plan financiar personalizat, adaptat scopurilor și situației lor economice?""",
-        "Business & Management": """Ești responsabil de crearea unui curs online pentru un domeniu de Business & Management. 
-            Cursul va acoperi atât concepte fundamentale, cât și tehnici avansate. 
-            💡 Ce module ai include pentru a înțelege acest domeniu? \n\n
-            💡 Ar trebui să începi cu fundamentele managementului, să înveți despre strategii de marketing și dezvoltare de afaceri, sau să explorezi teme avansate precum managementul financiar și leadership-ul organizațional? 
-            💡 Care ar fi pașii esențiali pentru a deveni un profesionist în Business & Management?""",
-        "Lingvistica & Limbi Straine" : """Ești responsabil de crearea unui curs online destinat celor care doresc să își îmbunătățească abilitățile lingvistice în limba spaniola, la un nivel mediu. \n\n
-            Cursul ar trebui să fie accesibil și util pentru persoanele care au deja niste cunostinte de vocabular si gramatica, cu un accent pe avansarea la un nivel intermediar. \n\n
-            🗣️ Ce module ai include pentru a ajuta participanții să își îmbunătățească vocabularul si să înțeleagă structurile gramaticale? \n\n
-            🗣️ Ar trebui să începi cu noțiuni despre diferențele între limbajul formal și informal sau altele sunt bazele? \n\n
-            🗣️ Care ar fi pașii esențiali pentru a-i sprijini să își construiască un plan de învățare personalizat?""",
-        "Psihologie & Comportament Uman": """Ești responsabil de crearea unui curs online despre Psihologie și Comportament Uman, destinat celor care vor să înțeleagă mai bine comportamentele și procesele mentale ale oamenilor. \n\n
-            Cursul ar trebui să fie accesibil celor care nu au cunoștințe avansate, dar vor să învețe concepte fundamentale ale psihologiei. \n\n
-            🧠 Cum ai structura cursul pentru a fi clar și ușor de înțeles pentru toți participanții? \n\n
-            🧠 Ce tipuri de materiale și activități ai include pentru a ajuta participanții să învețe eficient? \n\n
-            🧠 Cum ai integra diversele concepte ale psihologiei pentru a le arăta participanților cum pot aplica aceste informații în viața lor de zi cu zi?""",
-        "Tehnologii Emergente (AI, Blockchain, etc.)": """Ești responsabil de crearea unui curs online despre Inteligența Artificială (AI), destinat celor care vor să înțeleagă cum funcționează aceste tehnologii și cum pot fi aplicate în diverse domenii. \n\n
-            Cursul va acoperi concepte fundamentale, cum ar fi învățarea automată și rețelele neuronale. \n\n
-            🤖 Cum ai organiza cursul pentru a introduce progresiv concepte complexe, asigurându-te că participanții pot înțelege pas cu pas? \n\n
-            🤖 Cum ai structura lecțiile pentru a include atât teorie, cât și aplicații practice? \n\n
-            🤖 Ce tipuri de activități interactive sau exemple din viața reală ai integra pentru a ajuta participanții să aplice cunoștințele acumulate în contextul profesional?""",
+        "Tehnic (Programare, Data Science)": (
+            "Ești responsabil de crearea unui curs online despre un limbaj de programare nou, numit Xylon, folosit în Data Science și dezvoltarea de aplicații.\n\n"
+            "💻 Cum ai structura acest curs pentru a acoperi atât conceptele de bază, cât și cele avansate legate de programarea în Xylon?\n\n"
+            "💻 Ce metode sau elemente interactive ai include pentru a face cursul captivant și ușor de urmărit pentru participanți?\n\n"
+            "💻 Care sunt aspectele esențiale pe care participanții ar trebui să le stăpânească pentru a aplica eficient Xylon în proiecte reale de Data Science?"
+        ),
 
+        "Business & Management": (
+            "Ești responsabil de crearea unui curs online pentru domeniul Business & Management.\n\n"
+            "💡 Cum ai structura acest curs pentru a acoperi atât concepte fundamentale, cât și tehnici avansate de management?\n\n"
+            "💡 Ce metode interactive ai folosi pentru a face cursul mai atractiv și mai relevant pentru participanți?\n\n"
+            "💡 Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a deveni lideri de succes în domeniul business-ului?"
+        ),
 
-        "Arta & Stiinte Umaniste": """Imaginați-ți că ești responsabil de crearea unui curs online despre Arta din muzee, destinat amatorilor care doresc să înțeleagă și să aprecieze lucrările expuse. 
-            Cursul va explora capodoperele și istoria artei din diverse perioade. \n\n
-            🎨 Ce module ai include pentru a ajuta participanții să înțeleagă contextul și importanța lucrărilor din muzee? \n\n
-            🎨 Ar trebui să începi cu o introducere în cele mai celebre muzee și colecțiile lor, să explorezi stilurile artistice specifice fiecărei perioade istorice, sau să înveți cum să interpretezi lucrările de artă, începând cu cele mai accesibile și cunoscute? \n\n
-            🎨 Care ar fi pașii esențiali pentru a încuraja participanții să aprecieze arta în muzee într-un mod personal și captivant?""", 
-        "Sanatate & Medicina": """Ești responsabil de crearea unui curs online despre Sănătate, destinat celor care vor să adopte un stil de viață echilibrat. \n\n
-            Cursul ar trebui să fie accesibil și util pentru oricine, indiferent de nivelul de cunoștințe. \n\n 
-            🩺 Ce module ai include pentru a ajuta participanții să își îmbunătățească sănătatea? \n\n 
-            🩺 Ar trebui să începi cu noțiuni de bază despre alimentație echilibrată, importanța mișcării zilnice, tehnici de gestionare a stresului sau obiceiuri sănătoase pentru somn? \n\n 
-            🩺 Care ar fi pașii esențiali pentru a-i sprijini să își creeze propriul plan de sănătate și bunăstare, adaptat nevoilor lor?""",
-        "Altele": """Inveti despre diverse subiecte. Acest lucru ar putea include subiecte de nișă, hobby-uri sau studii interdisciplinare. \n\n 
-            Aceste cursuri îți permit să explorezi interesele și să îți extinzi cunoștințele în moduri unice. \n\n
-            🎀 Cum ar trebui un profesor sa-si atraga cursantii? Sau un influencer care te invata ceva? \n\n
-            🎀 Cum ar trebui sa fie cursul/videoclipul? 
-            🎀 Cat de lung ti-ar placea sa fie si ce informatii sa contina? """,
-        "characters" : "maxim 1000 de caractere"
+        "Finante & Economie": (
+            "Ești responsabil de crearea unui curs online despre Finanțe și Economie, destinat celor care vor să își îmbunătățească gestionarea finanțelor personale.\n\n"
+            "💰 Cum ai structura acest curs pentru a include atât concepte financiare fundamentale, cât și aspecte mai avansate de economie?\n\n"
+            "💰 Ce elemente interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele financiare în viața lor de zi cu zi?\n\n"
+            "💰 Care sunt pașii esențiali pe care participanții trebuie să îi urmeze pentru a-și construi un plan financiar personalizat?"
+        ),
+
+        "Lingvistica & Limbi Straine": (
+            "Ești responsabil de crearea unui curs online pentru învățarea limbii spaniole la un nivel intermediar.\n\n"
+            "🗣️ Cum ai structura acest curs pentru a acoperi atât vocabularul esențial, cât și structurile gramaticale avansate?\n\n"
+            "🗣️ Ce activități interactive ai adăuga pentru a ajuta participanții să învețe mai rapid și să aplice corect limba?\n\n"
+            "🗣️ Care sunt pașii esențiali pentru a ajuta participanții să își îmbunătățească abilitățile de conversație și să înțeleagă nuanțele limbii?"
+        ),
+
+        "Psihologie & Comportament Uman": (
+            "Ești responsabil de crearea unui curs online despre Psihologie și Comportament Uman, destinat celor care vor să înțeleagă mai bine comportamentele umane.\n\n"
+            "🧠 Cum ai structura acest curs pentru a acoperi atât concepte fundamentale ale psihologiei, cât și teme avansate despre comportamentele umane?\n\n"
+            "🧠 Ce activități interactive ai adăuga pentru a face cursul mai captivant și mai ușor de înțeles?\n\n"
+            "🧠 Care sunt pașii esențiali pe care participanții trebuie să îi urmeze pentru a aplica cunoștințele de psihologie în viața lor personală și profesională?"
+        ),
+
+        "Tehnologii Emergente (AI, Blockchain, etc.)": (
+            "Ești responsabil de crearea unui curs online despre Inteligența Artificială (AI), destinat celor care vor să înțeleagă aceste tehnologii emergente.\n\n"
+            "🤖 Cum ai structura acest curs pentru a introduce concepte complexe treptat, astfel încât participanții să le înțeleagă pe măsură ce avansează?\n\n"
+            "🤖 Ce activități interactive ai include pentru a face cursul mai captivant și aplicabil în domenii reale?\n\n"
+            "🤖 Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a aplica tehnologiile AI în proiecte reale?"
+        ),
+
+        "Mediu & Sustenabilitate": (
+            "Ești responsabil de crearea unui curs online despre Mediu și Sustenabilitate, destinat celor care vor să înțeleagă cum să protejeze planeta.\n\n"
+            "🌍 Cum ai structura acest curs pentru a acoperi atât conceptele fundamentale ale ecologiei, cât și tehnici avansate de gestionare a resurselor naturale?\n\n"
+            "🌍 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de sustenabilitate în viața lor de zi cu zi?\n\n"
+            "🌍 Care sunt pașii esențiali pentru a încuraja participanții să își construiască un plan de acțiune pentru un stil de viață mai sustenabil?"
+        ),
+
+        "Design & Grafica": (
+            "Ești responsabil de crearea unui curs online despre Design și Grafică, destinat celor care vor să învețe să creeze designuri vizuale de impact.\n\n"
+            "🎨 Cum ai structura acest curs pentru a acoperi atât teorie, cât și aplicabilitatea designului în proiecte reale?\n\n"
+            "🎨 Ce elemente interactive ai adăuga pentru a face procesul de învățare mai captivant și mai aplicabil?\n\n"
+            "🎨 Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a crea designuri grafice profesioniste?"
+        ),
+
+        "Calatorii & Turism": (
+            "Ești responsabil de crearea unui curs online despre Turism și Călătorii, destinat celor care vor să înțeleagă cum să planifice vacanțe și călătorii.\n\n"
+            "✈️ Cum ai structura acest curs pentru a acoperi atât planificarea logistică a călătoriilor, cât și aspecte culturale ale destinațiilor?\n\n"
+            "✈️ Ce activități interactive ai include pentru a ajuta participanții să își planifice vacanțele mai eficient?\n\n"
+            "✈️ Care sunt pașii esențiali pentru a încuraja participanții să aleagă destinații de vacanță sustenabile și responsabile?"
+        ),
+
+        "Antreprenoriat": (
+            "Ești responsabil de crearea unui curs online despre Antreprenoriat, destinat celor care vor să învețe cum să dezvolte o afacere de succes.\n\n"
+            "🚀 Cum ai structura acest curs pentru a acoperi atât concepte fundamentale ale antreprenoriatului, cât și strategii avansate pentru a dezvolta o afacere?\n\n"
+            "🚀 Ce metode interactive ai adăuga pentru a ajuta participanții să aplice rapid cunoștințele de antreprenoriat?\n\n"
+            "🚀 Care sunt pașii esențiali pentru a ajuta participanții să dezvolte o strategie eficientă pentru afacerea lor?"
+        ),
+
+        "Dezvoltare Personala": (
+            "Ești responsabil de crearea unui curs online despre Dezvoltare Personală, destinat celor care vor să își îmbunătățească abilitățile de viață.\n\n"
+            "🌱 Cum ai structura acest curs pentru a acoperi atât aspecte fundamentale ale dezvoltării personale, cât și tehnici avansate pentru creșterea personală?\n\n"
+            "🌱 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de dezvoltare personală?\n\n"
+            "🌱 Care sunt pașii esențiali pe care participanții trebuie să îi urmeze pentru a dezvolta obiceiuri sănătoase și eficiente în viața lor?"
+        ),
+
+        "Arta & Stiinte Umaniste": (
+            "Ești responsabil de crearea unui curs online despre Artă și Științe Umaniste, destinat celor care vor să înțeleagă cultura și istoria umană.\n\n"
+            "🎨 Cum ai structura acest curs pentru a acoperi atât istoria artei, cât și impactul cultural al diferitelor mișcări artistice?\n\n"
+            "🎨 Ce activități interactive ai include pentru a ajuta participanții să aprecieze mai bine arta și cultura?\n\n"
+            "🎨 Care sunt pașii esențiali pentru a încuraja participanții să aprecieze arta și științele umaniste în viața lor de zi cu zi?"
+        ),
+
+        "Sanatate & Medicina": (
+            "Ești responsabil de crearea unui curs online despre Sănătate și Medicină, destinat celor care vor să învețe cum să își îmbunătățească starea de sănătate.\n\n"
+            "🩺 Cum ai structura acest curs pentru a include atât aspecte fundamentale ale sănătății, cât și metode avansate de prevenire a bolilor?\n\n"
+            "🩺 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de sănătate în viața lor de zi cu zi?\n\n"
+            "🩺 Care sunt pașii esențiali pentru a încuraja participanții să își îmbunătățească stilul de viață și să prevină bolile?"
+        ),
+
+        "Activitati Sportive": (
+            "Ești responsabil de crearea unui curs online despre Activități Sportive, destinat celor care vor să învețe să practice sporturi în mod eficient și sănătos.\n\n"
+            "🏃 Cum ai structura acest curs pentru a include atât tehnici fundamentale, cât și metode avansate de antrenament sportiv?\n\n"
+            "🏃 Ce metode interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de sport în antrenamentele lor?\n\n"
+            "🏃 Care sunt pașii esențiali pentru a încuraja participanții să își construiască un program de antrenament personalizat?"
+        ),
+
+        "Ingrijirea copilului si viata de familie": (
+            "Ești responsabil de crearea unui curs online despre Îngrijirea Copilului și Viața de Familie, destinat celor care vor să învețe cum să își îngrijească copiii și familia.\n\n"
+            "👶 Cum ai structura acest curs pentru a acoperi atât aspecte fundamentale ale îngrijirii copilului, cât și strategii avansate de educație parentală?\n\n"
+            "👶 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele despre viața de familie?\n\n"
+            "👶 Care sunt pașii esențiali pentru a încuraja participanții să aplice metode eficiente de îngrijire a copiilor?"
+        ),
+
+        "Altele": (
+            "Ești responsabil de crearea unui curs online pentru un domeniu general care nu se încadrează în categoriile deja menționate.\n\n"
+            "❓ Cum ai structura acest curs pentru a acoperi atât concepte fundamentale, cât și tehnici avansate în domeniul respectiv?\n\n"
+            "❓ Ce activități interactive ai adăuga pentru a face cursul mai captivant și mai aplicabil pentru participanți?\n\n"
+            "❓ Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a deveni experți în acest domeniu?"
+        ),
+
+        "characters_about" : "maxim 1000 de caractere",
+        "characters_course" : "200 - 1000 de caractere",
+        "min_200" : "Te rog sa scrii minim 200 de caractere.",
+        "max_1000" : "Te rog sa scrii maxim 1000 de caractere.",
+        "requirement_length" : "Te rog sa spun despre crearea cursului in minim 200 de caractere si maxim 1000 de caractere.",	
+        "send_form" : "Multumesc pentru raspunsuri! Curand vei putea vedea niste grafice cu acestea!"
     }
 }
 
@@ -696,24 +842,81 @@ elif st.session_state.page == 5:
         category_str = ", ".join(first_course)
 
         st.write(f"{current_translations['about1']} {category_str} {current_translations['about2']}")
-        st.text_area(current_translations["characters"], key="about_course")
+        
+        about = st.text_area(current_translations["characters_about"], key="about_input_unique")
 
-        st.write({current_translations[category_str]})
-    
+        st.write(current_translations[category_str])
+        user_input = st.text_area(current_translations["characters_course"], key="user_input_unique")
+
+        if user_input.strip():
+            try:
+                if len(user_input) <= 200:
+                    st.error(current_translations["min_200"])
+                elif len(user_input) >= 1000:
+                    st.error(current_translations["max_1000"])
+                # else:
+                #     st.success(current_translations["valid_input"])
+            except ValueError:
+                st.error("An error occurred")
+
     with st.form(key="form_submition"):
         col1, col2, col3 = st.columns(3)
         with col1:
             next_button = st.form_submit_button("Submit")
-        with col2: 
+        with col2:
             back_button = st.form_submit_button(current_translations['back_button'])
-                
-    
-    
+
     if next_button:
-        st.success("Form submitted successfully!")
-        st.balloons()
+        st.session_state.about = about  
+        st.session_state.specific_course = user_input  
+
+
+        st.write("### Summary of Your Answers:")
+
+        # Page 3 responses
+        st.write(f"**Age:** {st.session_state.age}")
+        st.write(f"**Gender:** {st.session_state.gender}")
+        st.write(f"**Country:** {st.session_state.country}")
+        st.write(f"**Education Level:** {st.session_state.education}")
+
+        # Additional responses (from your example)
+        st.write(f"**Selected Platforms:** {', '.join(st.session_state.selected_platforms)}")
+        st.write(f"**Selected Courses:** {', '.join(st.session_state.selected_courses)}")
+        st.write(f"**Usage:** {st.session_state.selected_usage}")
+        st.write(f"**Job:** {st.session_state.job}")
+        st.write(f"**Mandatory:** {st.session_state.mandatory}")
+        st.write(f"**Promotion:** {st.session_state.promotion}")
+        st.write(f"**Reasons for Choosing Course:** {', '.join(st.session_state.selected_reasons)}")
+        st.write(f"**Grade Before:** {st.session_state.grade_before}")
+        st.write(f"**Max Grade Before:** {st.session_state.max_grade_before}")
+        st.write(f"**Grade After:** {st.session_state.grade_after}")
+        st.write(f"**Max Grade After:** {st.session_state.max_grade_after}")
+        st.write(f"**Learning Method:** {st.session_state.learning_method}")
+        st.write(f"**Certification:** {st.session_state.certification}")
+        st.write(f"**Multitasking:** {st.session_state.multitasking}")
+        st.write(f"**Notes:** {st.session_state.notes}")
+        st.write(f"**Best Course:** {st.session_state.bestCourse}")
+        st.write(f"**Dropout Status:** {st.session_state.dropOut}")
+        if st.session_state.dropOut == "Yes":
+            st.write(f"**Dropout Reason:** {st.session_state.dropOutReason}")
+        st.write(f"**Completion Rate:** {st.session_state.completationRate}")
+        st.write(f"**Preference:** {st.session_state.preference}")
+        st.write(f"**VR Usage:** {st.session_state.vr}")
+        st.write(f"**Live Interaction:** {st.session_state.liveInteraction}")
+        st.write(f"**Immersive Learning:** {st.session_state.immersive}")
+        st.write(f"**Replacement:** {st.session_state.replacement}")
+        st.write(f"**AI Assistant:** {st.session_state.aiAssistant}")
+        st.write(f"**AI Professor:** {st.session_state.aiProfessor}")
+
+        if len(st.session_state.specific_course) <= 200 or len(st.session_state.specific_course) >= 1000:
+            st.warning(current_translations["requirement_length"])
+        else:
+            st.success(current_translations["send_form"])
+            st.balloons()
+
     if back_button:
         prev_page()
+
 
 
 
