@@ -35,6 +35,8 @@ keys_to_initialize = [
     ("mandatory", ""),
     ("promotion", ""),
     ("selected_reasons", []),
+    ("check_lectures", None),
+    ("check_exams", None),
     ("grade_before", None),
     ("max_grade_before", None),
     ("grade_after", None),
@@ -47,7 +49,7 @@ keys_to_initialize = [
     ("dropOut", ""),
     ("dropOutReason", None),
     ("completationRate", 50),
-    ("preference", ""),
+    # ("preference", ""),
     ("vr", ""),
     ("liveInteraction", ""),
     ("immersive", ""),
@@ -55,7 +57,9 @@ keys_to_initialize = [
     ("aiAssistant", ""),
     ("aiProfessor", ""),
     ("about", ""),
-    ("specific_course", "")
+    ("specific_course", ""),
+    ("payed_courses", ""),
+    ("payment", 0),
 ]
 
 for key, default_value in keys_to_initialize:
@@ -92,6 +96,8 @@ translations = {
         "✨ Please consider e-learning any online platform that provides educational information.",
         "part3": "**Part 3: Design your own e-learning course.**\n\n",
         "platforms": "Please select the e-learning platforms you use:",
+        "platforms_list" : ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "My university's platform",
+                     "Youtube", "TikTok", "Others"],
         "specify_platform": "Please specify the other platforms you use:",
         "course_types": "Please select the types of courses you take:",
         "course_types_list": ["Technical (Programming, Data Science)", "Business & Management", "Finance & Economics", 
@@ -125,7 +131,6 @@ translations = {
         "learning_method": "What learning method do you prefer?",
         "certification": "How important is getting a certification?",
         "certification_list": ["Not important", "Somewhat important", "Very important"],
-        "learning_preference": "Do you prefer structured courses or short videos?",
         "multitasking": "How often do you multitask while learning?",
         "multitasking_list": ["Never", "Sometimes",  "Often", "Always"],
         "notes": "What kind of notes do you take during learning?",
@@ -133,7 +138,7 @@ translations = {
         "best_course": "What is the best course you’ve taken? (it could be the name, a short description, or a link)",  
         "dropOut": "Have you ever dropped out of an online course?",
         "dropOutReason": "What was the reason you dropped out?",
-        "dropOutReason_list": ["Too hard", "Too boring", "No time", "Not useful", "Other"],
+        "dropOutReason_list": ["Too hard", "Too boring", "No time", "Not useful", "Others"],
         "completion_rate": "What is your typical course completion rate? (in case you watch only short videos, how much of the video do you watch?)",
         "preference_onl": "Do you prefer online learning or face-to-face learning?",
         "preference_onl_list": ["Online", "Face-to-face"],
@@ -146,9 +151,9 @@ translations = {
         "ai_professor": "Would you accept an AI professor?",
         "back_button": "Back",
         "warning_platforms": "Please select at least one platform.",
-        "warning_other_platform": "If 'Other' is selected, please specify the platform.",
+        "warning_other_platform": "If 'Others' is selected, please specify the platform.",
         "warning_courses": "Please select at least one course type.",
-        "warning_other_course": "If 'Other' is selected, please specify the course type.",
+        "warning_other_course": "If 'Others' is selected, please specify the course type.",
         "warning_usage": "Please select at least one usage option.",
         "warning_reasons": "Please select at least one reason for using e-learning for school purposes.",
         "warning_gpa": "Please provide both your GPA before and after using e-learning.",
@@ -242,8 +247,12 @@ translations = {
             "🎀 What are the key skills or concepts that participants should focus on to gain a comprehensive understanding of the topic?"),
 
         "characters_about" : "maximum 1000 characters",
-        "characters_best_course" : "200 - 1000 characters",
+        "characters_course" : "200 - 1000 characters",
+        "min_200" : "Please write at least 200 characters.",
+        "max_1000" : "Please write a maximum of 1000 characters.",
+        "requirement_length" : "Please write about the course creation in at least 200 characters and a maximum of 1000 characters.",
         "send_form" : "Thank you for the answers! Soon you'll see some charts about them!"
+
     },
         "ro": {
         "age": "Ce varsta ai?",
@@ -277,6 +286,8 @@ translations = {
         " ✨ Vom considera e-learning orice platforma online care ofera informatii educative. " , 
         "part3" : "**Partea 3: Devino propirul creator de cursuri online.**\n\n",
         "platforms": "Selecteaza platformele de e-learning pe care le folosesti (alege-le pe toate):",
+        "platforms_list" : ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "My university's platform",
+                     "Youtube", "TikTok", "Altele"],
         "specify_platform": "Te rog sa specifici ce alte platforme folosesti:",
         "course_types": "Selecteaza ce fel de cursuri urmaresti:",
         "course_types_list": ["Tehnic (Programare, Data Science)", "Business & Management", "Finante & Economie",
@@ -470,8 +481,7 @@ translations = {
 
 current_language = st.session_state.language
 current_translations = translations[current_language]
-platforms = ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "My university's platform",
-                     "Youtube", "TikTok", "Other"]
+
 
 st.title("Share your experience with e-learning platforms! 📚")
 
@@ -529,36 +539,65 @@ elif st.session_state.page == 2:
         button_start = st.button(current_translations['start_button'], use_container_width=True)
 
     if button_start:
+
         next_page()
 
 elif st.session_state.page == 3:
     st.write(current_translations['part1'])
-    age = st.slider(current_translations['age'], 0, 100)
-    st.session_state.age = age
-    gender = st.radio(current_translations['gender'],
-                      current_translations["gender_list"])
+    age = st.slider(
+        current_translations['age'], 
+        0, 
+        100, 
+        value=st.session_state.age if 'age' in st.session_state else 25  
+    )
+
+    gender = st.radio(
+        current_translations['gender'],
+        current_translations["gender_list"],
+        index=current_translations["gender_list"].index(st.session_state.gender) 
+        if 'gender' in st.session_state and st.session_state.gender in current_translations["gender_list"] 
+        else 0  
+    )
+
     country_list = [country[1] for country in st.session_state.countries]
-    country = st.selectbox(current_translations['country'], country_list)
-    st.session_state.country = country
-    education = st.selectbox(current_translations['education'], current_translations["education_list"])
-    st.session_state.education = education
+    country = st.selectbox(
+        current_translations['country'],
+        country_list,
+        index=country_list.index(st.session_state.country) 
+        if 'country' in st.session_state and st.session_state.country in country_list 
+        else 0  
+    )
+
+    
+    education = st.selectbox(
+        current_translations['education'],
+        current_translations["education_list"],
+        index=current_translations["education_list"].index(st.session_state.education) 
+        if 'education' in st.session_state and st.session_state.education in current_translations["education_list"] 
+        else 0  
+    )
 
     with st.form(key="form_page1"):
         next_button = st.form_submit_button(label=current_translations['next_button'])
 
-        if next_button:    
+        if next_button: 
+            st.session_state.age = age
+            st.session_state.gender = gender
+            st.session_state.country = country
+            st.session_state.education = education
+   
             next_page()
 
 elif st.session_state.page == 4:
     st.markdown(current_translations['part2'])
 
     selected_platforms = st.multiselect(
-        current_translations['platforms'], platforms)
-    if "Other" in selected_platforms or "Altele" in selected_platforms: 
+        current_translations['platforms'], current_translations["platforms_list"])
+    if "Others" in selected_platforms or "Altele" in selected_platforms: 
         other_platform = st.text_input(current_translations['specify_platform'],
                                        value=st.session_state.other_platform)
         if other_platform.strip():
-            selected_platforms = [p for p in selected_platforms if p != "Other"]
+            selected_platforms = [p for p in selected_platforms if p not in ["Others", "Altele"]]
             selected_platforms.append(other_platform)
         else:
             st.error(current_translations['warning_other_platform'])
@@ -566,15 +605,14 @@ elif st.session_state.page == 4:
         other_platform = ""
     st.write("Selected:", selected_platforms)
 
-
    
     selected_courses = st.multiselect(
         current_translations['course_types'], current_translations["course_types_list"])
-    if "Other" in selected_courses or "Altele" in selected_courses:
+    if "Others" in selected_courses or "Altele" in selected_courses:
         other_course = st.text_input(current_translations['specify_course'],
                                        value=st.session_state.other_course)
         if other_course.strip():
-            selected_courses = [p for p in selected_courses if p != "Other"]
+            selected_courses = [p for p in selected_courses if p not in ["Others", "Altele"]]
             selected_courses.append(other_course)
         else:
             st.error(current_translations['warning_other_course'])
@@ -583,9 +621,13 @@ elif st.session_state.page == 4:
     
     st.write("Selected:", selected_courses)
 
-    preference = st.radio(current_translations['preference_onl'], 
-                              current_translations["preference_onl_list"])
-
+    preference = st.radio(
+    current_translations['preference_onl'], 
+    current_translations["preference_onl_list"],
+    index=current_translations["preference_onl_list"].index(
+        st.session_state.get("preference", current_translations["preference_onl_list"][0])
+    )
+)
     st.write(current_translations['why_visit'])
 
     if "selected_usage" not in st.session_state:
@@ -598,8 +640,6 @@ elif st.session_state.page == 4:
         if st.checkbox(option, value=(option in st.session_state.selected_usage), key=f"usage_{option}"):
             selected_usage.append(option)
 
-    # st.session_state.selected_usage = selected_usage
-
 
     if "Job Purposes" in selected_usage or "Locul de munca" in selected_usage:
         col1, col2, col3 = st.columns([0.05, 0.9, 0.05])
@@ -610,24 +650,26 @@ elif st.session_state.page == 4:
 
             job = st.text_input(
                 current_translations['job'],
-                value=st.session_state.job if 'job' in st.session_state else ""
-            )
+                value=st.session_state.get("job", "")
+                )
 
+            mandatory_value = st.session_state.get("mandatory", "")
             mandatory = st.radio(
                 current_translations["mandatory_courses"],
                 current_translations["yes_no"],
-                index=current_translations["yes_no"].index(st.session_state.mandatory)
-                if 'mandatory' in st.session_state and st.session_state.mandatory in current_translations["yes_no"]
+                index=current_translations["yes_no"].index(mandatory_value)
+                if mandatory_value in current_translations["yes_no"]
                 else 0
-            )
-
+                )
+            
+            promotion_value = st.session_state.get("promotion", "")
             promotion = st.radio(
                 current_translations["promotion_courses"],
                 current_translations["yes_no"],
-                index=current_translations["yes_no"].index(st.session_state.promotion)
-                if 'promotion' in st.session_state and st.session_state.promotion in current_translations["yes_no"]
+                index=current_translations["yes_no"].index(promotion_value)
+                if promotion_value in current_translations["yes_no"]
                 else 0
-            )
+                )
 
             st.markdown("</div>", unsafe_allow_html=True)
     else:
@@ -646,25 +688,33 @@ elif st.session_state.page == 4:
             reasons = st.multiselect(
                 current_translations['school_reasons'],
                 current_translations["school_reasons_list"],
-                default=st.session_state.selected_reasons
+                default=st.session_state.get('selected_reasons', [])
             )
 
             beforeClasses = st.radio(
                 current_translations['check_lectures'],
-                current_translations["yes_no"]
+                current_translations["yes_no"],
+                index=current_translations["yes_no"].index(st.session_state.get('beforeClasses', current_translations["yes_no"][0]))
             )
+
 
             exams = st.radio(
                 current_translations['check_exams'],
-                current_translations["exam_list"]
-            )
-
+                current_translations["exam_list"],
+                index=current_translations["exam_list"].index(st.session_state.get('exams', current_translations["exam_list"][0]))
+                )
             st.write(current_translations['grade_before'])
             col_a, col_b = st.columns(2)
             with col_a:
-                grade_before = st.text_input(current_translations["your_grade_before"])
+                grade_before = st.text_input(
+                    current_translations["your_grade_before"],
+                    value=st.session_state.get('grade_before', '')  # Default to an empty string if no value is stored
+                )            
             with col_b:
-                max_grade_before = st.text_input(current_translations["out_of_before"])
+                max_grade_before = st.text_input(
+                    current_translations["out_of_before"], 
+                    value=st.session_state.get('max_grade_before', '')  # Default to an empty string if no value is stored
+                )
 
             if grade_before and max_grade_before:
                 try:
@@ -682,9 +732,15 @@ elif st.session_state.page == 4:
             st.write(current_translations['grade_after'])
             col_c, col_d = st.columns(2)
             with col_c:
-                grade_after = st.text_input(current_translations["your_grade_after"])
+                grade_after = st.text_input(
+                    current_translations["your_grade_after"],
+                    value=st.session_state.get('grade_after', '')
+                )
             with col_d:
-                max_grade_after = st.text_input(current_translations["out_of_after"])
+                max_grade_after = st.text_input(
+                    current_translations["out_of_after"], 
+                    value=st.session_state.get('max_grade_after', '')
+                )
 
             if grade_after and max_grade_after:
                 try:
@@ -712,59 +768,166 @@ elif st.session_state.page == 4:
 
     
 
-    learning_method = st.radio(current_translations['learning_method'],
-                                    current_translations["learning_method_list"])
+    learning_method = st.radio(
+       current_translations['learning_method'],
+       current_translations["learning_method_list"],
+       index=current_translations["learning_method_list"].index(st.session_state.learning_method)
+       if 'learning_method' in st.session_state and st.session_state.learning_method in current_translations["learning_method_list"]
+       else 0  
+    )       
 
-    frequency = st.radio(current_translations['frequency'],
-                          current_translations["frequency_list"])
+    frequency = st.radio(
+    current_translations['frequency'],
+    current_translations["frequency_list"],
+    index=current_translations["frequency_list"].index(st.session_state.frequency)
+    if 'frequency' in st.session_state and st.session_state.frequency in current_translations["frequency_list"]
+    else 0  
+    )
+
     
     payed_courses = st.radio(
-        current_translations['payed_courses'],
-        current_translations["yes_no"],)
+    current_translations['payed_courses'],
+    current_translations["yes_no"],
+    index=current_translations["yes_no"].index(st.session_state.payed_courses)
+    if 'payed_courses' in st.session_state and st.session_state.payed_courses in current_translations["yes_no"]
+    else 0  
+    )
+    
+    if 'payment' in st.session_state:
+        saved_payment = st.session_state.payment
+    else:
+        saved_payment = 100 
+
     if payed_courses == "Da":
-        payment = st.slider(current_translations['payment'], 0, 10000, 100)
-    if payed_courses == "Yes":
-        payment = st.slider(current_translations['payment'], 0, 2000, 100)
+        payment = st.slider(
+            current_translations['payment'], 
+            0, 
+            10000, 
+            saved_payment  
+        )
+    elif payed_courses == "Yes":
+        
+        payment = st.slider(
+            current_translations['payment'], 
+            0, 
+            2000, 
+            saved_payment  
+        )
     else:
         payment = 0
-    bestCourse = st.text_input(current_translations['best_course'] , value="")
-    dropOut = st.radio(current_translations['dropOut'], current_translations["yes_no"])
+
+
+
+    bestCourse = st.text_input(
+    current_translations['best_course'],
+    value=st.session_state.bestCourse if 'bestCourse' in st.session_state else ""
+    
+    ) 
+
+    dropOut = st.radio(
+    current_translations['dropOut'],
+    current_translations["yes_no"],
+    index=current_translations["yes_no"].index(st.session_state.dropOut)
+    if 'dropOut' in st.session_state and st.session_state.dropOut in current_translations["yes_no"]
+    else 0
+    )
+
     if dropOut == "Yes" or dropOut == "Da":
         dropOutReason = st.radio(
-        current_translations['dropOutReason'],
-        current_translations["dropOutReason_list"])
-    completationRate = st.slider(current_translations['completion_rate'],
-    0, 100, 50)
-    certification = st.radio(current_translations['certification'],
-                            current_translations["certification_list"])
+            current_translations['dropOutReason'],
+        current_translations["dropOutReason_list"],
+        index=current_translations["dropOutReason_list"].index(st.session_state.dropOutReason)
+        if 'dropOutReason' in st.session_state and st.session_state.dropOutReason in current_translations["dropOutReason_list"]
+        else 0
+        )
+    else:
+        dropOutReason = None
+
+    completationRate = st.slider(
+        current_translations['completion_rate'], 0, 100, 
+        st.session_state.completationRate if 'completationRate' in st.session_state else 50
+    )
+
+
+    certification = st.radio(
+        current_translations['certification'],
+        current_translations["certification_list"],
+        index=current_translations["certification_list"].index(st.session_state.certification)
+        if 'certification' in st.session_state and st.session_state.certification in current_translations["certification_list"]
+        else 0 
+    )
+
 
   
     notes = st.multiselect(
-            current_translations['notes'],
-            current_translations["notes_list"])
+        current_translations['notes'],
+        current_translations["notes_list"],
+        default=st.session_state.notes if 'notes' in st.session_state else []
+    )
+
     
     multitasking = st.radio(
-            current_translations['multitasking'],
-            current_translations["multitasking_list"])
+        current_translations['multitasking'],
+        current_translations["multitasking_list"],
+        index=current_translations["multitasking_list"].index(st.session_state.multitasking)
+        if 'multitasking' in st.session_state and st.session_state.multitasking in current_translations["multitasking_list"]
+        else 0
+    )
     
     st.write("### Would you try?")
-    vr = st.radio(current_translations['vr'], 
-                  current_translations['yes_no'])
-    liveInteraction = st.radio(current_translations['live_interaction'],
-                  current_translations['yes_no'])
-    immersive = st.radio(current_translations['immersive'],
-                  current_translations['yes_no'])
-    replacement = st.radio(current_translations['replacement'],
-                  current_translations["replacement_list"])
-    aiAssistant = st.radio(current_translations['ai_assistant'],
-                  current_translations['yes_no'])
-    aiProfessor = st.radio(current_translations['ai_professor'],
-                  current_translations['yes_no'])
+    vr = st.radio(
+    current_translations['vr'], 
+    current_translations['yes_no'],
+    index=current_translations['yes_no'].index(st.session_state.vr)
+    if 'vr' in st.session_state and st.session_state.vr in current_translations['yes_no']
+    else 0
+    )
+
+    liveInteraction = st.radio(
+        current_translations['live_interaction'],
+        current_translations['yes_no'],
+        index=current_translations['yes_no'].index(st.session_state.liveInteraction)
+        if 'liveInteraction' in st.session_state and st.session_state.liveInteraction in current_translations['yes_no']
+        else 0
+    )
+
+    immersive = st.radio(
+        current_translations['immersive'],
+        current_translations['yes_no'],
+        index=current_translations['yes_no'].index(st.session_state.immersive)
+        if 'immersive' in st.session_state and st.session_state.immersive in current_translations['yes_no']
+        else 0
+    )
+
+    replacement = st.radio(
+        current_translations['replacement'],
+        current_translations["replacement_list"],
+        index=current_translations["replacement_list"].index(st.session_state.replacement)
+        if 'replacement' in st.session_state and st.session_state.replacement in current_translations["replacement_list"]
+        else 0
+    )
+
+    aiAssistant = st.radio(
+        current_translations['ai_assistant'],
+        current_translations['yes_no'],
+        index=current_translations['yes_no'].index(st.session_state.aiAssistant)
+        if 'aiAssistant' in st.session_state and st.session_state.aiAssistant in current_translations['yes_no']
+        else 0
+    )
+
+    aiProfessor = st.radio(
+        current_translations['ai_professor'],
+        current_translations['yes_no'],
+        index=current_translations['yes_no'].index(st.session_state.aiProfessor)
+        if 'aiProfessor' in st.session_state and st.session_state.aiProfessor in current_translations['yes_no']
+        else 0
+    )
+
 
     with st.form(key="form_navigation"):
         col1, col2, col3 = st.columns(3)
         with col1:
-                next_button = st.form_submit_button("Next")
+                next_button = st.form_submit_button(current_translations['next_button'])
                 if next_button:
                     st.session_state.selected_platforms = selected_platforms  
                     st.session_state.selected_courses = selected_courses  
@@ -773,6 +936,8 @@ elif st.session_state.page == 4:
                     st.session_state.mandatory = mandatory
                     st.session_state.promotion = promotion
                     st.session_state.selected_reasons = reasons
+                    st.session_state.check_lectures = beforeClasses
+                    st.session_state.check_exams = exams
                     st.session_state.grade_before = grade_before
                     st.session_state.max_grade_before = max_grade_before
                     st.session_state.grade_after = grade_after
@@ -782,11 +947,14 @@ elif st.session_state.page == 4:
                     st.session_state.multitasking = multitasking
                     st.session_state.notes = notes
                     st.session_state.bestCourse = bestCourse
+                    st.session_state.frequency = frequency
+                    st.session_state.payed_courses = payed_courses
+                    st.session_state.payment = payment
                     st.session_state.dropOut = dropOut
-                    if dropOut == "Yes":
-                        st.session_state.dropOutReason = dropOutReason
-                    else:
-                        st.session_state.dropOutReason = None
+                    # if dropOut == "Yes" or dropOut == "Da":
+                    #     st.session_state.dropOutReason = dropOutReason
+                    # else:
+                    #     st.session_state.dropOutReason = None
                     st.session_state.completationRate = completationRate
                     st.session_state.preference = preference
                     st.session_state.vr = vr
@@ -798,20 +966,20 @@ elif st.session_state.page == 4:
 
                     if not st.session_state.selected_platforms:
                         st.warning(current_translations['warning_platforms'])
-                    elif "Other" in st.session_state.selected_platforms and not st.session_state.other_platform.strip():
+                    elif "Others" in st.session_state.selected_platforms or "Altele" in st.session_state.selected_platforms and not st.session_state.other_platform.strip():
                         st.warning(current_translations['warning_other_platform'])
                     elif not st.session_state.selected_courses:
                         st.warning(current_translations['warning_courses'])
-                    elif "Other" in st.session_state.selected_courses and not st.session_state.other_course.strip():
+                    elif "Others" in st.session_state.selected_courses or "Altele" in st.session_state.selected_courses and not st.session_state.other_course.strip():
                         st.warning(current_translations['warning_other_course'])
                     elif not st.session_state.selected_usage:
                         st.warning(current_translations['warning_usage'])
-                    elif "School purposes" in st.session_state.selected_usage:
+                    elif "School purposes" in st.session_state.selected_usage or "Scoala" in st.session_state.selected_usage:
                         if not st.session_state.selected_reasons:
                             st.warning(current_translations['warning_reasons'])
                         elif not grade_before or not max_grade_before or not grade_after or not max_grade_after:
                             st.warning(current_translations['warning_gpa'])
-                    elif "Job Purposes" in st.session_state.selected_usage:
+                    elif "Job Purposes" in st.session_state.selected_usage or "Locul de munca" in st.session_state.selected_usage:
                         if not st.session_state.job.strip():
                             st.warning(current_translations['warning_job'])
                         elif not st.session_state.mandatory.strip():
@@ -822,10 +990,11 @@ elif st.session_state.page == 4:
                         st.warning(current_translations['warning_notes'])
                     elif not st.session_state.bestCourse.strip():
                         st.warning(current_translations['warning_best_course'])
-                    elif "Yes" in st.session_state.dropOut:
-                        if st.session_state.dropOutReason is None:
-                            st.warning(current_translations['warning_dropOut'])
+                    # elif "No" in st.session_state.dropOut or "Nu" in st.session_state.dropOut:
+                    #     if st.session_state.dropOutReason is None:
+                    #         st.warning(current_translations['warning_dropOut'])
                     else:
+                    # st.write("NU VREAU SA MERG")
                         next_page()
         with col3:
             back_button = st.form_submit_button(current_translations['back_button'])
@@ -837,27 +1006,25 @@ elif st.session_state.page == 5:
     st.write(current_translations["part3"])
 
     if st.session_state.selected_courses:
-        first_course = st.session_state.selected_courses
+        first_course = st.session_state.selected_courses[0]
 
-        category_str = ", ".join(first_course)
-
-        st.write(f"{current_translations['about1']} {category_str} {current_translations['about2']}")
+        st.write(f"{current_translations['about1']} {first_course} {current_translations['about2']}")
         
         about = st.text_area(current_translations["characters_about"], key="about_input_unique")
 
-        st.write(current_translations[category_str])
+        st.write(current_translations[first_course])
         user_input = st.text_area(current_translations["characters_course"], key="user_input_unique")
 
-        if user_input.strip():
-            try:
-                if len(user_input) <= 200:
-                    st.error(current_translations["min_200"])
-                elif len(user_input) >= 1000:
-                    st.error(current_translations["max_1000"])
-                # else:
-                #     st.success(current_translations["valid_input"])
-            except ValueError:
-                st.error("An error occurred")
+        # if user_input.strip():
+        #     try:
+        #         if len(user_input) <= 200:
+        #             st.error(current_translations["min_200"])
+        #         elif len(user_input) >= 1000:
+        #             st.error(current_translations["max_1000"])
+        #         # else:
+        #         #     st.success(current_translations["valid_input"])
+        #     except ValueError:
+        #         st.error("An error occurred")
 
     with st.form(key="form_submition"):
         col1, col2, col3 = st.columns(3)
@@ -887,19 +1054,25 @@ elif st.session_state.page == 5:
         st.write(f"**Mandatory:** {st.session_state.mandatory}")
         st.write(f"**Promotion:** {st.session_state.promotion}")
         st.write(f"**Reasons for Choosing Course:** {', '.join(st.session_state.selected_reasons)}")
+        st.write(f"**Check Lectures:** {st.session_state.check_lectures}")
+        st.write(f"**Check Exams:** {st.session_state.check_exams}")
         st.write(f"**Grade Before:** {st.session_state.grade_before}")
         st.write(f"**Max Grade Before:** {st.session_state.max_grade_before}")
         st.write(f"**Grade After:** {st.session_state.grade_after}")
         st.write(f"**Max Grade After:** {st.session_state.max_grade_after}")
         st.write(f"**Learning Method:** {st.session_state.learning_method}")
-        st.write(f"**Certification:** {st.session_state.certification}")
-        st.write(f"**Multitasking:** {st.session_state.multitasking}")
-        st.write(f"**Notes:** {st.session_state.notes}")
+        st.write(f"**Frequency:** {st.session_state.frequency}")
+        st.write(f"**Paid Courses:** {st.session_state.payed_courses}")
+        st.write(f"**Payment:** {st.session_state.payment}")
+
         st.write(f"**Best Course:** {st.session_state.bestCourse}")
         st.write(f"**Dropout Status:** {st.session_state.dropOut}")
-        if st.session_state.dropOut == "Yes":
+        if st.session_state.dropOut == "Yes" or st.session_state.dropOut == "Da":
             st.write(f"**Dropout Reason:** {st.session_state.dropOutReason}")
         st.write(f"**Completion Rate:** {st.session_state.completationRate}")
+        st.write(f"**Certification:** {st.session_state.certification}")
+        st.write(f"**Notes:** {st.session_state.notes}")
+        st.write(f"**Multitasking:** {st.session_state.multitasking}")
         st.write(f"**Preference:** {st.session_state.preference}")
         st.write(f"**VR Usage:** {st.session_state.vr}")
         st.write(f"**Live Interaction:** {st.session_state.liveInteraction}")
@@ -907,12 +1080,18 @@ elif st.session_state.page == 5:
         st.write(f"**Replacement:** {st.session_state.replacement}")
         st.write(f"**AI Assistant:** {st.session_state.aiAssistant}")
         st.write(f"**AI Professor:** {st.session_state.aiProfessor}")
+        st.write(f"**About Course:** {st.session_state.about}")
+        st.write(f"**Specific Course:** {st.session_state.specific_course}")
 
-        if len(st.session_state.specific_course) <= 200 or len(st.session_state.specific_course) >= 1000:
-            st.warning(current_translations["requirement_length"])
-        else:
-            st.success(current_translations["send_form"])
-            st.balloons()
+
+        st.success(current_translations["send_form"])
+        st.balloons()
+
+        # if len(st.session_state.specific_course) <= 200 or len(st.session_state.specific_course) >= 1000:
+        #     st.warning(current_translations["requirement_length"])
+        # else:
+        #     st.success(current_translations["send_form"])
+        #     st.balloons()
 
     if back_button:
         prev_page()
