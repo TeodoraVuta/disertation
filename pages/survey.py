@@ -145,14 +145,18 @@ translations = {
         "completion_rate": "What is your typical course completion rate? (in case you watch only short videos, how much of the video do you watch?)",
         "preference_onl": "Do you prefer online learning or face-to-face learning?",
         "preference_onl_list": ["Online", "Face-to-face"],
-        "vr": "Would you be interested in using virtual reality for learning?",
+        "vr": ("Would you be interested in using virtual reality for learning? \n\n"
+               "example: cooking courses where you can interact with a virtual kitchen"),
         "live_interaction": "Would you like to have live interactions with instructors?",
-        "immersive": "Would you be interested in immersive learning experiences?",
+        "immersive": ("Would you be interested in immersive learning experiences? \n\n"
+                    "example: history courses where you can interact with historical characters"),
         "replacement": "Do you think AI will replace traditional professors?",
         "replacement_list": ["Yes", "No", "Hybrid model will dominate", "Not sure"],
-        "ai_assistant": "Would you use an AI assistant for learning?",
+        "ai_assistant": ("Would you use an AI assistant for learning? \n\n" 
+                         "example: a chatbot able to answer to your questions about courses"),
         "ai_professor": "Would you accept an AI professor?",
         "back_button": "Back",
+        "try": "What do you think about...",
         "warning_platforms": "Please select at least one platform.",
         "warning_other_platform": "If 'Others' is selected, please specify the platform.",
         "warning_courses": "Please select at least one course type.",
@@ -289,7 +293,7 @@ translations = {
         " ✨ Vom considera e-learning orice platforma online care ofera informatii educative. " , 
         "part3" : "**Partea 3: Devino propirul creator de cursuri online.**\n\n",
         "platforms": "Selecteaza platformele de e-learning pe care le folosesti (alege-le pe toate):",
-        "platforms_list" : ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "My university's platform",
+        "platforms_list" : ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "Platforma de la facultate/scoala (Moodle)",
                      "Youtube", "TikTok", "Altele"],
         "specify_platform": "Te rog sa specifici ce alte platforme folosesti:",
         "course_types": "Selecteaza ce fel de cursuri urmaresti:",
@@ -335,17 +339,18 @@ translations = {
         "(in cazul in care urmaresti doar videoclipuri scurte, la cat la suta din videoclip te uiti?)",
         "preference_onl": "Preferi învățarea online sau față în față?",
         "preference_onl_list": ["Online", "In persoana"],
-        "vr": "Ați fi interesat să folosiți realitatea virtuală pentru învățare? /n/n"
-        "exemplu: cursuri de gatit in care sa poti interactiona cu bucataria virtuala",
+        "vr": ("Ați fi interesat să folosiți realitatea virtuală pentru învățare? \n\n"
+        "exemplu: cursuri de gatit in care sa poti interactiona cu bucataria virtuala"),
         "live_interaction": "Ați dori să aveți interacțiuni live cu profesorii?",
-        "immersive": "Ați fi interesat de experiențe de învățare imersive? /n/n"
-        "exemplu: cursuri de istorie in care sa poti interactiona cu personajele istorice",
+        "immersive": ("Ați fi interesat de experiențe de învățare imersive? \n\n"
+        "exemplu: cursuri de istorie in care sa poti interactiona cu personajele istorice"),
         "replacement": "Credeți că inteligenta artificala va înlocui profesorii tradiționali?",
         "replacement_list": ["Da", "Nu", "Model hibrid va domina", "Nu sunt sigur"],
-        "ai_assistant": "Ați folosi un asistent de inteligenta articiala pentru învățare? /n/n "
-        "exemplu: un chatbot care să răspundă la întrebările tale despre cursuri",
+        "ai_assistant": ("Ați folosi un asistent de inteligenta articiala pentru învățare? \n\n "
+        "exemplu: un chatbot care să răspundă la întrebările tale despre cursuri"),
         "ai_professor": "Ați accepta sa ai ca profesor o inteligenta artificiala?",
         "back_button": "Înapoi",
+        "try" : "Ce parere ai despre... ",
         "warning_platforms": "Te rog sa selectezi cel puțin o platformă.",
         "warning_other_platform": "Ai selectat ca folosesti alte platforme decat cele mentionate, te rog sa le specifici.",
         "warning_courses": "Te rog sa selectezi cel puțin un tip de curs.",
@@ -1007,7 +1012,7 @@ elif st.session_state.page == 4:
                     #     if st.session_state.dropOutReason is None:
                     #         st.warning(current_translations['warning_dropOut'])
                     else:
-                        st.write("NU VREAU SA MERG")
+                        # st.write("NU VREAU SA MERG")
                         next_page()
                         
         with col3:
