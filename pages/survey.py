@@ -1067,8 +1067,8 @@ elif st.session_state.page == 5:
 
         st.write(f"**Best Course:** {st.session_state.bestCourse}")
         st.write(f"**Dropout Status:** {st.session_state.dropOut}")
-        if st.session_state.dropOut == "Yes" or st.session_state.dropOut == "Da":
-            st.write(f"**Dropout Reason:** {st.session_state.dropOutReason}")
+        # if st.session_state.dropOut == "Yes" or st.session_state.dropOut == "Da":
+        st.write(f"**Dropout Reason:** {st.session_state.dropOutReason}")
         st.write(f"**Completion Rate:** {st.session_state.completationRate}")
         st.write(f"**Certification:** {st.session_state.certification}")
         st.write(f"**Notes:** {st.session_state.notes}")
