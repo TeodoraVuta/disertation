@@ -638,14 +638,15 @@ elif st.session_state.page == 4:
 )
     st.write(current_translations['why_visit'])
 
-    # if "selected_usage" not in st.session_state:
-    #     st.session_state.selected_usage = []
+
+    if "selected_usage" not in st.session_state:
+        st.session_state.selected_usage = []
 
     selected_usage = []
 
-
     for option in current_translations["purpose_list"]:
-        if st.checkbox(option, value=(option in current_translations["purpose_list"]), key=f"usage_{option}"):
+        checked = option in st.session_state.selected_usage
+        if st.checkbox(option, value=checked, key=f"usage_{option}"):
             selected_usage.append(option)
 
 
