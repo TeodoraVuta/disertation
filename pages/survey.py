@@ -91,30 +91,36 @@ translations = {
         2. **Your learning experience before and after starting using e-learning**
         3. **Design your own e-learning course** 
 
-        It will not take more than 5-7 minutes to complete the survey.
+        All questions require answers, if you forgot to answer one of them, 
+        you will receive a short notification when you go to the next page. ☺️
+
+        ⏰ It will not take more than 5-7 minutes to complete the survey.
         """,
         "start_button": "🚀 Let's get started!",
         "part1": "**Part 1: Personal Information**",	
         "part2": "**Part 2: Your learning experience.**\n\n"
-        "✨ Please consider e-learning any online platform that provides educational information.",
+        "✨ Please consider e-learning any online platform that provides educational information. \n\n"
+        "✨ Please answer to all questions!",
         "part3": "**Part 3: Design your own e-learning course.**\n\n",
-        "platforms": "Please select the e-learning platforms you use:",
+        "platforms": "Please select the e-learning platforms you use (select one or more):",
         "platforms_list" : ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "My university's platform",
                      "Youtube", "TikTok", "Others"],
-        "specify_platform": "Please specify the other platforms you use:",
-        "course_types": "Please select the types of courses you take:",
+        "specify_platform": "Please specify the other platforms you use: \n\n" 
+        "use a semicolon to separate them. example: e-learning 1; e-learning 2",
+        "course_types": "Please select the types of courses you take (select one or more):",
         "course_types_list": ["Technical (Programming, Data Science)", "Business & Management", "Finance & Economics", 
                               "Linguistics & Foreign Languages", "Psychology & Human Behavior", "Emerging Technologies (AI, Blockchain, etc.)", 
                               "Environment & Sustainability", "Design & Graphics", "Travel & Tourism", 
                               "Entrepreneurship", "Personal Development", "Arts & Humanities", "Health & Medicine", 
                               "Sports Activities", "Childcare & Family Life", "Others"],
-        "specify_course": "Please specify the other courses you take:",
+        "specify_course": "Please specify the other courses you take: \n\n"
+        "use a semicolon to separate them. example: course 1; course 2",
         "frequency": "How often do you visit e-learning platforms?",
         "purpose_list": ["Job Purposes", "Personal interest", "School purposes"],
         "learning_method_list": ["Pre-recorded videos", "Live online classes",
                                     "Podcasts",
                                     "Text-based courses", "Interactive exercises & projects"],
-        "why_visit": "Why do you visit e-learning platforms?",
+        "why_visit": "Why do you visit e-learning platforms? (select one or more)",
         "job": "What is your current job title?",
         "mandatory_courses": "Are these courses mandatory for your job?",
         "promotion_courses": "Do you think that online courses helped/will help you to get a promotion?",
@@ -285,12 +291,16 @@ translations = {
         2. **Experiența de învățare înainte și după utilizarea platformelor e-learning**
         3. **Devino propirul creator de cursuri online**
 
-        Nu va dura mai mult de 5-7 minute pentru a completa chestionarul.
+        Toate intrebarile sunt obligatorii, daca uiti sa completezi una dintre ele, 
+        vei primi o scurta notificare atunci cand treci la pagina urmatoare. ☺️
+
+        ⏰ Nu va dura mai mult de 5-7 minute pentru a completa chestionarul.
         """,
         "start_button": "🚀 Să începem!",
         "part1" : "**Partea 1: Informații personale**",
         "part2" : "**Partea 2: Experiența ta de învățare.** \n\n" 
-        " ✨ Vom considera e-learning orice platforma online care ofera informatii educative. " , 
+        "✨ Vom considera e-learning orice platforma online care ofera informatii educative. \n\n" 
+        "✨ Te rugam sa raspunzi la toate intrebarile!", 
         "part3" : "**Partea 3: Devino propirul creator de cursuri online.**\n\n",
         "platforms": "Selecteaza platformele de e-learning pe care le folosesti (alege-le pe toate):",
         "platforms_list" : ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "Platforma de la facultate/scoala (Moodle)",
@@ -608,10 +618,14 @@ elif st.session_state.page == 4:
             selected_platforms = [p for p in selected_platforms if p not in ["Others", "Altele"]]
             selected_platforms.append(other_platform)
         else:
-            st.error(current_translations['warning_other_platform'])
+            try:
+                if other_platform and other_platform.strip(): 
+                    st.success(f"Recorded: {other_platform}")
+            except ValueError:
+                st.error(current_translations['warning_other_platform'])
     else:
         other_platform = ""
-    st.write("Selected:", selected_platforms)
+    # st.write("Selected:", selected_platforms)
 
    
     selected_courses = st.multiselect(
@@ -627,7 +641,7 @@ elif st.session_state.page == 4:
     else:
         other_course = ""
     
-    st.write("Selected:", selected_courses)
+    # st.write("Selected:", selected_courses)
 
     preference = st.radio(
     current_translations['preference_onl'], 
@@ -810,7 +824,7 @@ elif st.session_state.page == 4:
     if payed_courses == "Da":
         payment = st.slider(
             current_translations['payment'], 
-            0, 
+            1, 
             10000, 
             saved_payment  
         )
@@ -818,7 +832,7 @@ elif st.session_state.page == 4:
         
         payment = st.slider(
             current_translations['payment'], 
-            0, 
+            1, 
             2000, 
             saved_payment  
         )
