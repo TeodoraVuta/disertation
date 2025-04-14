@@ -559,7 +559,6 @@ elif st.session_state.page == 2:
         button_start = st.button(current_translations['start_button'], use_container_width=True)
 
     if button_start:
-
         next_page()
 
 elif st.session_state.page == 3:
@@ -638,8 +637,8 @@ elif st.session_state.page == 4:
         if other_course.strip():
             selected_courses = [p for p in selected_courses if p not in ["Others", "Altele"]]
             selected_courses.append(other_course)
-        else:
-            st.error(current_translations['warning_other_course'])
+        # else:
+        #     st.error(current_translations['warning_other_course'])
     else:
         other_course = ""
     
