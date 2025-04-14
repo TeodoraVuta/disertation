@@ -305,7 +305,8 @@ translations = {
         "platforms": "Selecteaza platformele de e-learning pe care le folosesti (alege-le pe toate):",
         "platforms_list" : ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "Platforma de la facultate/scoala (Moodle)",
                      "Youtube", "TikTok", "Altele"],
-        "specify_platform": "Te rog sa specifici ce alte platforme folosesti:",
+        "specify_platform": "Te rog sa specifici ce alte platforme folosesti: \n\n"
+        "foloseste un punct si virgula pentru a le separa. exemplu: e-learning 1; e-learning 2",
         "course_types": "Selecteaza ce fel de cursuri urmaresti:",
         "course_types_list": ["Tehnic (Programare, Data Science)", "Business & Management", "Finante & Economie",
                               "Lingvistica & Limbi Straine", "Psihologie & Comportament Uman", 
@@ -314,7 +315,8 @@ translations = {
                               "Dezvoltare Personala", "Arta & Stiinte Umaniste", "Sanatate & Medicina", 
                               "Activitati Sportive",
                               "Ingrijirea copilului si viata de familie",  "Altele"],
-        "specify_course": "Te rog sa specifici alte cursuri urmezi:",
+        "specify_course": "Te rog sa specifici alte cursuri urmezi: \n\n"
+        "foloseste un punct si virgula pentru a le separa. exemplu: curs 1; curs 2",
         "frequency": "Cât de des utilizezi platformele de e-learning?", 
         "why_visit": "Care este motivul pentru care folosesti e-learnig-ul?",
         "purpose_list": ["Locul de munca", "Interes personal", "Scoala"],
