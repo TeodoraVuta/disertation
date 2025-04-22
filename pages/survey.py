@@ -1,5 +1,6 @@
 import streamlit as st
 from country_list import countries_for_language
+from app import get_db_connection
 
 st.set_page_config(page_title="survey", page_icon="📋", layout="centered")
 
@@ -318,7 +319,7 @@ translations = {
         "specify_course": "Te rog sa specifici alte cursuri urmezi: \n\n"
         "foloseste un punct si virgula pentru a le separa. exemplu: curs 1; curs 2",
         "frequency": "Cât de des utilizezi platformele de e-learning?", 
-        "why_visit": "Care este motivul pentru care folosesti e-learnig-ul?",
+        "why_visit": "Care este motivul pentru care folosesti e-learning-ul?",
         "purpose_list": ["Locul de munca", "Interes personal", "Scoala"],
         "job": "Ce ocupatie ai?",
         "mandatory_courses": "Cursuri online sunt obligatorii pentru locul de muncă?",
@@ -785,12 +786,10 @@ elif st.session_state.page == 4:
         reasons = []
         beforeClasses = None
         exams = None
-        grade_before = None
-        max_grade_before = None
-        grade_after = None
-        max_grade_after = None
-
-    
+        grade_before = 0
+        max_grade_before = 0
+        grade_after = 0
+        max_grade_after = 0
 
     learning_method = st.radio(
        current_translations['learning_method'],
@@ -840,8 +839,6 @@ elif st.session_state.page == 4:
     else:
         payment = 0
 
-
-
     bestCourse = st.text_input(
     current_translations['best_course'],
     value=st.session_state.bestCourse if 'bestCourse' in st.session_state else ""
@@ -872,7 +869,6 @@ elif st.session_state.page == 4:
         st.session_state.completationRate if 'completationRate' in st.session_state else 50
     )
 
-
     certification = st.radio(
         current_translations['certification'],
         current_translations["certification_list"],
@@ -881,8 +877,6 @@ elif st.session_state.page == 4:
         else 0 
     )
 
-
-  
     notes = st.multiselect(
         current_translations['notes'],
         current_translations["notes_list"],
@@ -955,7 +949,8 @@ elif st.session_state.page == 4:
                 if next_button:
                     st.session_state.selected_platforms = selected_platforms  
                     st.session_state.selected_courses = selected_courses  
-                    st.session_state.selected_usage = selected_usage  
+                    # st.session_state.selected_usage = selected_usage  
+                    st.session_state.selected_usage = ", ".join(selected_usage)
                     st.session_state.job = job
                     st.session_state.mandatory = mandatory
                     st.session_state.promotion = promotion
@@ -969,7 +964,7 @@ elif st.session_state.page == 4:
                     st.session_state.learning_method = learning_method
                     st.session_state.certification = certification
                     st.session_state.multitasking = multitasking
-                    st.session_state.notes = notes
+                    st.session_state.notes = ", ".join(notes)
                     st.session_state.bestCourse = bestCourse
                     st.session_state.frequency = frequency
                     st.session_state.payed_courses = payed_courses
@@ -1119,15 +1114,86 @@ elif st.session_state.page == 5:
         st.write(f"**Specific Course:** {st.session_state.specific_course}")
 
 
-        st.success(current_translations["send_form"])
-        st.balloons()
 
-        # if len(st.session_state.specific_course) <= 200 or len(st.session_state.specific_course) >= 1000:
-        #     st.warning(current_translations["requirement_length"])
-        # else:
-        #     st.success(current_translations["send_form"])
-        #     st.balloons()
-
+        conn, cursor = get_db_connection()
+    
+        insert_query = """
+            INSERT INTO survey_responses (
+                age, gender, country, education, selected_platforms, selected_courses, preference,
+                selected_usage, job, mandatory, promotion, reasons_for_choosing_course,
+                check_lectures, check_exams, grade_before, max_grade_before, grade_after, max_grade_after,
+                learning_method, frequency, payed_courses, payment, best_course, dropout_status,
+                dropout_reason, completion_rate, certification, notes, multitasking,
+                vr_usage, live_interaction, immersive_learning, replacement, ai_assistant, ai_professor,
+                about_course, specific_course
+            ) VALUES (
+                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s, %s,
+                %s, %s
+            )
+        """
+    
+        data = (
+            st.session_state.age,
+            st.session_state.gender,
+            st.session_state.country,
+            st.session_state.education,
+            ', '.join(st.session_state.selected_platforms),
+            ', '.join(st.session_state.selected_courses),
+            st.session_state.preference,
+            st.session_state.selected_usage,
+            st.session_state.job,
+            st.session_state.mandatory,
+            st.session_state.promotion,
+            ', '.join(st.session_state.selected_reasons),
+            st.session_state.check_lectures,
+            st.session_state.check_exams,
+            float(st.session_state.grade_before),
+            float(st.session_state.max_grade_before),
+            float(st.session_state.grade_after),
+            float(st.session_state.max_grade_after),
+            st.session_state.learning_method,
+            st.session_state.frequency,
+            st.session_state.payed_courses,
+            int(st.session_state.payment),
+            st.session_state.bestCourse,
+            st.session_state.dropOut,
+            st.session_state.dropOutReason,
+            st.session_state.completationRate,
+            st.session_state.certification,
+            st.session_state.notes,
+            st.session_state.multitasking,
+            st.session_state.vr,
+            st.session_state.liveInteraction,
+            st.session_state.immersive,
+            st.session_state.replacement,
+            st.session_state.aiAssistant,
+            st.session_state.aiProfessor,
+            st.session_state.about,
+            st.session_state.specific_course
+        )
+    
+        try:
+            cursor.execute(insert_query, data)
+            conn.commit()
+            st.success("✅ Survey submitted successfully!")
+        except Exception as e:
+            st.error(f"❌ Error inserting data: {e}")
+        finally:
+            cursor.close()
+            conn.close()
+            st.success(current_translations["send_form"])
+            st.balloons()
+    
+            # if len(st.session_state.specific_course) <= 200 or len(st.session_state.specific_course) >= 1000:
+            #     st.warning(current_translations["requirement_length"])
+            # else:
+            #     st.success(current_translations["send_form"])
+            #     st.balloons()
+    
     if back_button:
         prev_page()
 
