@@ -1045,16 +1045,16 @@ elif st.session_state.page == 5:
         st.write(current_translations[first_course])
         user_input = st.text_area(current_translations["characters_course"], key="user_input_unique")
 
-        # if user_input.strip():
-        #     try:
-        #         if len(user_input) <= 200:
-        #             st.error(current_translations["min_200"])
-        #         elif len(user_input) >= 1000:
-        #             st.error(current_translations["max_1000"])
-        #         # else:
-        #         #     st.success(current_translations["valid_input"])
-        #     except ValueError:
-        #         st.error("An error occurred")
+        if user_input.strip():
+            try:
+                if len(user_input) <= 200:
+                    st.error(current_translations["min_200"])
+                elif len(user_input) >= 1000:
+                    st.error(current_translations["max_1000"])
+                # else:
+                #     st.success(current_translations["valid_input"])
+            except ValueError:
+                st.error("An error occurred")
 
     with st.form(key="form_submition"):
         col1, col2, col3 = st.columns(3)
