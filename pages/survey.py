@@ -269,31 +269,38 @@ translations = {
 
     },
         "ro": {
-        "age": "Ce varsta ai?",
+        "age": "Ce vârstă ai?",
         "gender": "Care este sexul tău?",
         "gender_list": ["Masculin", "Feminin", "Non-binary", "Prefer să nu spun"],
         "yes_no": ["Da", "Nu"],
-        "exam_list": ["Pe tot parcursul anului", "Doar in sesiune/in perioada testelor"],	
-        "school_reasons_list": ["Folosesc doar platforma universitatii/scolli (Moodle)", "Vreau sa invat in plus", "Am nevoie de informatii suplimentare pentru examene/lucrari",
-                       "Nu inteleg din clasa", "Profesorii de online explica mai bine",
-                       "Nu merg la cursuri/ore"],
-        "frequency_list": ["Zilnic", "De cateva ori pe saptamana", "O data pe saptamana", "De cateva ori pe luna", "Rareori"],
+        "exam_list": ["Pe tot parcursul anului", 
+                      "Doar în sesiune/în perioada testelor"],
+        "school_reasons_list": [ 
+            "Folosesc doar platforma universității/școlii (Moodle)",
+            "Vreau să învăț în plus",
+            "Am nevoie de informații suplimentare pentru examene/lucrări",
+            "Nu înțeleg din clasă",
+            "Profesorii de online explică mai bine",
+            "Nu merg la cursuri/ore"
+        ],
+        "frequency_list": ["Zilnic", "De câteva ori pe săptămână", "O dată pe săptămână", "De câteva ori pe lună", "Rareori"],
         "learning_method_list": ["Videoclipuri pre-înregistrate", "Cursuri online live", "Podcast-uri",
                                     "Cursuri text", "Exercitii interactive & proiecte"],
         "next_button": "Următorul",
-        "country": "In ce tara locuiesti?",
+        "country": "În ce țară locuiești?",
         "education": "Care este ultimul nivel de educație pe care l-ai obținut?",
-        "education_list": ["Scoala Primara", "Scoala Generala", "Liceu", "Licenta", "Master", "Doctorat"],
+        "education_list": ["Școala Primară", "Școala Generală", "Liceu", "Licență", "Master", "Doctorat"],
+
         "intro": """
         Acest chestionar ne va ajuta să înțelegem cum se folosesc platformele de învățare online și de ce.
         Toate raspunsurile sunt anonime și vor fi folosite doar în scopuri de cercetare.  
         Există **3 părți** în acest chestionar:
         1. **Informații personale**
         2. **Experiența de învățare înainte și după utilizarea platformelor e-learning**
-        3. **Devino propirul creator de cursuri online**
+        3. **Devino propriul creator de cursuri online**
 
-        Toate intrebarile sunt obligatorii, daca uiti sa completezi una dintre ele, 
-        vei primi o scurta notificare atunci cand treci la pagina urmatoare. ☺️
+        Toate întrebările sunt obligatorii. 
+        Dacă uiți să completezi una dintre ele, vei primi o scurtă notificare atunci când treci la pagina următoare. ☺️
 
         ⏰ Nu va dura mai mult de 5-7 minute pentru a completa chestionarul.
         """,
@@ -303,49 +310,61 @@ translations = {
         "✨ Vom considera e-learning orice platforma online care ofera informatii educative. \n\n" 
         "✨ Te rugam sa raspunzi la toate intrebarile!", 
         "part3" : "**Partea 3: Devino propirul creator de cursuri online.**\n\n",
-        "platforms": "Selecteaza platformele de e-learning pe care le folosesti (alege-le pe toate):",
+        "platforms": "Selecteaza platformele de e-learning pe care le folosești (alege-le pe toate):",
         "platforms_list" : ["Coursera", "Udemy", "edX", "LinkedIn Learning", "Khan Academy", "Platforma de la facultate/scoala (Moodle)",
                      "Youtube", "TikTok", "Altele"],
-        "specify_platform": "Te rog sa specifici ce alte platforme folosesti: \n\n"
-        "foloseste un punct si virgula pentru a le separa. exemplu: e-learning 1; e-learning 2",
-        "course_types": "Selecteaza ce fel de cursuri urmaresti:",
-        "course_types_list": ["Tehnic (Programare, Data Science)", "Business & Management", "Finante & Economie",
-                              "Lingvistica & Limbi Straine", "Psihologie & Comportament Uman", 
-                              "Tehnologii Emergente (AI, Blockchain, etc.)", "Mediu & Sustenabilitate", "Design & Grafica", 
-                              "Calatorii & Turism", "Antreprenoriat", 
-                              "Dezvoltare Personala", "Arta & Stiinte Umaniste", "Sanatate & Medicina", 
-                              "Activitati Sportive",
-                              "Ingrijirea copilului si viata de familie",  "Altele"],
-        "specify_course": "Te rog sa specifici alte cursuri urmezi: \n\n"
-        "foloseste un punct si virgula pentru a le separa. exemplu: curs 1; curs 2",
+        "specify_platform": "Te rog sa specifici ce alte platforme folosești: \n\n"
+        "folosește virgula pentru a le separa. exemplu: e-learning 1, e-learning 2",
+        "course_types": "Selecteaza topicul cursurilor pe care le urmăresti (alege-le pe toate):",
+        "course_types_list": [
+        "Tehnic (Programare, Data Science)", 
+        "Business & Management", 
+        "Finanțe & Economie",
+        "Lingvistică & Limbi Străine", 
+        "Psihologie & Comportament Uman", 
+        "Tehnologii Emergente (AI, Blockchain, etc.)", 
+        "Mediu & Sustenabilitate", 
+        "Design & Grafică", 
+        "Călătorii & Turism", 
+        "Antreprenoriat", 
+        "Dezvoltare Personală", 
+        "Artă & Științe Umaniste", 
+        "Sănătate & Medicină", 
+        "Activități Sportive",
+        "Îngrijirea copilului și viața de familie",  
+        "Altele"
+    ]
+    ,
+        "specify_course": "Te rog să specifici ce alte topicuri au cursuri pe care le urmărești: \n\n"
+        "foloseste virgula pentru a le separa. exemplu: curs 1, curs 2",
         "frequency": "Cât de des utilizezi platformele de e-learning?", 
         "why_visit": "Care este motivul pentru care folosesti e-learning-ul?",
-        "purpose_list": ["Locul de munca", "Interes personal", "Scoala"],
-        "job": "Ce ocupatie ai?",
-        "mandatory_courses": "Cursuri online sunt obligatorii pentru locul de muncă?",
-        "promotion_courses": "Credeti ca multumita cursurilor online ati obtiut/veti obtine o promovare?",
-        "school_reasons": "Care este motivul pentru care urmaresti cursuri online pentru scoala?",
+        "purpose_list": ["Locul de muncă", "Interes personal", "Școală"],
+        "job": "Ce ocupație ai?",
+        "mandatory_courses": "Cursurile online sunt obligatorii pentru locul de muncă?",
+        "promotion_courses": "Credeți că, mulțumită cursurilor online, ați obținut/veți obține o promovare?",
+        "school_reasons": "Care este motivul pentru care urmărești cursuri online pentru școală?",
         "check_lectures": "Verifici materialele postate de profesori înainte de a fi predate?",
-        "check_exams": "Cât de des consulti cursurile/lectiile postate de profesorii tai online?",
+        "check_exams": "Cât de des consulți cursurile/lecțiile postate de profesorii tăi online?",
         "grade_before": "Care a fost media notelor tale înainte de a folosi e-learning-ului?",
         "your_grade_before": "Media notelor tale (inainte de utilizarea e-learning-ului):",
-        "your_grade_after": "Media notelor tale: (dupa utilizarea e-learning-ului)",
-        "out_of_before": "Din (media maxima ce poate fi obtinuta, inainte de utlizarea e-learning-ului):",
-        "out_of_after": "Din (media maxima ce poate fi obtinuta, dupa utlizarea e-learning-ului):",
+        "your_grade_after": "Media notelor tale (după ce ai început să utilizezi e-learning-ul):",
+        "out_of_before": "Din (media maximă ce putea fi obținută, înainte de utilizarea e-learning-ului):",
+        "out_of_after": "Din (media maximă ce poate fi obținută, după utilizarea e-learning-ului):",
         "max_grade_before": "Care este media maximă a notelor pe care ai putea să o obții?",
         "grade_after": "Care este media notelor tale după utilizarea e-learning-ului?",
         "max_grade_after": "Care este media maximă a notelor pe care ai putea să o obții?",
-        "learning_method": "Ce fel de cursuri online preferi?",
-        "certification": "Cât de importantă este obținerea unui certificat dupa finalizarea unui curs online?",
+        "learning_method": "Ce tip de cursuri online preferi?",
+        "certification": "Cât de importantă este obținerea unui certificări după finalizarea unui curs online?",
         "certification_list": ["Nu este deloc important", "Este important", "Este foarte important"],	
-        "payed_courses": "Majoritatea cursurilor pe care le urmezi sunt platite?",
+        "payed_courses": "Majoritatea cursurilor pe care le urmezi sunt plătite?",
         "payment": "Cât de mult ești dispus să plătești pentru un curs online? (in RON)",
-        "multitasking": "Cat de des faci si alte activitati (multitasking) in timp ce urmaresti un curs online?",
-        "multitasking_list": ["Niciodata", "Uneori",  "Adesea", "Intotdeauna"],
+        "multitasking": "Cât de des faci și alte activități (multitasking) în timp ce urmărești un curs online?",
+        "multitasking_list": ["Niciodată", "Uneori", "Adesea", "Întotdeauna"],
         "notes": "Ce tip de notițe iei în timpul cursurilor online?",
-        "notes_list": ["Nu iau notite", "Scrise de mana", "Digitale (OneNote, Notion, etc.)", "Rezumate", "Mind maps"],
+        "notes_list": ["Nu iau notițe", "Scrise de mana", "Digitale (OneNote, Notion, etc.)", "Rezumate", "Mind maps"],
         "best_course": "Care este cel mai folositor curs pe care l-ai urmat? (poate fi numele, o scurta descriere sau link-ul)",
-        "dropOut": "Ați renunțat vreodată la un curs online dupa ce l-ati inceput?",
+        "dropOut": "Ai renunțat vreodată la un curs online dupa ce l-ai început?",
         "dropOutReason": "Care a fost motivul?",
         "dropOutReason_list": ["Prea greu", "Prea plictisitor", "Nu am timp", "Nu este util", "Altul"],
         "completion_rate": "Ce procent reusesti sa finalizezi de obicei dintr-un curs? "
@@ -393,14 +412,14 @@ translations = {
             "💡 Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a deveni lideri de succes în domeniul business-ului?"
         ),
 
-        "Finante & Economie": (
+        "Finanțe & Economie": (
             "Ești responsabil de crearea unui curs online despre Finanțe și Economie, destinat celor care vor să își îmbunătățească gestionarea finanțelor personale.\n\n"
             "💰 Cum ai structura acest curs pentru a include atât concepte financiare fundamentale, cât și aspecte mai avansate de economie?\n\n"
             "💰 Ce elemente interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele financiare în viața lor de zi cu zi?\n\n"
             "💰 Care sunt pașii esențiali pe care participanții trebuie să îi urmeze pentru a-și construi un plan financiar personalizat?"
         ),
 
-        "Lingvistica & Limbi Straine": (
+        "Lingvistică & Limbi Străine": (
             "Ești responsabil de crearea unui curs online pentru învățarea limbii spaniole la un nivel intermediar.\n\n"
             "🗣️ Cum ai structura acest curs pentru a acoperi atât vocabularul esențial, cât și structurile gramaticale avansate?\n\n"
             "🗣️ Ce activități interactive ai adăuga pentru a ajuta participanții să învețe mai rapid și să aplice corect limba?\n\n"
@@ -428,14 +447,14 @@ translations = {
             "🌍 Care sunt pașii esențiali pentru a încuraja participanții să își construiască un plan de acțiune pentru un stil de viață mai sustenabil?"
         ),
 
-        "Design & Grafica": (
+        "Design & Grafică": (
             "Ești responsabil de crearea unui curs online despre Design și Grafică, destinat celor care vor să învețe să creeze designuri vizuale de impact.\n\n"
             "🎨 Cum ai structura acest curs pentru a acoperi atât teorie, cât și aplicabilitatea designului în proiecte reale?\n\n"
             "🎨 Ce elemente interactive ai adăuga pentru a face procesul de învățare mai captivant și mai aplicabil?\n\n"
             "🎨 Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a crea designuri grafice profesioniste?"
         ),
 
-        "Calatorii & Turism": (
+        "Turism & Călătorii": (
             "Ești responsabil de crearea unui curs online despre Turism și Călătorii, destinat celor care vor să înțeleagă cum să planifice vacanțe și călătorii.\n\n"
             "✈️ Cum ai structura acest curs pentru a acoperi atât planificarea logistică a călătoriilor, cât și aspecte culturale ale destinațiilor?\n\n"
             "✈️ Ce activități interactive ai include pentru a ajuta participanții să își planifice vacanțele mai eficient?\n\n"
@@ -449,35 +468,35 @@ translations = {
             "🚀 Care sunt pașii esențiali pentru a ajuta participanții să dezvolte o strategie eficientă pentru afacerea lor?"
         ),
 
-        "Dezvoltare Personala": (
+        "Dezvoltare Personală": (
             "Ești responsabil de crearea unui curs online despre Dezvoltare Personală, destinat celor care vor să își îmbunătățească abilitățile de viață.\n\n"
             "🌱 Cum ai structura acest curs pentru a acoperi atât aspecte fundamentale ale dezvoltării personale, cât și tehnici avansate pentru creșterea personală?\n\n"
             "🌱 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de dezvoltare personală?\n\n"
             "🌱 Care sunt pașii esențiali pe care participanții trebuie să îi urmeze pentru a dezvolta obiceiuri sănătoase și eficiente în viața lor?"
         ),
 
-        "Arta & Stiinte Umaniste": (
+        "Artă & Științe Umaniste": (
             "Ești responsabil de crearea unui curs online despre Artă și Științe Umaniste, destinat celor care vor să înțeleagă cultura și istoria umană.\n\n"
             "🎨 Cum ai structura acest curs pentru a acoperi atât istoria artei, cât și impactul cultural al diferitelor mișcări artistice?\n\n"
             "🎨 Ce activități interactive ai include pentru a ajuta participanții să aprecieze mai bine arta și cultura?\n\n"
             "🎨 Care sunt pașii esențiali pentru a încuraja participanții să aprecieze arta și științele umaniste în viața lor de zi cu zi?"
         ),
 
-        "Sanatate & Medicina": (
+        "Sănătate & Medicină": (
             "Ești responsabil de crearea unui curs online despre Sănătate și Medicină, destinat celor care vor să învețe cum să își îmbunătățească starea de sănătate.\n\n"
             "🩺 Cum ai structura acest curs pentru a include atât aspecte fundamentale ale sănătății, cât și metode avansate de prevenire a bolilor?\n\n"
             "🩺 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de sănătate în viața lor de zi cu zi?\n\n"
             "🩺 Care sunt pașii esențiali pentru a încuraja participanții să își îmbunătățească stilul de viață și să prevină bolile?"
         ),
 
-        "Activitati Sportive": (
+        "Activități Sportive": (
             "Ești responsabil de crearea unui curs online despre Activități Sportive, destinat celor care vor să învețe să practice sporturi în mod eficient și sănătos.\n\n"
             "🏃 Cum ai structura acest curs pentru a include atât tehnici fundamentale, cât și metode avansate de antrenament sportiv?\n\n"
             "🏃 Ce metode interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de sport în antrenamentele lor?\n\n"
             "🏃 Care sunt pașii esențiali pentru a încuraja participanții să își construiască un program de antrenament personalizat?"
         ),
 
-        "Ingrijirea copilului si viata de familie": (
+        "Îngrijirea copilului și viața de familie": (
             "Ești responsabil de crearea unui curs online despre Îngrijirea Copilului și Viața de Familie, destinat celor care vor să învețe cum să își îngrijească copiii și familia.\n\n"
             "👶 Cum ai structura acest curs pentru a acoperi atât aspecte fundamentale ale îngrijirii copilului, cât și strategii avansate de educație parentală?\n\n"
             "👶 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele despre viața de familie?\n\n"
@@ -490,6 +509,7 @@ translations = {
             "❓ Ce activități interactive ai adăuga pentru a face cursul mai captivant și mai aplicabil pentru participanți?\n\n"
             "❓ Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a deveni experți în acest domeniu?"
         ),
+
 
         "characters_about" : "maxim 1000 de caractere",
         "characters_course" : "200 - 1000 de caractere",
@@ -666,7 +686,7 @@ elif st.session_state.page == 4:
             selected_usage.append(option)
 
 
-    if "Job Purposes" in selected_usage or "Locul de munca" in selected_usage:
+    if "Job Purposes" in selected_usage or "Locul de muncă" in selected_usage:
         col1, col2, col3 = st.columns([0.05, 0.9, 0.05])
 
         with col2:
@@ -704,7 +724,7 @@ elif st.session_state.page == 4:
 
 
 
-    if "School purposes" in selected_usage or "Scoala" in selected_usage:
+    if "School purposes" in selected_usage or "Școală" in selected_usage:
         col1, col2, col3 = st.columns([0.05, 0.9, 0.05])
 
         with col2:
@@ -877,10 +897,15 @@ elif st.session_state.page == 4:
         else 0 
     )
 
+    valid_notes = [
+        note for note in st.session_state.notes
+        if note in current_translations["notes_list"]
+    ] if 'notes' in st.session_state else []
+
     notes = st.multiselect(
         current_translations['notes'],
         current_translations["notes_list"],
-        default=st.session_state.notes if 'notes' in st.session_state else []
+        default=valid_notes
     )
 
     
@@ -999,13 +1024,13 @@ elif st.session_state.page == 4:
                     elif not st.session_state.bestCourse.strip():
                         st.warning(current_translations['warning_best_course'])
 
-                    elif "School purposes" in st.session_state.selected_usage or "Scoala" in st.session_state.selected_usage:
-                        st.write("Ajuns aici, verificați următoarele condiții.")  
+                    elif "School purposes" in st.session_state.selected_usage or "Școală" in st.session_state.selected_usage:
+                        # st.write("Ajuns aici, verificați următoarele condiții.")  
                         if not st.session_state.selected_reasons:
                             st.warning(current_translations['warning_reasons'])
                         elif grade_before is None or max_grade_before is None or grade_after is None or max_grade_after is None:
                             st.warning(current_translations['warning_gpa'])
-                            st.write("Am terminat")
+                            # st.write("Am terminat")
                         elif "Job Purposes" in st.session_state.selected_usage or "Locul de munca" in st.session_state.selected_usage:
                                 if not st.session_state.job.strip():
                                     st.warning(current_translations['warning_job'])
@@ -1014,7 +1039,7 @@ elif st.session_state.page == 4:
                         else: 
                             next_page()
 
-                    elif "Job Purposes" in st.session_state.selected_usage or "Locul de munca" in st.session_state.selected_usage:
+                    elif "Job Purposes" in st.session_state.selected_usage or "Locul de muncă" in st.session_state.selected_usage:
                         if not st.session_state.job.strip():
                             st.warning(current_translations['warning_job'])
                         else: 
