@@ -247,7 +247,8 @@ translations = {
 
         "about1" : "What do you think about e-learning already existing materials about", 
         "about2" : "? Are they enough? Are you satisfiend with the online information you can find about this topic?",
-                "Technical (Programming, Data Science)": ("You are responsible for creating an online course about a new programming language called Xylon, used in Data Science and application development.\n\n"
+
+        "Technical (Programming, Data Science)": ("You are responsible for creating an online course about a new programming language called Xylon, used in Data Science and application development.\n\n"
             "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "💻 How would you structure this course to cover both the basic and advanced concepts related to programming in Xylon?\n\n"
             "💻 What methods or interactive elements would you include to make the course engaging and easy to follow for participants?\n\n"
@@ -337,7 +338,9 @@ translations = {
             "👶 What engaging methods or activities would you include to make the course interactive and practical for parents?\n\n"
             "👶 What are the key aspects of parenting and family life that participants should master to foster a healthy family environment?"),
 
-        "Others": ("You are responsible for creating an online course about cooking. \n\n"
+        "Others": ("You are responsible for creating an online course about  "),
+    
+        "Others2":(
             "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🎀 How would you structure this course to allow participants to explore unique interests and expand their knowledge?\n\n"
             "🎀 What engaging elements or activities would you include to make the course interesting and practical for participants?\n\n"
@@ -602,7 +605,11 @@ translations = {
         ),
 
         "Altele": (
-            "Ești responsabil de crearea unui curs online pentru grădinărit.\n\n"
+            "Ești responsabil de crearea unui curs online pentru "
+           
+        ),
+
+        "Altele2": (
             "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "❓ Cum ai structura acest curs pentru a acoperi atât concepte fundamentale, cât și tehnici avansate în domeniul respectiv?\n\n"
             "❓ Ce activități interactive ai adăuga pentru a face cursul mai captivant și mai aplicabil pentru participanți?\n\n"
@@ -1177,7 +1184,16 @@ elif st.session_state.page == 5:
         
         about = st.text_area(current_translations["characters_about"], key="about_input_unique")
 
-        st.write(current_translations[first_course])
+        if first_course in current_translations["course_types_list"]:
+            st.write(current_translations[first_course])
+            
+
+        else:
+            if current_language == "ro":
+                st.write(f"{current_translations['Altele']} {first_course} \n\n {current_translations['Altele2']}")
+            else:
+                st.write(f"{current_translations['Others']} {first_course} \n\n {current_translations['Others2']}")
+        
         user_input = st.text_area(current_translations["characters_course"], key="user_input_unique")
 
         if user_input.strip():
