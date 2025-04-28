@@ -70,6 +70,13 @@ for key, default_value in keys_to_initialize:
     if key not in st.session_state:
         st.session_state[key] = default_value
 
+
+total_pages = 5
+current_page = st.session_state.page
+progress = int((current_page / total_pages) * 100)
+st.progress(progress)
+
+
 translations = {
     "en": {
         "age": "How old are you?",
@@ -181,81 +188,97 @@ translations = {
         "about1" : "What do you think about e-learning already existing materials about", 
         "about2" : "? Are they enough? Are you satisfiend with the online information you can find about this topic?",
                 "Technical (Programming, Data Science)": ("You are responsible for creating an online course about a new programming language called Xylon, used in Data Science and application development.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "💻 How would you structure this course to cover both the basic and advanced concepts related to programming in Xylon?\n\n"
             "💻 What methods or interactive elements would you include to make the course engaging and easy to follow for participants?\n\n"
             "💻 What are the essential aspects participants should master to effectively apply Xylon in real-world Data Science projects?"),
 
         "Business & Management": ("You are responsible for creating an online course in Business & Management.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "💼 How would you structure this course to provide both foundational knowledge and advanced strategies in Business & Management?\n\n"
             "💼 What interactive methods or activities would you include to keep the course engaging and help participants retain the information?\n\n"
             "💼 What are the key skills participants need to develop to excel in Business & Management?"),
 
         "Finance & Economics": ("You are responsible for creating an online course in Finance & Economics, aimed at helping people understand personal finance management and acquire basic economic knowledge.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "💰 How would you structure this course to cover the fundamentals of finance and economics?\n\n"
             "💰 What engaging elements or methods would you incorporate to make the course interesting and practical for the participants?\n\n"
             "💰 What are the essential financial and economic concepts participants should master to manage their personal finances effectively?"),
 
         "Linguistics & Foreign Languages": ("You are responsible for creating an online course aimed at improving intermediate Spanish language skills.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🗣️ How would you structure this course to cover grammar and vocabulary effectively for intermediate learners?\n\n"
             "🗣️ What interactive techniques or activities would you include to make the learning process engaging and practical for the participants?\n\n"
             "🗣️ What are the key aspects of Spanish language learning that participants need to focus on to become fluent at an intermediate level?"),
 
         "Psychology & Human Behavior": ("You are responsible for creating an online course in Psychology & Human Behavior, aimed at helping participants understand human mental processes and behaviors.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🧠 How would you structure this course to cover the fundamentals of psychology and human behavior?\n\n"
             "🧠 What engaging methods or activities would you use to make the course interactive and easier for participants to understand?\n\n"
             "🧠 What are the essential concepts of psychology that participants should master to apply in real-life scenarios?"),
 
         "Emerging Technologies (AI, Blockchain, etc.)": ("You are responsible for creating an online course about Artificial Intelligence (AI), aimed at helping participants understand its concepts and applications in various fields.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🤖 How would you structure this course to progressively introduce complex concepts such as machine learning and neural networks?\n\n"
             "🤖 What interactive elements or real-world examples would you include to make the course engaging and applicable for participants?\n\n"
             "🤖 What are the key skills participants should acquire to apply AI techniques effectively in different industries?"),
 
         "Environment & Sustainability": ("You are responsible for creating an online course about Environmental Sustainability, aimed at raising awareness and teaching practical solutions for sustainability.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🌱 How would you structure this course to cover both environmental science and sustainable practices?\n\n"
             "🌱 What interactive or practical elements would you include to make the course engaging and applicable for real-world sustainability solutions?\n\n"
             "🌱 What are the key concepts participants need to master to implement sustainable practices in their personal and professional lives?"),
 
         "Design & Graphics": ("You are responsible for creating an online course in Design & Graphics, aimed at developing visual design skills.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🎨 How would you structure this course to teach both the basics and advanced techniques in design?\n\n"
             "🎨 What creative methods or hands-on activities would you include to make the course engaging and practical for participants?\n\n"
             "🎨 What are the key skills participants should develop to become proficient in graphic design?"),
 
         "Travel & Tourism": ("You are responsible for creating an online course about Travel & Tourism, aimed at those interested in exploring the tourism industry and travel management.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🌍 How would you structure this course to provide essential knowledge about the travel and tourism industry?\n\n"
             "🌍 What interactive elements or activities would you incorporate to make the course engaging and helpful for aspiring professionals?\n\n"
             "🌍 What are the key aspects of the tourism industry that participants should master to succeed in this field?"),
 
         "Entrepreneurship": ("You are responsible for creating an online course about Entrepreneurship, aimed at helping individuals start and manage their own businesses.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🚀 How would you structure this course to cover the foundational principles of entrepreneurship?\n\n"
             "🚀 What engaging elements or methods would you include to make the course interactive and insightful for participants?\n\n"
             "🚀 What are the key entrepreneurial skills that participants should develop to launch and grow a successful business?"),
 
         "Personal Development": ("You are responsible for creating an online course in Personal Development, aimed at helping individuals improve their skills and mindset.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🌟 How would you structure this course to address key aspects of personal growth and self-improvement?\n\n"
             "🌟 What techniques or activities would you incorporate to make the course engaging and practical for participants?\n\n"
             "🌟 What are the essential skills or traits participants need to cultivate for personal and professional growth?"),
 
         "Arts & Humanities": ("You are responsible for creating an online course about Art History, aimed at helping participants appreciate and understand the significance of artwork in museums.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🎨 How would you structure this course to cover the history of art and key movements?\n\n"
             "🎨 What interactive or hands-on elements would you include to make the course engaging and enjoyable for participants?\n\n"
             "🎨 What are the key artistic concepts participants should understand to interpret and appreciate art in museums?"),
 
         "Health & Medicine": ("You are responsible for creating an online course about Health and Medicine, aimed at promoting a balanced and healthy lifestyle.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🩺 How would you structure this course to cover fundamental health concepts and wellness practices?\n\n"
             "🩺 What engaging methods or activities would you incorporate to make the course practical and interactive for participants?\n\n"
             "🩺 What are the key health habits or concepts that participants should master to improve their overall well-being?"),
 
         "Sports Activities": ("You are responsible for creating an online course about Sports Activities, aimed at promoting physical fitness and sports knowledge.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🏅 How would you structure this course to teach participants essential sports skills and fitness practices?\n\n"
             "🏅 What interactive or hands-on activities would you include to make the course engaging and enjoyable for participants?\n\n"
             "🏅 What are the key fitness or sports skills that participants should develop to lead a healthy, active lifestyle?"),
 
         "Childcare & Family Life": ("You are responsible for creating an online course about Childcare and Family Life, aimed at helping parents and caregivers improve their skills.\n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "👶 How would you structure this course to cover fundamental childcare and family life skills?\n\n"
             "👶 What engaging methods or activities would you include to make the course interactive and practical for parents?\n\n"
             "👶 What are the key aspects of parenting and family life that participants should master to foster a healthy family environment?"),
 
-        "Others": ("You are responsible for creating an online course about various niche topics. These could range from hobbies to interdisciplinary studies.\n\n"
+        "Others": ("You are responsible for creating an online course about cooking. \n\n"
+            "For inspiration, we’ve listed a few questions below. 💭 You don’t have to include them in your answer if they don’t feel relevant. It’s your ideal course—feel free to design it your way! 👀\n\n"
             "🎀 How would you structure this course to allow participants to explore unique interests and expand their knowledge?\n\n"
             "🎀 What engaging elements or activities would you include to make the course interesting and practical for participants?\n\n"
             "🎀 What are the key skills or concepts that participants should focus on to gain a comprehensive understanding of the topic?"),
@@ -380,14 +403,14 @@ translations = {
         "replacement_list": ["Da", "Nu", "Model hibrid va domina", "Nu sunt sigur"],
         "ai_assistant": ("Ați folosi un asistent de inteligenta articiala pentru învățare? \n\n "
         "exemplu: un chatbot care să răspundă la întrebările tale despre cursuri"),
-        "ai_professor": "Ați accepta sa ai ca profesor o inteligenta artificiala?",
+        "ai_professor": "Ai accepta sa ai ca profesor o inteligenta artificiala?",
         "back_button": "Înapoi",
         "try" : "Ce parere ai despre... ",
-        "warning_platforms": "Te rog sa selectezi cel puțin o platformă.",
+        "warning_platforms": "Te rog sa selectezi cel puțin o platformă online pe care o folosești pentru e-learning.",
         "warning_other_platform": "Ai selectat ca folosesti alte platforme decat cele mentionate, te rog sa le specifici.",
         "warning_courses": "Te rog sa selectezi cel puțin un tip de curs.",
         "warning_other_course": "Ai selectat ca urmaresti alte tipuri de cursuri decat cele mentionate, te rog sa le specifici.",
-        "warning_usage": "Te rog sa selectezi cel puțin o opțiune de utilizare.",
+        "warning_usage": "Te rog sa selectezi cel puțin un motiv de utilizare. (Locul de muncă, interes personal, școală)",
         "warning_reasons": "Te rog sa selectezi cel puțin un motiv pentru utilizarea e-learning pentru scopuri școlare.",
         "warning_gpa": "Te rog sa completezi atât media notelor înainte, cât și după utilizarea e-learning.",
         "warning_job": "Te rog sa precizezi care este locul tau de munca.",
@@ -400,6 +423,7 @@ translations = {
         "about2": "? Consideri ca sunt suficiente? Ești mulțumit(ă) de informațiile online pe care le poți găsi despre acest subiect?",
         "Tehnic (Programare, Data Science)": (
             "Ești responsabil de crearea unui curs online despre un limbaj de programare nou, numit Xylon, folosit în Data Science și dezvoltarea de aplicații.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "💻 Cum ai structura acest curs pentru a acoperi atât conceptele de bază, cât și cele avansate legate de programarea în Xylon?\n\n"
             "💻 Ce metode sau elemente interactive ai include pentru a face cursul captivant și ușor de urmărit pentru participanți?\n\n"
             "💻 Care sunt aspectele esențiale pe care participanții ar trebui să le stăpânească pentru a aplica eficient Xylon în proiecte reale de Data Science?"
@@ -407,6 +431,7 @@ translations = {
 
         "Business & Management": (
             "Ești responsabil de crearea unui curs online pentru domeniul Business & Management.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "💡 Cum ai structura acest curs pentru a acoperi atât concepte fundamentale, cât și tehnici avansate de management?\n\n"
             "💡 Ce metode interactive ai folosi pentru a face cursul mai atractiv și mai relevant pentru participanți?\n\n"
             "💡 Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a deveni lideri de succes în domeniul business-ului?"
@@ -414,6 +439,7 @@ translations = {
 
         "Finanțe & Economie": (
             "Ești responsabil de crearea unui curs online despre Finanțe și Economie, destinat celor care vor să își îmbunătățească gestionarea finanțelor personale.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "💰 Cum ai structura acest curs pentru a include atât concepte financiare fundamentale, cât și aspecte mai avansate de economie?\n\n"
             "💰 Ce elemente interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele financiare în viața lor de zi cu zi?\n\n"
             "💰 Care sunt pașii esențiali pe care participanții trebuie să îi urmeze pentru a-și construi un plan financiar personalizat?"
@@ -421,6 +447,7 @@ translations = {
 
         "Lingvistică & Limbi Străine": (
             "Ești responsabil de crearea unui curs online pentru învățarea limbii spaniole la un nivel intermediar.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🗣️ Cum ai structura acest curs pentru a acoperi atât vocabularul esențial, cât și structurile gramaticale avansate?\n\n"
             "🗣️ Ce activități interactive ai adăuga pentru a ajuta participanții să învețe mai rapid și să aplice corect limba?\n\n"
             "🗣️ Care sunt pașii esențiali pentru a ajuta participanții să își îmbunătățească abilitățile de conversație și să înțeleagă nuanțele limbii?"
@@ -428,6 +455,7 @@ translations = {
 
         "Psihologie & Comportament Uman": (
             "Ești responsabil de crearea unui curs online despre Psihologie și Comportament Uman, destinat celor care vor să înțeleagă mai bine comportamentele umane.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🧠 Cum ai structura acest curs pentru a acoperi atât concepte fundamentale ale psihologiei, cât și teme avansate despre comportamentele umane?\n\n"
             "🧠 Ce activități interactive ai adăuga pentru a face cursul mai captivant și mai ușor de înțeles?\n\n"
             "🧠 Care sunt pașii esențiali pe care participanții trebuie să îi urmeze pentru a aplica cunoștințele de psihologie în viața lor personală și profesională?"
@@ -435,6 +463,7 @@ translations = {
 
         "Tehnologii Emergente (AI, Blockchain, etc.)": (
             "Ești responsabil de crearea unui curs online despre Inteligența Artificială (AI), destinat celor care vor să înțeleagă aceste tehnologii emergente.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🤖 Cum ai structura acest curs pentru a introduce concepte complexe treptat, astfel încât participanții să le înțeleagă pe măsură ce avansează?\n\n"
             "🤖 Ce activități interactive ai include pentru a face cursul mai captivant și aplicabil în domenii reale?\n\n"
             "🤖 Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a aplica tehnologiile AI în proiecte reale?"
@@ -442,6 +471,7 @@ translations = {
 
         "Mediu & Sustenabilitate": (
             "Ești responsabil de crearea unui curs online despre Mediu și Sustenabilitate, destinat celor care vor să înțeleagă cum să protejeze planeta.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🌍 Cum ai structura acest curs pentru a acoperi atât conceptele fundamentale ale ecologiei, cât și tehnici avansate de gestionare a resurselor naturale?\n\n"
             "🌍 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de sustenabilitate în viața lor de zi cu zi?\n\n"
             "🌍 Care sunt pașii esențiali pentru a încuraja participanții să își construiască un plan de acțiune pentru un stil de viață mai sustenabil?"
@@ -449,6 +479,7 @@ translations = {
 
         "Design & Grafică": (
             "Ești responsabil de crearea unui curs online despre Design și Grafică, destinat celor care vor să învețe să creeze designuri vizuale de impact.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🎨 Cum ai structura acest curs pentru a acoperi atât teorie, cât și aplicabilitatea designului în proiecte reale?\n\n"
             "🎨 Ce elemente interactive ai adăuga pentru a face procesul de învățare mai captivant și mai aplicabil?\n\n"
             "🎨 Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a crea designuri grafice profesioniste?"
@@ -456,6 +487,7 @@ translations = {
 
         "Turism & Călătorii": (
             "Ești responsabil de crearea unui curs online despre Turism și Călătorii, destinat celor care vor să înțeleagă cum să planifice vacanțe și călătorii.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "✈️ Cum ai structura acest curs pentru a acoperi atât planificarea logistică a călătoriilor, cât și aspecte culturale ale destinațiilor?\n\n"
             "✈️ Ce activități interactive ai include pentru a ajuta participanții să își planifice vacanțele mai eficient?\n\n"
             "✈️ Care sunt pașii esențiali pentru a încuraja participanții să aleagă destinații de vacanță sustenabile și responsabile?"
@@ -463,6 +495,7 @@ translations = {
 
         "Antreprenoriat": (
             "Ești responsabil de crearea unui curs online despre Antreprenoriat, destinat celor care vor să învețe cum să dezvolte o afacere de succes.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🚀 Cum ai structura acest curs pentru a acoperi atât concepte fundamentale ale antreprenoriatului, cât și strategii avansate pentru a dezvolta o afacere?\n\n"
             "🚀 Ce metode interactive ai adăuga pentru a ajuta participanții să aplice rapid cunoștințele de antreprenoriat?\n\n"
             "🚀 Care sunt pașii esențiali pentru a ajuta participanții să dezvolte o strategie eficientă pentru afacerea lor?"
@@ -470,6 +503,7 @@ translations = {
 
         "Dezvoltare Personală": (
             "Ești responsabil de crearea unui curs online despre Dezvoltare Personală, destinat celor care vor să își îmbunătățească abilitățile de viață.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🌱 Cum ai structura acest curs pentru a acoperi atât aspecte fundamentale ale dezvoltării personale, cât și tehnici avansate pentru creșterea personală?\n\n"
             "🌱 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de dezvoltare personală?\n\n"
             "🌱 Care sunt pașii esențiali pe care participanții trebuie să îi urmeze pentru a dezvolta obiceiuri sănătoase și eficiente în viața lor?"
@@ -477,6 +511,7 @@ translations = {
 
         "Artă & Științe Umaniste": (
             "Ești responsabil de crearea unui curs online despre Artă și Științe Umaniste, destinat celor care vor să înțeleagă cultura și istoria umană.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🎨 Cum ai structura acest curs pentru a acoperi atât istoria artei, cât și impactul cultural al diferitelor mișcări artistice?\n\n"
             "🎨 Ce activități interactive ai include pentru a ajuta participanții să aprecieze mai bine arta și cultura?\n\n"
             "🎨 Care sunt pașii esențiali pentru a încuraja participanții să aprecieze arta și științele umaniste în viața lor de zi cu zi?"
@@ -484,6 +519,7 @@ translations = {
 
         "Sănătate & Medicină": (
             "Ești responsabil de crearea unui curs online despre Sănătate și Medicină, destinat celor care vor să învețe cum să își îmbunătățească starea de sănătate.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🩺 Cum ai structura acest curs pentru a include atât aspecte fundamentale ale sănătății, cât și metode avansate de prevenire a bolilor?\n\n"
             "🩺 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de sănătate în viața lor de zi cu zi?\n\n"
             "🩺 Care sunt pașii esențiali pentru a încuraja participanții să își îmbunătățească stilul de viață și să prevină bolile?"
@@ -491,6 +527,7 @@ translations = {
 
         "Activități Sportive": (
             "Ești responsabil de crearea unui curs online despre Activități Sportive, destinat celor care vor să învețe să practice sporturi în mod eficient și sănătos.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "🏃 Cum ai structura acest curs pentru a include atât tehnici fundamentale, cât și metode avansate de antrenament sportiv?\n\n"
             "🏃 Ce metode interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele de sport în antrenamentele lor?\n\n"
             "🏃 Care sunt pașii esențiali pentru a încuraja participanții să își construiască un program de antrenament personalizat?"
@@ -498,13 +535,15 @@ translations = {
 
         "Îngrijirea copilului și viața de familie": (
             "Ești responsabil de crearea unui curs online despre Îngrijirea Copilului și Viața de Familie, destinat celor care vor să învețe cum să își îngrijească copiii și familia.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "👶 Cum ai structura acest curs pentru a acoperi atât aspecte fundamentale ale îngrijirii copilului, cât și strategii avansate de educație parentală?\n\n"
             "👶 Ce activități interactive ai adăuga pentru a ajuta participanții să aplice cunoștințele despre viața de familie?\n\n"
             "👶 Care sunt pașii esențiali pentru a încuraja participanții să aplice metode eficiente de îngrijire a copiilor?"
         ),
 
         "Altele": (
-            "Ești responsabil de crearea unui curs online pentru un domeniu general care nu se încadrează în categoriile deja menționate.\n\n"
+            "Ești responsabil de crearea unui curs online pentru grădinărit.\n\n"
+            "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "❓ Cum ai structura acest curs pentru a acoperi atât concepte fundamentale, cât și tehnici avansate în domeniul respectiv?\n\n"
             "❓ Ce activități interactive ai adăuga pentru a face cursul mai captivant și mai aplicabil pentru participanți?\n\n"
             "❓ Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a deveni experți în acest domeniu?"
@@ -513,9 +552,9 @@ translations = {
 
         "characters_about" : "maxim 1000 de caractere",
         "characters_course" : "200 - 1000 de caractere",
-        "min_200" : "Te rog sa scrii minim 200 de caractere.",
-        "max_1000" : "Te rog sa scrii maxim 1000 de caractere.",
-        "requirement_length" : "Te rog sa spun despre crearea cursului in minim 200 de caractere si maxim 1000 de caractere.",	
+        "min_200" : "Te rog să scrii minim 200 de caractere.",
+        "max_1000" : "Te rog să scrii maxim 1000 de caractere.",
+        "requirement_length" : "Te rog să ne spui despre cum ai crea tu cursului ideal in minim 200 de caractere si maxim 1000 de caractere.",	
         "send_form" : "Multumesc pentru raspunsuri! Curand vei putea vedea niste grafice cu acestea!"
     }
 }
@@ -524,7 +563,7 @@ current_language = st.session_state.language
 current_translations = translations[current_language]
 
 
-st.title("Share your experience with e-learning platforms! 📚")
+st.title("Share your experience with     e-learning platforms! 📚")
 
 
 st.markdown("""
@@ -917,7 +956,8 @@ elif st.session_state.page == 4:
         else 0
     )
     
-    st.write("### Would you try?")
+    st.markdown(f"<b style='font-size:22px'>{current_translations['try']}</b>", unsafe_allow_html=True)
+
     vr = st.radio(
     current_translations['vr'], 
     current_translations['yes_no'],
@@ -996,10 +1036,6 @@ elif st.session_state.page == 4:
                     st.session_state.payment = payment
                     st.session_state.dropOut = dropOut
                     st.session_state.dropOutReason = dropOutReason
-                    # if dropOut == "Yes" or dropOut == "Da":
-                    #     st.session_state.dropOutReason = dropOutReason
-                    # else:
-                    #     st.session_state.dropOutReason = None
                     st.session_state.completationRate = completationRate
                     st.session_state.preference = preference
                     st.session_state.vr = vr
@@ -1019,10 +1055,6 @@ elif st.session_state.page == 4:
                         st.warning(current_translations['warning_other_course'])
                     elif not st.session_state.selected_usage:
                         st.warning(current_translations['warning_usage'])
-                    elif not st.session_state.notes:
-                        st.warning(current_translations['warning_notes'])
-                    elif not st.session_state.bestCourse.strip():
-                        st.warning(current_translations['warning_best_course'])
 
                     elif "School purposes" in st.session_state.selected_usage or "Școală" in st.session_state.selected_usage:
                         # st.write("Ajuns aici, verificați următoarele condiții.")  
@@ -1035,21 +1067,39 @@ elif st.session_state.page == 4:
                                 if not st.session_state.job.strip():
                                     st.warning(current_translations['warning_job'])
                                 else: 
-                                    next_page()
+                                    if not st.session_state.bestCourse.strip():
+                                        st.warning(current_translations['warning_best_course'])
+                                    elif not st.session_state.notes:
+                                        st.warning(current_translations['warning_notes'])
+                                    else:
+                                        next_page()
                         else: 
-                            next_page()
+                            if not st.session_state.bestCourse.strip():
+                                st.warning(current_translations['warning_best_course'])
+                            elif not st.session_state.notes:
+                                st.warning(current_translations['warning_notes'])
+                            else:
+                                next_page()
 
                     elif "Job Purposes" in st.session_state.selected_usage or "Locul de muncă" in st.session_state.selected_usage:
                         if not st.session_state.job.strip():
                             st.warning(current_translations['warning_job'])
                         else: 
-                            next_page()
-                    # elif "No" in st.session_state.dropOut or "Nu" in st.session_state.dropOut:
-                    #     if st.session_state.dropOutReason is None:
-                    #         st.warning(current_translations['warning_dropOut'])
+                            if not st.session_state.bestCourse.strip():
+                                st.warning(current_translations['warning_best_course'])
+                            elif not st.session_state.notes:
+                                st.warning(current_translations['warning_notes'])
+                            else:
+                                next_page()
+
                     else:
                         # st.write("NU VREAU SA MERG")
-                        next_page()
+                        if not st.session_state.bestCourse.strip():
+                                st.warning(current_translations['warning_best_course'])
+                        elif not st.session_state.notes:
+                                st.warning(current_translations['warning_notes'])
+                        else:
+                            next_page()
                         
         with col3:
             back_button = st.form_submit_button(current_translations['back_button'])
@@ -1091,54 +1141,6 @@ elif st.session_state.page == 5:
     if next_button:
         st.session_state.about = about  
         st.session_state.specific_course = user_input  
-
-
-        # st.write("### Summary of Your Answers:")
-
-        # # Page 3 responses
-        # st.write(f"**Age:** {st.session_state.age}")
-        # st.write(f"**Gender:** {st.session_state.gender}")
-        # st.write(f"**Country:** {st.session_state.country}")
-        # st.write(f"**Education Level:** {st.session_state.education}")
-
-        # # Additional responses (from your example)
-        # st.write(f"**Selected Platforms:** {', '.join(st.session_state.selected_platforms)}")
-        # st.write(f"**Selected Courses:** {', '.join(st.session_state.selected_courses)}")
-        # st.write(f"**Usage:** {st.session_state.selected_usage}")
-        # st.write(f"**Job:** {st.session_state.job}")
-        # st.write(f"**Mandatory:** {st.session_state.mandatory}")
-        # st.write(f"**Promotion:** {st.session_state.promotion}")
-        # st.write(f"**Reasons for Choosing Course:** {', '.join(st.session_state.selected_reasons)}")
-        # st.write(f"**Check Lectures:** {st.session_state.check_lectures}")
-        # st.write(f"**Check Exams:** {st.session_state.check_exams}")
-        # st.write(f"**Grade Before:** {st.session_state.grade_before}")
-        # st.write(f"**Max Grade Before:** {st.session_state.max_grade_before}")
-        # st.write(f"**Grade After:** {st.session_state.grade_after}")
-        # st.write(f"**Max Grade After:** {st.session_state.max_grade_after}")
-        # st.write(f"**Learning Method:** {st.session_state.learning_method}")
-        # st.write(f"**Frequency:** {st.session_state.frequency}")
-        # st.write(f"**Paid Courses:** {st.session_state.payed_courses}")
-        # st.write(f"**Payment:** {st.session_state.payment}")
-
-        # st.write(f"**Best Course:** {st.session_state.bestCourse}")
-        # st.write(f"**Dropout Status:** {st.session_state.dropOut}")
-        # # if st.session_state.dropOut == "Yes" or st.session_state.dropOut == "Da":
-        # st.write(f"**Dropout Reason:** {st.session_state.dropOutReason}")
-        # st.write(f"**Completion Rate:** {st.session_state.completationRate}")
-        # st.write(f"**Certification:** {st.session_state.certification}")
-        # st.write(f"**Notes:** {st.session_state.notes}")
-        # st.write(f"**Multitasking:** {st.session_state.multitasking}")
-        # st.write(f"**Preference:** {st.session_state.preference}")
-        # st.write(f"**VR Usage:** {st.session_state.vr}")
-        # st.write(f"**Live Interaction:** {st.session_state.liveInteraction}")
-        # st.write(f"**Immersive Learning:** {st.session_state.immersive}")
-        # st.write(f"**Replacement:** {st.session_state.replacement}")
-        # st.write(f"**AI Assistant:** {st.session_state.aiAssistant}")
-        # st.write(f"**AI Professor:** {st.session_state.aiProfessor}")
-        # st.write(f"**About Course:** {st.session_state.about}")
-        # st.write(f"**Specific Course:** {st.session_state.specific_course}")
-
-
 
         conn, cursor = get_db_connection()
     
@@ -1200,24 +1202,26 @@ elif st.session_state.page == 5:
             st.session_state.about,
             st.session_state.specific_course
         )
+
+        if len(st.session_state.specific_course) <= 200 or len(st.session_state.specific_course) >= 1000:
+                st.warning(current_translations["requirement_length"])
+        else:
+            try:
+                cursor.execute(insert_query, data)
+                conn.commit()
+                # st.success(current_translations["valid_input"])
+            except Exception as e:
+                st.error(f"❌ Error inserting data: {e}")
+            finally:
+                cursor.close()
+                conn.close()
+                st.success(current_translations["send_form"])
+                st.balloons()
+
+                st.markdown("""<meta http-equiv="refresh" content="1">""", unsafe_allow_html=True)
+
     
-        try:
-            cursor.execute(insert_query, data)
-            conn.commit()
-            st.success("✅ Survey submitted successfully!")
-        except Exception as e:
-            st.error(f"❌ Error inserting data: {e}")
-        finally:
-            cursor.close()
-            conn.close()
-            st.success(current_translations["send_form"])
-            st.balloons()
-    
-            # if len(st.session_state.specific_course) <= 200 or len(st.session_state.specific_course) >= 1000:
-            #     st.warning(current_translations["requirement_length"])
-            # else:
-            #     st.success(current_translations["send_form"])
-            #     st.balloons()
+            
     
     if back_button:
         prev_page()

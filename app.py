@@ -59,3 +59,32 @@ def get_db_connection():
 
     return conn, cursor  
     
+
+st.write("In the making...  ")
+st.write("Platformele tale preferate de e-learning intr-un singur loc! ")
+
+platforms = {
+    "Coursera": [
+        {"title": "Machine Learning by Andrew Ng", "url": "https://www.youtube.com/watch?v=Gv9_4yMHFhI"},
+        {"title": "The Science of Well-Being", "url": "https://www.youtube.com/watch?v=93L4j-_7Wpg"},
+    ],
+    "Udemy": [
+        {"title": "100 Days of Code: The Complete Python Pro Bootcamp", "url": "https://www.youtube.com/watch?v=1gP5t6zMf5k"},
+        {"title": "Web Development Bootcamp", "url": "https://www.youtube.com/watch?v=0yW4o9QJ3t4"},
+    ],
+    "edX": [
+        {"title": "CS50: Introduction to Computer Science", "url": "https://www.youtube.com/watch?v=8mAITcNt710"},
+        {"title": "Data Science MicroMasters", "url": "https://www.youtube.com/watch?v=Gp6TdpEUN3s"},
+    ],
+}
+
+# Coloane pentru cele 3 platforme
+col1, col2, col3 = st.columns(3)
+
+for col, (platform, videos) in zip([col1, col2, col3], platforms.items()):
+    with col:
+        st.subheader(platform)
+        for video in videos:
+            st.markdown(f"**{video['title']}**")
+            st.video(video['url'])  # Înlocuiește URL-ul cu linkul YouTube direct
+            st.markdown("---")
