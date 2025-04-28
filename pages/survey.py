@@ -1278,7 +1278,7 @@ elif st.session_state.page == 5:
                 st.success(current_translations["send_form"])
                 st.balloons()
 
-                st.markdown("""<meta http-equiv="refresh" content="1">""", unsafe_allow_html=True)
+                st.markdown("""<meta http-equiv="refresh" content="3">""", unsafe_allow_html=True)
 
     
             
