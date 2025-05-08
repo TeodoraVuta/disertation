@@ -549,7 +549,7 @@ translations = {
             "🎨 Care sunt abilitățile esențiale pe care participanții trebuie să le dezvolte pentru a crea designuri grafice profesioniste?"
         ),
 
-        "Turism & Călătorii": (
+        "Călătorii & Turism": (
             "Ești responsabil de crearea unui curs online despre Turism și Călătorii, destinat celor care vor să înțeleagă cum să planifice vacanțe și călătorii.\n\n"
             "Pentru inspirație, ți-am lăsat câteva întrebări mai jos. 💭 Nu este obligatoriu să le incluzi în răspunsul tău dacă nu ți se par relevante. Este cursul ideal, creează-l cum îți dorești tu! 👀\n\n"
             "✈️ Cum ai structura acest curs pentru a acoperi atât planificarea logistică a călătoriilor, cât și aspecte culturale ale destinațiilor?\n\n"
