@@ -432,7 +432,8 @@ translations = {
         "school_reasons": "Care este motivul pentru care urmărești cursuri online pentru școală?",
         "check_lectures": "Verifici materialele postate de profesori înainte de a fi predate?",
         "check_exams": "Cât de des consulți cursurile/lecțiile postate de profesorii tăi online?",
-        "grade_before": "Care a fost media notelor tale înainte de a folosi e-learning-ului?",
+        "grade_before": "Care a fost media notelor tale înainte de a folosi e-learning-ului? \n\n"
+        "exemplu: 8.5",
         "your_grade_before": "Media notelor tale (inainte de utilizarea e-learning-ului):",
         "your_grade_after": "Media notelor tale (după ce ai început să utilizezi e-learning-ul):",
         "out_of_before": "Din (media maximă ce putea fi obținută, înainte de utilizarea e-learning-ului):",
