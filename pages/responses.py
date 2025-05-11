@@ -10,81 +10,73 @@ def get_survey_data():
     conn, cursor = get_db_connection()
     if conn is None:
         st.error("Nu s-a putut stabili conexiunea la baza de date.")
-        return pd.DataFrame()  # Returnează un DataFrame gol în cazul unei erori
+        return pd.DataFrame()  
     query = "SELECT * FROM survey_responses"
     df = pd.read_sql(query, conn)
     close_db_connection(conn, cursor)
     return df
 
-def plot_age_distribution(df):
-    plt.figure(figsize=(10, 6))
-    sns.histplot(df['age'], kde=True, bins=20, color='skyblue')
-    plt.title('Distribuția vârstei utilizatorilor', fontsize=14)
-    plt.xlabel('Vârstă', fontsize=12)
-    plt.ylabel('Frecvență', fontsize=12)
-    st.pyplot(plt)
+df = get_survey_data()
 
-# Vizualizare date - grafic cu distribuția educației
-def plot_education_distribution(df):
-    plt.figure(figsize=(10, 6))
-    education_counts = df['education'].value_counts()
-    sns.barplot(x=education_counts.index, y=education_counts.values, palette='viridis')
-    plt.title('Distribuția nivelului de educație', fontsize=14)
-    plt.xlabel('Nivel de educație', fontsize=12)
-    plt.ylabel('Număr de utilizatori', fontsize=12)
-    plt.xticks(rotation=45)
-    st.pyplot(plt)
+educatie_standard = {
+    "Bachelor's Degree": "Licență",
+    "Licenta": "Licență",
+    "Licen??" : "Licență",
+    "licență": "Licență",
+    "Master's Degree": "Master",
+    "Master": "Master",
+    "masterat": "Master",
+    "High School": "Liceu",
+    "Liceu": "Liceu",
+    "PhD": "Doctorat",
+    "Doctorat": "Doctorat", 
+    "?coala Primar?" : "Școală Primară",
+    "?coala General?" : "Școală Generală",
+}
+    
+gender_standard = {
+    "Female": "Feminin",
+    "Male": "Masculin",
+    "Non-binary/Third gender": "Non-binary",
+    "Prefer not to say" : "Prefer să nu spun",
+    "Feminin" : "Feminin",
+    "Masculin" : "Masculin",
+    "Non-binar/Al treilea gen" : "Non-binary",
+    "Prefer s? nu spun" : "Prefer să nu spun",
+}
 
+df['educatie_standard'] = df['education'].replace(educatie_standard)
 
-def plot_education_distribution(df):
-    educatie_standard = {
-        "Bachelor's Degree": "Licență",
-        "Licenta": "Licență",
-        "Licen??" : "Licență",
-        "licență": "Licență",
-        "Master's Degree": "Master",
-        "Master": "Master",
-        "masterat": "Master",
-        "High School": "Liceu",
-        "Liceu": "Liceu",
-        "PhD": "Doctorat",
-        "Doctorat": "Doctorat", 
-        "?coala Primar?" : "Școală Primară",
-        "?coala General?" : "Școală Generală",
+education_counts = df['educatie_standard'].value_counts()
+education_options = ['Toate'] + list(df['educatie_standard'].dropna().unique())
 
 
-    }
+df['gender_standard'] = df['gender'].replace(gender_standard)
 
-    df['educatie_standard'] = df['education'].replace(educatie_standard)
+gender_counts = df['gender_standard'].value_counts()
 
-    education_counts = df['educatie_standard'].value_counts()
+if not df.empty:
+    col_filters, col_table = st.columns([1, 3])  
 
-    plt.figure(figsize=(10, 6))
-    sns.barplot(x=education_counts.index, y=education_counts.values, palette='viridis')
-    plt.title('Distribuția nivelului de educație', fontsize=14)
-    plt.xlabel('Nivel de educație', fontsize=12)
-    plt.ylabel('Număr de utilizatori', fontsize=12)
-    plt.xticks(rotation=45)
-    st.pyplot(plt)
+    with col_filters:
+        selected_sex = st.selectbox("Selectează sexul:", options=df['gender_standard'].dropna().unique())
+        selected_education = st.selectbox("Selectează nivelul de educație:", options=df['educatie_standard'].dropna().unique())
 
+    if selected_education == 'Toate':
+        filtered_df = df[df['gender_standard'] == selected_sex]
+    else:
+        filtered_df = df[
+            (df['gender_standard'] == selected_sex) &
+            (df['educatie_standard'] == selected_education)
+        ]
 
-# Pagina principală
-def main():
-    st.title('Vizualizare date Survey')
+    filtered_df = df[
+        (df['gender_standard'] == selected_sex) &
+        (df['educatie_standard'] == selected_education)
+    ]
 
-    # Extrage datele din baza de date
-    df = get_survey_data()
+    with col_table:
+        st.dataframe(filtered_df, use_container_width=True)
+else:
+    st.warning("Nu există date disponibile pentru afișare.")
 
-    # Grafice
-    st.subheader('Distribuția vârstei utilizatorilor')
-    plot_age_distribution(df)
-
-    st.subheader('Distribuția nivelului de educație')
-    plot_education_distribution(df)
-
-if __name__ == '__main__':
-    main()
-
-
-
-st.write("In the making...  ")
