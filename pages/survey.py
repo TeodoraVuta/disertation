@@ -350,7 +350,7 @@ translations = {
         "characters_course" : "200 - 1000 characters",
         "min_200" : "Please write at least 200 characters.",
         "max_1000" : "Please write a maximum of 1000 characters.",
-        "requirement_length" : "Please write about the course creation in at least 200 characters and a maximum of 1000 characters.",
+        "requirement_length" : "Please write about the course creation in at least 50 characters and a maximum of 1000 characters.",
         "send_form" : "Thank you for the answers! Soon you'll see some charts about them!"
 
     },
@@ -622,7 +622,7 @@ translations = {
         "characters_course" : "200 - 1000 de caractere",
         "min_200" : "Te rog să scrii minim 200 de caractere.",
         "max_1000" : "Te rog să scrii maxim 1000 de caractere.",
-        "requirement_length" : "Te rog să ne spui despre cum ai crea tu cursului ideal in minim 200 de caractere si maxim 1000 de caractere.",	
+        "requirement_length" : "Te rog să ne spui despre cum ai crea tu cursului ideal in minim 50 de caractere si maxim 1000 de caractere.",	
         "send_form" : "Multumesc pentru raspunsuri! Curand vei putea vedea niste grafice cu acestea!"
     }
 }
@@ -1280,7 +1280,7 @@ elif st.session_state.page == 5:
             st.session_state.specific_course
         )
 
-        if len(st.session_state.specific_course) <= 200 or len(st.session_state.specific_course) >= 1000:
+        if len(st.session_state.specific_course) <= 50 or len(st.session_state.specific_course) >= 1000:
                 st.warning(current_translations["requirement_length"])
         else:
             try:
